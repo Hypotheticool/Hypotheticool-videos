@@ -206,3 +206,98 @@ def rim_lights(target=(0, 0, 0)):
         o = link(bpy.data.objects.new(name, li)); o.location = loc
         c = o.constraints.new('TRACK_TO'); t = bpy.data.objects.new(name + '_t', None); link(t); t.location = target
         c.target = t; c.track_axis = 'TRACK_NEGATIVE_Z'; c.up_axis = 'UP_Y'
+
+# ------------------------------------------------------------------ planets
+def _noise(N, L, vec, scale, detail=8, rough=.55):
+    nz = N.new('ShaderNodeTexNoise'); nz.inputs['Scale'].default_value = scale; nz.inputs['Detail'].default_value = detail
+    nz.inputs['Roughness'].default_value = rough; L.new(vec, nz.inputs['Vector']); return nz
+
+def mat_earth(sun_dir=(1, 0, 0)):
+    """procedural Earth: oceans, continents, ice caps (animatable), city lights on the night side, warmth tint (animatable)"""
+    m = bpy.data.materials.new('earth'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); tc = N.new('ShaderNodeTexCoord'); bs = N.new('ShaderNodeBsdfPrincipled')
+    land_n = _noise(N, L, tc.outputs['Object'], 1.25, 10, .58)
+    landm = N.new('ShaderNodeMapRange'); landm.inputs['From Min'].default_value = .52; landm.inputs['From Max'].default_value = .54
+    L.new(land_n.outputs['Fac'], landm.inputs['Value'])
+    lc = N.new('ShaderNodeValToRGB'); r = lc.color_ramp
+    r.elements[0].position = .5; r.elements[0].color = (.05, .16, .03, 1); r.elements[1].position = .68; r.elements[1].color = (.42, .3, .14, 1)
+    e = r.elements.new(.58); e.color = (.12, .24, .05, 1)
+    L.new(land_n.outputs['Fac'], lc.inputs['Fac'])
+    oc = N.new('ShaderNodeValToRGB'); r2 = oc.color_ramp
+    r2.elements[0].position = .35; r2.elements[0].color = (.003, .02, .09, 1); r2.elements[1].position = .53; r2.elements[1].color = (.01, .09, .22, 1)
+    L.new(land_n.outputs['Fac'], oc.inputs['Fac'])
+    warm = N.new('ShaderNodeMixRGB'); warm.name = 'warm'; warm.blend_type = 'MIX'; warm.inputs['Fac'].default_value = 0.0
+    L.new(lc.outputs['Color'], warm.inputs[1]); warm.inputs[2].default_value = (.55, .22, .05, 1)
+    surf = N.new('ShaderNodeMixRGB'); L.new(landm.outputs[0], surf.inputs['Fac']); L.new(oc.outputs['Color'], surf.inputs[1]); L.new(warm.outputs[0], surf.inputs[2])
+    sep = N.new('ShaderNodeSeparateXYZ'); L.new(tc.outputs['Generated'], sep.inputs[0])
+    zc = N.new('ShaderNodeMath'); zc.operation = 'SUBTRACT'; zc.inputs[1].default_value = .5; L.new(sep.outputs['Z'], zc.inputs[0])
+    za = N.new('ShaderNodeMath'); za.operation = 'ABSOLUTE'; L.new(zc.outputs[0], za.inputs[0])
+    wob = _noise(N, L, tc.outputs['Object'], 4, 4)
+    wb = N.new('ShaderNodeMath'); wb.operation = 'MULTIPLY_ADD'; wb.inputs[1].default_value = .06; L.new(wob.outputs['Fac'], wb.inputs[0]); L.new(za.outputs[0], wb.inputs[2])
+    ice = N.new('ShaderNodeMath'); ice.name = 'ice'; ice.operation = 'GREATER_THAN'; ice.inputs[1].default_value = .43
+    L.new(wb.outputs[0], ice.inputs[0])
+    withice = N.new('ShaderNodeMixRGB'); L.new(ice.outputs[0], withice.inputs['Fac']); L.new(surf.outputs[0], withice.inputs[1]); withice.inputs[2].default_value = (.85, .9, .95, 1)
+    L.new(withice.outputs[0], bs.inputs['Base Color'])
+    rough = N.new('ShaderNodeMapRange'); rough.inputs['To Min'].default_value = .25; rough.inputs['To Max'].default_value = .85
+    L.new(landm.outputs[0], rough.inputs['Value']); L.new(rough.outputs[0], bs.inputs['Roughness'])
+    # night-side city lights
+    geo = N.new('ShaderNodeNewGeometry'); dot = N.new('ShaderNodeVectorMath'); dot.operation = 'DOT_PRODUCT'
+    L.new(geo.outputs['Normal'], dot.inputs[0]); dot.inputs[1].default_value = sun_dir
+    night = N.new('ShaderNodeMapRange'); night.inputs['From Min'].default_value = 0.05; night.inputs['From Max'].default_value = -0.2
+    L.new(dot.outputs['Value'], night.inputs['Value'])
+    city = _noise(N, L, tc.outputs['Object'], 38, 2)
+    cm = N.new('ShaderNodeMapRange'); cm.inputs['From Min'].default_value = .6; cm.inputs['From Max'].default_value = .72; L.new(city.outputs['Fac'], cm.inputs['Value'])
+    m1 = N.new('ShaderNodeMath'); m1.operation = 'MULTIPLY'; L.new(cm.outputs[0], m1.inputs[0]); L.new(landm.outputs[0], m1.inputs[1])
+    m2 = N.new('ShaderNodeMath'); m2.operation = 'MULTIPLY'; L.new(m1.outputs[0], m2.inputs[0]); L.new(night.outputs[0], m2.inputs[1])
+    m3 = N.new('ShaderNodeMath'); m3.operation = 'MULTIPLY'; m3.inputs[1].default_value = 3.0; L.new(m2.outputs[0], m3.inputs[0])
+    bs.inputs['Emission Color'].default_value = (1, .7, .35, 1); L.new(m3.outputs[0], bs.inputs['Emission Strength'])
+    L.new(bs.outputs[0], o.inputs[0]); return m
+
+def mat_clouds():
+    m = bpy.data.materials.new('clouds'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); tc = N.new('ShaderNodeTexCoord')
+    nz = _noise(N, L, tc.outputs['Object'], 3.2, 12, .6)
+    mr = N.new('ShaderNodeMapRange'); mr.inputs['From Min'].default_value = .6; mr.inputs['From Max'].default_value = .74; L.new(nz.outputs['Fac'], mr.inputs['Value'])
+    d = N.new('ShaderNodeBsdfDiffuse'); d.inputs['Color'].default_value = (1, 1, 1, 1); tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
+    L.new(mr.outputs[0], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(d.outputs[0], mx.inputs[2]); L.new(mx.outputs[0], o.inputs[0]); return m
+
+def mat_atmo(color=(.25, .55, 1), strength=1.4):
+    m = bpy.data.materials.new('atmo'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); lw = N.new('ShaderNodeLayerWeight'); lw.inputs['Blend'].default_value = .2
+    pw = N.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 5.0; L.new(lw.outputs['Facing'], pw.inputs[0])
+    e = N.new('ShaderNodeEmission'); e.inputs['Color'].default_value = (*color, 1); e.inputs['Strength'].default_value = strength
+    tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
+    L.new(pw.outputs[0], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(e.outputs[0], mx.inputs[2]); L.new(mx.outputs[0], o.inputs[0]); return m
+
+def earth(R=2.0, sun_dir=(1, 0, 0), tilt_deg=23.4, axis=False):
+    """returns (tilt_root, spin) ; animate spin.rotation_euler.z for rotation, tilt_root.rotation_euler.y for tilt"""
+    root = link(bpy.data.objects.new('earth_tilt', None)); root.rotation_euler = (0, math.radians(tilt_deg), 0)
+    spin = link(bpy.data.objects.new('earth_spin', None), root)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=R, segments=128, ring_count=64); e = bpy.context.object
+    e.data.materials.append(mat_earth(sun_dir)); smooth(e, 1); e.parent = spin
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=R * 1.015, segments=96, ring_count=48); c = bpy.context.object
+    c.data.materials.append(mat_clouds()); smooth(c, 0); c.parent = spin; c.rotation_euler = (0, 0, .7)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=R * 1.05, segments=96, ring_count=48); a = bpy.context.object
+    a.data.materials.append(mat_atmo()); smooth(a, 0); a.parent = root
+    if axis:
+        bpy.ops.mesh.primitive_cylinder_add(radius=R * .018, depth=R * 3.2); ax = bpy.context.object
+        ax.data.materials.append(mat_emit('axis', (1, .9, .5), 6)); ax.parent = root
+    return root, spin
+
+def moon(R=.55):
+    m = bpy.data.materials.new('moon'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); tc = N.new('ShaderNodeTexCoord'); bs = N.new('ShaderNodeBsdfPrincipled'); bs.inputs['Roughness'].default_value = .95
+    mar = _noise(N, L, tc.outputs['Object'], 1.6, 6)
+    cr = N.new('ShaderNodeValToRGB'); cr.color_ramp.elements[0].position = .45; cr.color_ramp.elements[0].color = (.1, .1, .11, 1)
+    cr.color_ramp.elements[1].position = .6; cr.color_ramp.elements[1].color = (.36, .36, .35, 1); L.new(mar.outputs['Fac'], cr.inputs['Fac']); L.new(cr.outputs['Color'], bs.inputs['Base Color'])
+    vo = N.new('ShaderNodeTexVoronoi'); vo.inputs['Scale'].default_value = 9; L.new(tc.outputs['Object'], vo.inputs['Vector'])
+    bump = N.new('ShaderNodeBump'); bump.inputs['Strength'].default_value = .5; L.new(vo.outputs['Distance'], bump.inputs['Height']); L.new(bump.outputs['Normal'], bs.inputs['Normal'])
+    L.new(bs.outputs[0], o.inputs[0])
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=R, segments=96, ring_count=48); mo = bpy.context.object
+    mo.data.materials.append(m); smooth(mo, 1); return mo
+
+def sun_lamp(direction=(1, 0, 0), energy=4.0, color=(1, .96, .9)):
+    li = bpy.data.lights.new('sun', 'SUN'); li.energy = energy; li.color = color; li.angle = math.radians(1.5)
+    o = link(bpy.data.objects.new('sun', li))
+    o.rotation_euler = Vector(direction).to_track_quat('-Z', 'Y').to_euler() if False else (Vector((0, 0, 0)) - Vector(direction)).to_track_quat('-Z', 'Y').to_euler()
+    return o

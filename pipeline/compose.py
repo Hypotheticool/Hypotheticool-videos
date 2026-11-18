@@ -4,12 +4,11 @@ sys.path.insert(0, '/home/claude/pro')
 import numpy as np, cv2, skia
 import engine as E
 
-ROOT = '/home/claude/b3d/bh'
-FPS = 24; XF = 0.35
-DURS = [3.0, 7.6, 6.4, 5.6, 4.4, 6.0, 6.9, 5.7, 7.3, 1.8]
-sys.path.insert(0, '/home/claude/pro')
-from black_hole import SCENES, HL
-LINES = [ln for _, ln in SCENES]
+import re
+CFG = json.load(open(sys.argv[1]))
+ROOT = CFG['root']; FPS = 24; XF = 0.35
+DURS = CFG['durs']; LINES = CFG['lines']
+HL = {re.sub(r'[^A-Z0-9-]', '', h.upper()) for h in CFG['hl']}
 starts = np.concatenate([[0], np.cumsum(DURS)[:-1]]); total = float(sum(DURS))
 caps = []
 for i, ln in enumerate(LINES):
@@ -65,15 +64,15 @@ def frame(T):
     return surf.makeImageSnapshot().toarray()
 
 if __name__ == '__main__':
-    out = sys.argv[1]
-    if len(sys.argv) > 2:      # preview stills at given times
+    out = sys.argv[2]
+    if len(sys.argv) > 3:      # preview stills at given times
         from PIL import Image
-        for t in sys.argv[2:]:
+        for t in sys.argv[3:]:
             Image.fromarray(frame(float(t))[..., [2, 1, 0]]).save(f'{ROOT}/comp_{t}.jpg', quality=88)
         sys.exit()
     nf = int(total * FPS)
     p = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'bgra', '-s', f'{E.W}x{E.H}', '-r', str(FPS), '-i', '-',
-                          '-i', '/home/claude/pro/out/mix.wav', '-map', '0:v', '-map', '1:a', '-c:v', 'libx264', '-preset', 'slow', '-crf', '18',
+                          '-i', f'{ROOT}/mix.wav', '-map', '0:v', '-map', '1:a', '-c:v', 'libx264', '-preset', 'slow', '-crf', '18',
                           '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-shortest', out + '.tmp.mp4'], stdin=subprocess.PIPE)
     for k in range(nf):
         p.stdin.write(frame(k / FPS).tobytes())
