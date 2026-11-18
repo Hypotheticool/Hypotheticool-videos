@@ -54,6 +54,12 @@ def frame(T):
             r, g, b = ov['color']; w = LBL.measureText(ov['text'])
             cv.drawString(ov['text'], x - w / 2, y, LBL, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 12))
             cv.drawString(ov['text'], x - w / 2, y, LBL, E.P(E.C(r, g, b, 255 * a)))
+        elif ov['type'] == 'cta':   # loop-friendly call to action at the top of the last scene (no spoken outro)
+            f1, f2 = skia.Font(E.TF, 58), skia.Font(E.TF, 74)
+            for txt, f, yy, col in [('FOLLOW FOR MORE WHAT IFS', f1, E.H * .1, (255, 222, 40)), ('@HypotheticoolHQ', f2, E.H * .1 + 84, (255, 255, 255))]:
+                w = f.measureText(txt)
+                cv.drawString(txt, E.W / 2 - w / 2, yy, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 12))
+                cv.drawString(txt, E.W / 2 - w / 2, yy, f, E.P(E.C(*col, 255 * a)))
         elif ov['type'] == 'handle':
             f = skia.Font(E.TF, 80); w = f.measureText('@HypotheticoolHQ')
             cv.drawString('@HypotheticoolHQ', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 14))

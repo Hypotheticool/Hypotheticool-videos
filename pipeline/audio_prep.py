@@ -11,6 +11,13 @@ starts = np.concatenate([[0], np.cumsum(durs)[:-1]]); total = float(sum(durs))
 n = int(total * sr) + sr; voice = np.zeros(n, np.float32)
 for (a, _), s in zip(clips, starts):
     i0 = int((s + E.LEAD) * sr); voice[i0:i0 + len(a)] += a
+if cfg.get('pops', True):   # soft pop on every caption chunk (pacing)
+    L = int(.045 * sr); tt = np.arange(L) / sr
+    pop = (np.sin(2 * np.pi * (950 - 4000 * tt) * tt) * np.exp(-tt * 90)).astype(np.float32) * .07
+    for i, ((a, _), ln) in enumerate(zip(clips, cfg['lines'])):
+        for words, t0, t1 in E.chunk_words(ln, E.word_times(ln, len(a) / sr)):
+            k = int((starts[i] + E.LEAD + t0 - .05) * sr)
+            if 0 <= k < n - L: voice[k:k + L] += pop
 sf.write(f'{out}/voice_raw.wav', voice, sr)
 sf.write(f'{out}/bed.wav', E.music_bed(n, sr, starts[1:], total), sr)
 subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', f'{out}/voice_raw.wav', '-i', f'{out}/bed.wav', '-filter_complex',
