@@ -41,7 +41,7 @@ def frame(T):
         u = E.ease((T - (starts[i + 1] - XF)) / XF)
         img = img * (1 - u) + scene_frame(i + 1, T - starts[i + 1] + XF) * u
     img = bloom(img)
-    img = cv2.resize(img, (E.W, E.H), interpolation=cv2.INTER_LANCZOS4)
+    if img.shape[1] != E.W: img = cv2.resize(img, (E.W, E.H), interpolation=cv2.INTER_LANCZOS4)
     img = np.clip(img, 0, 255).astype(np.uint8)
     bgra = np.dstack([img, np.full(img.shape[:2], 255, np.uint8)])
     cv.drawImage(skia.Image.fromarray(np.ascontiguousarray(bgra), colorType=skia.kBGRA_8888_ColorType), 0, 0)
@@ -60,7 +60,7 @@ def frame(T):
             cv.drawString('@Hypotheticool', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(255, 255, 255, 255 * a)))
     for words, t0, t1 in caps:
         if t0 <= T < max(t1, t0 + .25):
-            E.caption(cv, words, t0, T, HL, y=1470); break
+            E.caption(cv, words, t0, T, HL, y=(1470 if E.H > E.W else E.H * .9)); break
     return surf.makeImageSnapshot().toarray()
 
 if __name__ == '__main__':
@@ -70,11 +70,24 @@ if __name__ == '__main__':
         for t in sys.argv[3:]:
             Image.fromarray(frame(float(t))[..., [2, 1, 0]]).save(f'{ROOT}/comp_{t}.jpg', quality=88)
         sys.exit()
-    nf = int(total * FPS)
+    nf = int(total * FPS); master = out + '.master.mp4'
     p = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'bgra', '-s', f'{E.W}x{E.H}', '-r', str(FPS), '-i', '-',
-                          '-i', f'{ROOT}/mix.wav', '-map', '0:v', '-map', '1:a', '-c:v', 'libx264', '-preset', 'slow', '-crf', '18',
-                          '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-shortest', out + '.tmp.mp4'], stdin=subprocess.PIPE)
+                          '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '14', '-pix_fmt', 'yuv420p', master + '.tmp.mp4'], stdin=subprocess.PIPE)
     for k in range(nf):
         p.stdin.write(frame(k / FPS).tobytes())
-    p.stdin.close(); assert p.wait() == 0
+    p.stdin.close(); assert p.wait() == 0; os.replace(master + '.tmp.mp4', master)
+    # final encode: quality CRF 18, but cap the file under ~95 MB (GitHub raw limit) with a 2-pass bitrate if needed
+    vb = int((95e6 * 8 / total - 160e3) * .97)
+    args = ['-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-pix_fmt', 'yuv420p']
+    if vb < 8e6:
+        for ps in (1, 2):
+            subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', master, '-i', f'{ROOT}/mix.wav', '-map', '0:v', '-map', '1:a'] + args +
+                           ['-b:v', str(vb), '-maxrate', str(int(vb * 1.5)), '-bufsize', str(vb * 2), '-pass', str(ps), '-passlogfile', f'{ROOT}/x264',
+                            '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-shortest'] + (['-f', 'mp4', '/dev/null'] if ps == 1 else [out + '.tmp.mp4']), check=True)
+    else:
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', master, '-i', f'{ROOT}/mix.wav', '-map', '0:v', '-map', '1:a'] + args +
+                       ['-crf', '18', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-shortest', out + '.tmp.mp4'], check=True)
     os.replace(out + '.tmp.mp4', out); print('done', os.path.getsize(out))
+    if CFG.get('chapters'):
+        for ch in CFG['chapters']:
+            st = int(starts[ch['line']]); print(f'CHAPTER {st // 60}:{st % 60:02d} {ch["title"]}')

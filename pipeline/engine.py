@@ -3,7 +3,7 @@ Topic scripts import this, define SCENES = [(draw_fn, narration), ...] and call 
 import math, os, sys, subprocess, re
 import numpy as np, skia
 
-W, H, FPS = 1080, 1920, 30
+W, H, FPS = int(os.environ.get('HC_W', 1080)), int(os.environ.get('HC_H', 1920)), 30
 FONT_FILE = '/usr/share/fonts/truetype/google-fonts/ofl/anton/Anton-Regular.ttf'
 TTS_DIR = os.environ.get('TTS_DIR', '/home/claude/tts')
 VOICE, VOICE_SPEED = 'am_puck', 1.0
@@ -250,12 +250,12 @@ def chunk_words(text, words_t):
 
 def caption(c, words, t_in, t, hl, y=1330):
     pop = eout((t - t_in) / .16); sc = .82 + .18 * pop + .06 * math.sin(min(1, (t - t_in) / .16) * math.pi)
-    size = 112
+    size = 112 if H > W else 74
     font = skia.Font(TF, size)
     txt = [w.upper() for w in words]
     widths = [font.measureText(w + ' ') for w in txt]; total = sum(widths) - font.measureText(' ')
-    if total > 960:
-        size = size * 960 / total; font = skia.Font(TF, size)
+    if total > W * .89:
+        size = size * W * .89 / total; font = skia.Font(TF, size)
         widths = [font.measureText(w + ' ') for w in txt]; total = sum(widths) - font.measureText(' ')
     c.save(); c.translate(W / 2, y); c.scale(sc, sc)
     x = -total / 2

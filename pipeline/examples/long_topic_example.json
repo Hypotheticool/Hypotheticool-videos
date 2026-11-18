@@ -1,0 +1,31 @@
+{
+ "slug": "lvtest",
+ "title": "test",
+ "root": "/home/claude/lvtest",
+ "type": "long",
+ "lines": [
+  "Tides are mostly caused by the Moon.",
+  "The Moon supplies about two thirds of the tide-raising force, the Sun about one third.",
+  "Here is how that has changed over time."
+ ],
+ "hl": [
+  "MOON",
+  "SUN",
+  "TIDES"
+ ],
+ "chapters": [
+  {
+   "title": "Intro",
+   "line": 0
+  },
+  {
+   "title": "Forces",
+   "line": 1
+  }
+ ],
+ "durs": [
+  2.211,
+  5.225,
+  2.359
+ ]
+}

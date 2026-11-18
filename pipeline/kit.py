@@ -216,7 +216,7 @@ def mat_earth(sun_dir=(1, 0, 0)):
     """procedural Earth: oceans, continents, ice caps (animatable), city lights on the night side, warmth tint (animatable)"""
     m = bpy.data.materials.new('earth'); nt, N, L = nodes(m)
     o = N.new('ShaderNodeOutputMaterial'); tc = N.new('ShaderNodeTexCoord'); bs = N.new('ShaderNodeBsdfPrincipled')
-    land_n = _noise(N, L, tc.outputs['Object'], 1.25, 10, .58)
+    land_n = _noise(N, L, tc.outputs['Object'], 1.25, 7, .58)
     landm = N.new('ShaderNodeMapRange'); landm.inputs['From Min'].default_value = .52; landm.inputs['From Max'].default_value = .54
     L.new(land_n.outputs['Fac'], landm.inputs['Value'])
     lc = N.new('ShaderNodeValToRGB'); r = lc.color_ramp
@@ -256,7 +256,7 @@ def mat_earth(sun_dir=(1, 0, 0)):
 def mat_clouds():
     m = bpy.data.materials.new('clouds'); nt, N, L = nodes(m)
     o = N.new('ShaderNodeOutputMaterial'); tc = N.new('ShaderNodeTexCoord')
-    nz = _noise(N, L, tc.outputs['Object'], 3.2, 12, .6)
+    nz = _noise(N, L, tc.outputs['Object'], 3.2, 6, .6)
     mr = N.new('ShaderNodeMapRange'); mr.inputs['From Min'].default_value = .6; mr.inputs['From Max'].default_value = .74; L.new(nz.outputs['Fac'], mr.inputs['Value'])
     d = N.new('ShaderNodeBsdfDiffuse'); d.inputs['Color'].default_value = (1, 1, 1, 1); tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
     L.new(mr.outputs[0], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(d.outputs[0], mx.inputs[2]); L.new(mx.outputs[0], o.inputs[0]); return m
@@ -274,7 +274,7 @@ def earth(R=2.0, sun_dir=(1, 0, 0), tilt_deg=23.4, axis=False):
     root = link(bpy.data.objects.new('earth_tilt', None)); root.rotation_euler = (0, math.radians(tilt_deg), 0)
     spin = link(bpy.data.objects.new('earth_spin', None), root)
     bpy.ops.mesh.primitive_uv_sphere_add(radius=R, segments=128, ring_count=64); e = bpy.context.object
-    e.data.materials.append(mat_earth(sun_dir)); smooth(e, 1); e.parent = spin
+    e.data.materials.append(mat_earth(sun_dir)); smooth(e, 0); e.parent = spin
     bpy.ops.mesh.primitive_uv_sphere_add(radius=R * 1.015, segments=96, ring_count=48); c = bpy.context.object
     c.data.materials.append(mat_clouds()); smooth(c, 0); c.parent = spin; c.rotation_euler = (0, 0, .7)
     bpy.ops.mesh.primitive_uv_sphere_add(radius=R * 1.05, segments=96, ring_count=48); a = bpy.context.object
@@ -294,7 +294,7 @@ def moon(R=.55):
     bump = N.new('ShaderNodeBump'); bump.inputs['Strength'].default_value = .5; L.new(vo.outputs['Distance'], bump.inputs['Height']); L.new(bump.outputs['Normal'], bs.inputs['Normal'])
     L.new(bs.outputs[0], o.inputs[0])
     bpy.ops.mesh.primitive_uv_sphere_add(radius=R, segments=96, ring_count=48); mo = bpy.context.object
-    mo.data.materials.append(m); smooth(mo, 1); return mo
+    mo.data.materials.append(m); smooth(mo, 0); return mo
 
 def sun_lamp(direction=(1, 0, 0), energy=4.0, color=(1, .96, .9)):
     li = bpy.data.lights.new('sun', 'SUN'); li.energy = energy; li.color = color; li.angle = math.radians(1.5)
