@@ -50,7 +50,7 @@ def frame(T):
     for ov in metas[i]['overlays']:
         a = E.eout((lt - .4) / .5)
         if a <= 0: continue
-        x, y = ov['pos'][0] * E.W, ov['pos'][1] * E.H
+        x, y = ov['pos'][0] * E.W, min(ov['pos'][1] * E.H, 1640)
         if ov['type'] == 'label':
             r, g, b = ov['color']; w = LBL.measureText(ov['text'])
             cv.drawString(ov['text'], x - w / 2, y, LBL, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 12))

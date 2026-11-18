@@ -225,9 +225,9 @@ def s7_spag():
         for i in range(260):
             u = i / 259
             ang = 2.6 * 2 * math.pi * u + j * .22 + 2.2
-            r = 6.5 * (1 - u) ** 1.15 + 1.25
-            pts.append((r * math.cos(ang), r * math.sin(ang), 2.4 * (1 - u) ** 2 + .05 * j)); radii.append(1.0 - .75 * u)
-        ob = curve_obj(f'noodle{j}', pts, .07 - .015 * j, noodle, radii)
+            r = 3.4 * (1 - u) ** 1.1 + 1.3
+            pts.append((r * math.cos(ang), r * math.sin(ang), 1.7 * (1 - u) ** 2 + .06 * j)); radii.append(1.0 - .7 * u)
+        ob = curve_obj(f'noodle{j}', pts, .11 - .025 * j, noodle, radii)
         cu = ob.data; cu.bevel_factor_mapping_start = cu.bevel_factor_mapping_end = 'SPLINE'
         cu.bevel_factor_end = 0.02; cu.keyframe_insert('bevel_factor_end', frame=1 + j * 4)
         cu.bevel_factor_end = 1.0; cu.keyframe_insert('bevel_factor_end', frame=F(DURS[7] * .75) + j * 4)
@@ -274,7 +274,7 @@ for o in bpy.data.objects:          # keep subdivision light for render speed
 os.makedirs(f'{OUT}/s{idx}', exist_ok=True)
 json.dump({'frames': NF, 'overlays': overlays}, open(f'{OUT}/s{idx}/meta.json', 'w'))
 if mode == 'still':
-    sc.frame_set(int(NF * .6)); sc.render.filepath = f'{OUT}/still_{idx}.png'; bpy.ops.render.render(write_still=True)
+    sc.frame_set(int(NF * float(sys.argv[3]) if len(sys.argv) > 3 else NF * .6)); sc.render.filepath = f'{OUT}/still_{idx}.png'; bpy.ops.render.render(write_still=True)
 else:
     sc.render.image_settings.file_format = 'PNG'; sc.render.filepath = f'{OUT}/s{idx}/f_'
     bpy.ops.render.render(animation=True)
