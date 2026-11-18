@@ -55,9 +55,9 @@ def frame(T):
             cv.drawString(ov['text'], x - w / 2, y, LBL, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 12))
             cv.drawString(ov['text'], x - w / 2, y, LBL, E.P(E.C(r, g, b, 255 * a)))
         elif ov['type'] == 'handle':
-            f = skia.Font(E.TF, 80); w = f.measureText('@Hypotheticool')
-            cv.drawString('@Hypotheticool', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 14))
-            cv.drawString('@Hypotheticool', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(255, 255, 255, 255 * a)))
+            f = skia.Font(E.TF, 80); w = f.measureText('@HypotheticoolHQ')
+            cv.drawString('@HypotheticoolHQ', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 14))
+            cv.drawString('@HypotheticoolHQ', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(255, 255, 255, 255 * a)))
     for words, t0, t1 in caps:
         if t0 <= T < max(t1, t0 + .25):
             E.caption(cv, words, t0, T, HL, y=(1470 if E.H > E.W else E.H * .9)); break
