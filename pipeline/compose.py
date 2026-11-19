@@ -41,6 +41,20 @@ def bloom(img):
 
 surf = skia.Surface(E.W, E.H); cv = surf.getCanvas()
 LBL = skia.Font(E.TF, 66)
+
+def fit_font(txt, maxw, size, minsize=34):
+    while size > minsize and skia.Font(E.TF, size).measureText(txt) > maxw: size -= 2
+    return skia.Font(E.TF, size)
+def pill(x, y, w, h, fill, a, r=26):
+    rr = skia.RRect.MakeRectXY(skia.Rect.MakeXYWH(x, y, w, h), r, r)
+    cv.drawRRect(rr, E.P(E.C(0, 0, 0, 120 * a), blur=14)); cv.drawRRect(rr, E.P(E.C(*fill, 235 * a)))
+    cv.drawRRect(rr, E.P(E.C(255, 255, 255, 90 * a), 'stroke', 4))
+def text_c(txt, cx, y, f, col, a):
+    w = f.measureText(txt)
+    cv.drawString(txt, cx - w / 2, y, f, E.P(E.C(0, 0, 0, 200 * a), 'stroke', 10))
+    cv.drawString(txt, cx - w / 2, y, f, E.P(E.C(*col, 255 * a)))
+A_COL, B_COL = (225, 55, 60), (40, 110, 230)
+OPT_COLS = [(225, 55, 60), (40, 110, 230), (40, 170, 90), (235, 160, 20)]
 def frame(T):
     i = int(np.searchsorted(starts, T, side='right') - 1); i = max(0, min(i, len(DURS) - 1))
     img = scene_frame(i, T - starts[i] + XF)
@@ -63,10 +77,45 @@ def frame(T):
             cv.drawString(ov['text'], x - w / 2, y, LBL, E.P(E.C(r, g, b, 255 * a)))
         elif ov['type'] == 'cta':   # loop-friendly call to action at the top of the last scene (no spoken outro)
             f1, f2 = skia.Font(E.TF, 58), skia.Font(E.TF, 74)
-            for txt, f, yy, col in [('FOLLOW FOR MORE WHAT IFS', f1, E.H * .1, (255, 222, 40)), ('@HypotheticoolHQ', f2, E.H * .1 + 84, (255, 255, 255))]:
+            for txt, f, yy, col in [(ov.get('text', 'FOLLOW FOR MORE WHAT IFS'), f1, E.H * .1, (255, 222, 40)), ('@HypotheticoolHQ', f2, E.H * .1 + 84, (255, 255, 255))]:
                 w = f.measureText(txt)
                 cv.drawString(txt, E.W / 2 - w / 2, yy, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 12))
                 cv.drawString(txt, E.W / 2 - w / 2, yy, f, E.P(E.C(*col, 255 * a)))
+        elif ov['type'] == 'choice':   # Would You Rather banner: A (red) OR B (blue) at the top; win='a'/'b' dims the other
+            top, bw, bh = E.H * .085, E.W * .43, 190
+            for k, (lab, txt, colr, x0) in enumerate([('A', ov['a'], A_COL, E.W * .045), ('B', ov['b'], B_COL, E.W * .525)]):
+                aa = a * (0.35 if ov.get('win') and ov['win'] != lab.lower() else 1)
+                pill(x0, top, bw, bh, colr, aa)
+                text_c(lab, x0 + bw / 2, top + 64, skia.Font(E.TF, 58), (255, 255, 255), aa)
+                words = txt.upper().split(); l1, l2 = ' '.join(words), ''
+                if skia.Font(E.TF, 46).measureText(l1) > bw - 30 and len(words) > 1:
+                    m = (len(words) + 1) // 2; l1, l2 = ' '.join(words[:m]), ' '.join(words[m:])
+                f = fit_font(max(l1, l2, key=len), bw - 30, 46)
+                text_c(l1, x0 + bw / 2, top + (122 if l2 else 140), f, (255, 255, 255), aa)
+                if l2: text_c(l2, x0 + bw / 2, top + 170, f, (255, 255, 255), aa)
+            cv.drawCircle(E.W / 2, top + bh / 2, 52, E.P(E.C(20, 20, 30, 240 * a)))
+            cv.drawCircle(E.W / 2, top + bh / 2, 52, E.P(E.C(255, 222, 40, 255 * a), 'stroke', 5))
+            text_c('OR', E.W / 2, top + bh / 2 + 17, skia.Font(E.TF, 46), (255, 222, 40), a)
+        elif ov['type'] == 'options':  # Pick a Scenario: 2-4 numbered options stacked at the top; pick=index highlights one
+            items = ov['items']; n = len(items); bh = 104 if n > 3 else 118; gap = 16
+            top = E.H * .07
+            for k, txt in enumerate(items):
+                aa = a * (0.35 if ov.get('pick') is not None and ov['pick'] != k else 1)
+                yk = top + k * (bh + gap); pill(E.W * .08, yk, E.W * .84, bh, OPT_COLS[k % 4], aa, 30)
+                text_c(str(k + 1), E.W * .08 + 58, yk + bh / 2 + 22, skia.Font(E.TF, 64), (255, 255, 255), aa)
+                f = fit_font(txt.upper(), E.W * .84 - 150, 50)
+                w = f.measureText(txt.upper()); cx = E.W * .08 + 110 + (E.W * .84 - 130) / 2
+                text_c(txt.upper(), cx, yk + bh / 2 + 18, f, (255, 255, 255), aa)
+        elif ov['type'] == 'prompt':   # big engagement line, e.g. "COMMENT A OR B" (pos sets y)
+            f = fit_font(ov['text'].upper(), E.W * .9, 84)
+            text_c(ov['text'].upper(), E.W / 2, y, f, tuple(ov.get('color', (255, 222, 40))), a)
+        elif ov['type'] == 'countdown':  # 3-2-1 in the middle over the scene's last secs seconds (pos sets center)
+            secs = ov.get('secs', 3); left = DURS[i] - lt
+            if 0 < left <= secs:
+                nnum = int(math.ceil(left)); ph = nnum - left; sc = 1 + .25 * (1 - E.eout(ph * 3))
+                f = skia.Font(E.TF, int(220 * sc))
+                cv.drawCircle(x, y - 75, 160, E.P(E.C(0, 0, 0, 150), blur=6))
+                text_c(str(nnum), x, y, f, (255, 255, 255), 1)
         elif ov['type'] == 'handle':
             f = skia.Font(E.TF, 80); w = f.measureText('@HypotheticoolHQ')
             cv.drawString('@HypotheticoolHQ', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 14))
