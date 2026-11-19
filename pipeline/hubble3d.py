@@ -70,9 +70,7 @@ def reentry_setup(glow_from=1.0, glow_to=1.0, cam_start=(2.0, -7.2, 1.1), cam_en
     kf_input(fade, 1, glow_from); kf_input(fade, NF, glow_to)
     kit.key(mover, 1, location=(0, 0, .3)); kit.key(mover, NF, location=(-.25, .1, -.15))
     kit.key(h, 1, rotation_euler=(math.radians(20), math.radians(-60), math.radians(10))); kit.key(h, NF, rotation_euler=(math.radians(32), math.radians(-52), math.radians(40)))
-    for mn in ('hst_foil', 'hst_white'):            # hull glowing hot
-        b = bpy.data.materials[mn].node_tree.nodes['Principled BSDF']; b.inputs['Emission Color'].default_value = (1, .3, .05, 1)
-        kf_input(b.inputs['Emission Strength'], 1, 1.2 * glow_from); kf_input(b.inputs['Emission Strength'], NF, 1.2 * glow_to)
+    kit.heat_glow(h, [(1, 1.2 * glow_from), (NF, 1.2 * glow_to)], (1, .3, .05))   # hull glowing hot
     li = bpy.data.lights.new('plasma_light', 'POINT'); li.energy = 1400; li.color = (1, .5, .15); kit.link(bpy.data.objects.new('plasma_light', li)).parent = mover
     keylights(mover)
     cam, tgt = kit.camera(cam_start, (0, 0, .1), lens=30)

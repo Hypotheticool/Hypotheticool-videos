@@ -21,7 +21,7 @@ def nodes(mat):
     return nt, nt.nodes, nt.links
 
 # ------------------------------------------------------------------ world: stars + faint nebula
-def world():
+def world_procedural():
     sc = bpy.context.scene; w = bpy.data.worlds.new('space'); sc.world = w
     nt, N, L = nodes(w)
     out = N.new('ShaderNodeOutputWorld'); bg = N.new('ShaderNodeBackground')
@@ -269,7 +269,7 @@ def mat_atmo(color=(.25, .55, 1), strength=1.4):
     tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
     L.new(pw.outputs[0], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(e.outputs[0], mx.inputs[2]); L.new(mx.outputs[0], o.inputs[0]); return m
 
-def earth(R=2.0, sun_dir=(1, 0, 0), tilt_deg=23.4, axis=False, clouds=True, atmo=True):
+def earth_procedural(R=2.0, sun_dir=(1, 0, 0), tilt_deg=23.4, axis=False, clouds=True, atmo=True):
     """returns (tilt_root, spin) ; animate spin.rotation_euler.z for rotation, tilt_root.rotation_euler.y for tilt"""
     root = link(bpy.data.objects.new('earth_tilt', None)); root.rotation_euler = (0, math.radians(tilt_deg), 0)
     spin = link(bpy.data.objects.new('earth_spin', None), root)
@@ -289,7 +289,7 @@ def earth(R=2.0, sun_dir=(1, 0, 0), tilt_deg=23.4, axis=False, clouds=True, atmo
         ax.data.materials.append(mat_emit('axis', (1, .9, .5), 6)); ax.parent = root
     return root, spin
 
-def moon(R=.55):
+def moon_procedural(R=.55):
     m = bpy.data.materials.new('moon'); nt, N, L = nodes(m)
     o = N.new('ShaderNodeOutputMaterial'); tc = N.new('ShaderNodeTexCoord'); bs = N.new('ShaderNodeBsdfPrincipled'); bs.inputs['Roughness'].default_value = .95
     mar = _noise(N, L, tc.outputs['Object'], 1.6, 6)
@@ -326,7 +326,7 @@ def mat_foil(name='foil', color=(.85, .86, .88), rough=.3):
     nz = _noise(N, L, tc.outputs['Object'], 9, 3); bp = N.new('ShaderNodeBump'); bp.inputs['Strength'].default_value = .25
     L.new(nz.outputs['Fac'], bp.inputs['Height']); L.new(bp.outputs['Normal'], bs.inputs['Normal']); L.new(bs.outputs[0], o.inputs[0]); return m
 
-def hubble(name='hubble'):
+def hubble_procedural(name='hubble'):
     """Hubble-like telescope along +X, ~3.3 units long (1 unit ~ 4 m). Returns root; parts dict for animation."""
     root = link(bpy.data.objects.new(name, None)); parts = {}
     foil, white, dark = mat_foil('hst_foil'), mat_principled('hst_white', (.82, .83, .85), .55), mat_principled('hst_dark', (.03, .03, .04), .4)
@@ -399,3 +399,247 @@ def fireball(parent, length=3.0, radius=.9, strength=10.0, name='plasma'):
     bpy.ops.mesh.primitive_uv_sphere_add(radius=radius, segments=48, ring_count=24); s = bpy.context.object; s.scale = (1, 1, length / radius * .5)
     s.location = (0, 0, length * .3); s.data.materials.append(m); smooth(s, 0); s.parent = parent
     return s, m
+
+
+# ================================================================== REAL-DATA ASSETS (accuracy upgrade)
+# Planet maps: Solar System Scope textures (CC BY 4.0, built from NASA mission data) in pipeline/assets/textures.
+# Spacecraft: NASA-3D-Resources glTF models (github.com/nasa/NASA-3D-Resources, free for non-commercial and commercial use
+# under NASA media guidelines), downloaded on demand. Credit line for video descriptions is in pipeline/assets/CREDITS.md.
+import os, sys, urllib.parse, urllib.request
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_TEX_DIRS = [os.path.join(_HERE, 'assets', 'textures'), '/home/claude/hypotheticool-videos/pipeline/assets/textures',
+             '/home/claude/b3d/assets/textures']
+NASA_CACHE = '/home/claude/nasa_cache'
+
+def tex_path(name):
+    for d in _TEX_DIRS:
+        p = os.path.join(d, name)
+        if os.path.exists(p): return p
+    raise FileNotFoundError(f'texture {name} not found in {_TEX_DIRS} (clone the repo: pipeline/assets/textures)')
+
+def _img(N, name, noncolor=False, vec=None, L=None, ext='REPEAT'):
+    t = N.new('ShaderNodeTexImage'); im = bpy.data.images.load(tex_path(name), check_existing=True)
+    if noncolor: im.colorspace_settings.name = 'Non-Color'
+    t.image = im; t.interpolation = 'Cubic'; t.extension = ext
+    if vec is not None: L.new(vec, t.inputs['Vector'])
+    return t
+
+def _sun_factor(N, L, sun_dir, lo, hi):
+    """0..1 ramp on the dot(normal, sun) — use lo>hi for the night side"""
+    geo = N.new('ShaderNodeNewGeometry'); dot = N.new('ShaderNodeVectorMath'); dot.operation = 'DOT_PRODUCT'
+    L.new(geo.outputs['Normal'], dot.inputs[0]); dot.inputs[1].default_value = Vector(sun_dir).normalized()
+    mr = N.new('ShaderNodeMapRange'); mr.inputs['From Min'].default_value = lo; mr.inputs['From Max'].default_value = hi
+    L.new(dot.outputs['Value'], mr.inputs['Value']); return mr
+
+def mat_earth_real(sun_dir=(1, 0, 0), lights=2.2):
+    """Real Earth: NASA Blue Marble-based day map, ocean glint from the specular map, terrain normal map,
+    real city lights (Black Marble-based) only on the night side. Keeps the animatable nodes 'warm' and 'ice'."""
+    m = bpy.data.materials.new('earth'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled'); uv = N.new('ShaderNodeTexCoord')
+    day = _img(N, 'earth_day.jpg', vec=uv.outputs['UV'], L=L)
+    spec = _img(N, 'earth_specular.jpg', True, uv.outputs['UV'], L)
+    nrm = _img(N, 'earth_normal.jpg', True, uv.outputs['UV'], L)
+    night = _img(N, 'earth_night.jpg', vec=uv.outputs['UV'], L=L)
+    warm = N.new('ShaderNodeMixRGB'); warm.name = 'warm'; warm.inputs['Fac'].default_value = 0.0
+    L.new(day.outputs['Color'], warm.inputs[1]); warm.inputs[2].default_value = (.55, .22, .05, 1)
+    sep = N.new('ShaderNodeSeparateXYZ'); gen = N.new('ShaderNodeTexCoord'); L.new(gen.outputs['Generated'], sep.inputs[0])
+    zc = N.new('ShaderNodeMath'); zc.operation = 'SUBTRACT'; zc.inputs[1].default_value = .5; L.new(sep.outputs['Z'], zc.inputs[0])
+    za = N.new('ShaderNodeMath'); za.operation = 'ABSOLUTE'; L.new(zc.outputs[0], za.inputs[0])
+    ice = N.new('ShaderNodeMath'); ice.name = 'ice'; ice.operation = 'GREATER_THAN'; ice.inputs[1].default_value = 1.0  # >0.5 = no extra ice
+    L.new(za.outputs[0], ice.inputs[0])
+    withice = N.new('ShaderNodeMixRGB'); L.new(ice.outputs[0], withice.inputs['Fac']); L.new(warm.outputs[0], withice.inputs[1])
+    withice.inputs[2].default_value = (.85, .9, .95, 1); L.new(withice.outputs[0], bs.inputs['Base Color'])
+    rough = N.new('ShaderNodeMapRange'); rough.inputs['To Min'].default_value = .82; rough.inputs['To Max'].default_value = .32
+    L.new(spec.outputs['Color'], rough.inputs['Value']); L.new(rough.outputs[0], bs.inputs['Roughness'])
+    bs.inputs['Specular IOR Level'].default_value = .6
+    nm = N.new('ShaderNodeNormalMap'); nm.inputs['Strength'].default_value = .6; L.new(nrm.outputs['Color'], nm.inputs['Color'])
+    L.new(nm.outputs['Normal'], bs.inputs['Normal'])
+    nightf = _sun_factor(N, L, sun_dir, .08, -.18)
+    em = N.new('ShaderNodeMixRGB'); em.blend_type = 'MULTIPLY'; em.inputs['Fac'].default_value = 1
+    L.new(night.outputs['Color'], em.inputs[1]); em.inputs[2].default_value = (1, .78, .5, 1)
+    L.new(em.outputs[0], bs.inputs['Emission Color'])
+    es = N.new('ShaderNodeMath'); es.operation = 'MULTIPLY'; es.inputs[1].default_value = lights; L.new(nightf.outputs[0], es.inputs[0])
+    L.new(es.outputs[0], bs.inputs['Emission Strength'])
+    L.new(bs.outputs[0], o.inputs[0]); return m
+
+def mat_clouds_real(sun_dir=(1, 0, 0)):
+    m = bpy.data.materials.new('clouds'); nt, N, L = nodes(m); m.blend_method = 'HASHED' if hasattr(m, 'blend_method') else None
+    o = N.new('ShaderNodeOutputMaterial'); uv = N.new('ShaderNodeTexCoord')
+    c = _img(N, 'earth_clouds.jpg', True, uv.outputs['UV'], L)
+    g = N.new('ShaderNodeMath'); g.operation = 'POWER'; g.inputs[1].default_value = 1.4; L.new(c.outputs['Color'], g.inputs[0])
+    d = N.new('ShaderNodeBsdfDiffuse'); d.inputs['Color'].default_value = (1, 1, 1, 1)
+    tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
+    L.new(g.outputs[0], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(d.outputs[0], mx.inputs[2]); L.new(mx.outputs[0], o.inputs[0]); return m
+
+def mat_atmo_real(sun_dir=(1, 0, 0), color=(.3, .58, 1), strength=2.2):
+    """thin blue limb glow, bright on the day side and fading into the night side (like real photos from orbit)"""
+    m = bpy.data.materials.new('atmo'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); lw = N.new('ShaderNodeLayerWeight'); lw.inputs['Blend'].default_value = .25
+    pw = N.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 4.0; L.new(lw.outputs['Facing'], pw.inputs[0])
+    dayf = _sun_factor(N, L, sun_dir, -.35, .25)
+    mul = N.new('ShaderNodeMath'); mul.operation = 'MULTIPLY'; L.new(pw.outputs[0], mul.inputs[0]); L.new(dayf.outputs[0], mul.inputs[1])
+    e = N.new('ShaderNodeEmission'); e.inputs['Color'].default_value = (*color, 1); e.inputs['Strength'].default_value = strength
+    tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
+    L.new(mul.outputs[0], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(e.outputs[0], mx.inputs[2]); L.new(mx.outputs[0], o.inputs[0]); return m
+
+def _sphere(R, seg=192, rings=96):
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=R, segments=seg, ring_count=rings); s = bpy.context.object
+    smooth(s, 0); return s
+
+def earth(R=2.0, sun_dir=(1, 0, 0), tilt_deg=23.4, axis=False, clouds=True, atmo=True, real=True, face_lon=-80.0):
+    """Real-data Earth. returns (tilt_root, spin); animate spin.rotation_euler.z to rotate.
+    face_lon = longitude (deg, east +) that faces the -Y direction (the default camera side) at rotation 0,
+    e.g. -80 shows the Americas, 15 Europe/Africa, 100 Asia."""
+    if not real: return earth_procedural(R, sun_dir, tilt_deg, axis, clouds, atmo)
+    root = link(bpy.data.objects.new('earth_tilt', None)); root.rotation_euler = (0, math.radians(tilt_deg), 0)
+    spin = link(bpy.data.objects.new('earth_spin', None), root)
+    e = _sphere(R); e.name = 'earth'; e.data.materials.append(mat_earth_real(sun_dir)); e.parent = spin
+    e.rotation_euler = (0, 0, math.radians(-90 - face_lon))
+    if clouds:
+        c = _sphere(R * 1.006, 128, 64); c.name = 'clouds'; c.data.materials.append(mat_clouds_real(sun_dir)); c.parent = spin
+        c.rotation_euler = (0, 0, math.radians(-90 - face_lon))
+    if atmo:
+        a = _sphere(R * 1.035, 128, 64); a.name = 'atmo'; a.data.materials.append(mat_atmo_real(sun_dir)); a.parent = root
+        a.visible_shadow = False
+    if axis:
+        bpy.ops.mesh.primitive_cylinder_add(radius=R * .018, depth=R * 3.2); ax = bpy.context.object
+        ax.data.materials.append(mat_emit('axis', (1, .9, .5), 6)); ax.parent = root
+    return root, spin
+
+PLANETS = {   # name: (texture, roughness, bump strength)
+    'moon': ('moon.jpg', .95, .35), 'mars': ('mars.jpg', .9, .25), 'mercury': ('mercury.jpg', .95, .3),
+    'venus_surface': ('venus_surface.jpg', .9, .15), 'jupiter': ('jupiter.jpg', .8, 0), 'saturn': ('saturn.jpg', .8, 0),
+    'uranus': ('uranus.jpg', .7, 0), 'neptune': ('neptune.jpg', .7, 0)}
+
+def planet(name, R=1.0, tilt_deg=0.0, rings=None, face_lon=0.0):
+    """textured real-data planet/moon. returns (tilt_root, spin, mesh). Saturn gets its rings automatically.
+    Real axial tilts: Mercury 0.03, Venus 177, Earth 23.4, Mars 25.2, Jupiter 3.1, Saturn 26.7, Uranus 97.8, Neptune 28.3 (deg)."""
+    texn, rough, bump = PLANETS[name]
+    m = bpy.data.materials.new(name); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled'); uv = N.new('ShaderNodeTexCoord')
+    t = _img(N, texn, vec=uv.outputs['UV'], L=L); L.new(t.outputs['Color'], bs.inputs['Base Color'])
+    bs.inputs['Roughness'].default_value = rough; bs.inputs['Specular IOR Level'].default_value = .2
+    if bump:
+        bw = N.new('ShaderNodeRGBToBW'); L.new(t.outputs['Color'], bw.inputs[0])
+        b = N.new('ShaderNodeBump'); b.inputs['Strength'].default_value = bump; b.inputs['Distance'].default_value = .02 * R
+        L.new(bw.outputs[0], b.inputs['Height']); L.new(b.outputs['Normal'], bs.inputs['Normal'])
+    L.new(bs.outputs[0], o.inputs[0])
+    root = link(bpy.data.objects.new(f'{name}_tilt', None)); root.rotation_euler = (0, math.radians(tilt_deg), 0)
+    spin = link(bpy.data.objects.new(f'{name}_spin', None), root)
+    s = _sphere(R); s.name = name; s.data.materials.append(m); s.parent = spin; s.rotation_euler = (0, 0, math.radians(-90 - face_lon))
+    if rings or (rings is None and name == 'saturn'): saturn_rings(R, root)
+    return root, spin, s
+
+def saturn_rings(R, parent):
+    """real ring brightness/transparency profile (C ring to A ring incl. the Cassini Division), 1.24–2.27 Saturn radii"""
+    r0, r1 = 1.24 * R, 2.27 * R
+    ob = link(annulus('rings', r0, r1, 256, 8)); ob.parent = parent
+    m = bpy.data.materials.new('rings'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); tc = N.new('ShaderNodeTexCoord')
+    ln = N.new('ShaderNodeVectorMath'); ln.operation = 'LENGTH'; L.new(tc.outputs['Object'], ln.inputs[0])
+    u = N.new('ShaderNodeMapRange'); u.inputs['From Min'].default_value = r0; u.inputs['From Max'].default_value = r1; L.new(ln.outputs['Value'], u.inputs['Value'])
+    cx = N.new('ShaderNodeCombineXYZ'); L.new(u.outputs[0], cx.inputs['X']); cx.inputs['Y'].default_value = .5
+    t = _img(N, 'saturn_ring.png', vec=cx.outputs[0], L=L, ext='EXTEND')
+    d = N.new('ShaderNodeBsdfDiffuse'); L.new(t.outputs['Color'], d.inputs['Color'])
+    tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
+    L.new(t.outputs['Alpha'], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(d.outputs[0], mx.inputs[2]); L.new(mx.outputs[0], o.inputs[0])
+    ob.data.materials.append(m); return ob
+
+def moon(R=.55, real=True, face_lon=0.0):
+    """real LRO-based Moon map (near side faces -Y by default, as seen from Earth)"""
+    if not real: return moon_procedural(R)
+    root, spin, s = planet('moon', R, 6.7, face_lon=face_lon)
+    return root
+
+def sun_sphere(R=1.0, strength=12.0):
+    m = bpy.data.materials.new('sun_surface'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); uv = N.new('ShaderNodeTexCoord'); t = _img(N, 'sun.jpg', vec=uv.outputs['UV'], L=L)
+    e = N.new('ShaderNodeEmission'); e.inputs['Strength'].default_value = strength; L.new(t.outputs['Color'], e.inputs['Color']); L.new(e.outputs[0], o.inputs[0])
+    s = _sphere(R, 128, 64); s.name = 'sun_body'; s.data.materials.append(m); return s
+
+def world(real=True, strength=.55, rot_deg=(0, 0, 0)):
+    """real night sky: ESO/Gaia-style Milky Way star map (equirectangular). rot_deg rotates the sky."""
+    if not real: return world_procedural()
+    sc = bpy.context.scene; w = bpy.data.worlds.new('space'); sc.world = w; nt, N, L = nodes(w)
+    out = N.new('ShaderNodeOutputWorld'); bg = N.new('ShaderNodeBackground'); tc = N.new('ShaderNodeTexCoord'); mp = N.new('ShaderNodeMapping')
+    mp.inputs['Rotation'].default_value = tuple(math.radians(a) for a in rot_deg); L.new(tc.outputs['Generated'], mp.inputs['Vector'])
+    env = N.new('ShaderNodeTexEnvironment'); env.image = bpy.data.images.load(tex_path('stars_milky_way.jpg'), check_existing=True)
+    L.new(mp.outputs[0], env.inputs['Vector'])
+    gm = N.new('ShaderNodeGamma'); gm.inputs['Gamma'].default_value = 1.6; L.new(env.outputs['Color'], gm.inputs['Color'])   # deep blacks, crisp stars
+    L.new(gm.outputs[0], bg.inputs['Color']); bg.inputs['Strength'].default_value = strength; L.new(bg.outputs[0], out.inputs['Surface'])
+
+def nasa_model(name, size=3.0, align='X'):
+    """Import an official NASA 3D model by folder name (see pipeline/assets/nasa_models.txt, e.g. 'Hubble Space Telescope (B)',
+    'International Space Station (ISS) (B)', 'James Webb Space Telescope (A)', 'Voyager Probe (A)', 'Apollo Lunar Module',
+    'Saturn V', 'Space Shuttle (A)', 'Cassini-Huygens (A)', 'Parker Solar Probe', 'Juno (A)', 'Mars 2020 Perseverance Rover').
+    Downloads to NASA_CACHE once. Returns an empty that holds the model, centered, longest side = size, longest axis along `align`."""
+    os.makedirs(NASA_CACHE, exist_ok=True)
+    catalog = [l.strip() for l in open(os.path.join(os.path.dirname(tex_path('earth_day.jpg')), '..', 'nasa_models.txt'))]
+    rel = next((c for c in catalog if c.split('/')[0] == name and c.endswith('.glb') and c.split('/')[1].startswith(name.split(' (')[0])), None) \
+        or next((c for c in catalog if c.split('/')[0] == name), None)
+    if not rel: raise ValueError(f'unknown NASA model {name}')
+    path = os.path.join(NASA_CACHE, rel.replace('/', '__'))
+    if not os.path.exists(path):
+        url = 'https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/' + urllib.parse.quote('3D Models/' + rel)
+        tmp = path + '.part'; urllib.request.urlretrieve(url, tmp); os.replace(tmp, path)
+    plain = path[:-4] + '.plain.glb'
+    if not os.path.exists(plain):     # pip bpy has no Draco bridge: decode once with DracoPy (pip install DracoPy pygltflib)
+        sys.path.insert(0, _HERE); import undraco; undraco.undraco(path, plain + '.part'); os.replace(plain + '.part', plain)
+    before = set(bpy.data.objects); bpy.ops.import_scene.gltf(filepath=plain)
+    new = [o for o in bpy.data.objects if o not in before]
+    root = link(bpy.data.objects.new(name.split(' (')[0].replace(' ', '_') + '_root', None))
+    holder = link(bpy.data.objects.new('holder', None), root)
+    for o in new:
+        if o.parent is None: o.parent = holder
+    bpy.context.view_layer.update()
+    import numpy as np                 # robust bounds: ignore stray far-off parts some NASA files include
+    P = []
+    for o in new:
+        if o.type != 'MESH' or not len(o.data.vertices): continue
+        co = np.empty(len(o.data.vertices) * 3, np.float32); o.data.vertices.foreach_get('co', co); co = co.reshape(-1, 3)
+        if len(co) > 4000: co = co[np.linspace(0, len(co) - 1, 4000).astype(int)]
+        M = np.array(o.matrix_world); P.append(co @ M[:3, :3].T + M[:3, 3])
+    P = np.concatenate(P); lo = Vector(np.percentile(P, 1, 0)); hi = Vector(np.percentile(P, 99, 0))
+    ext = hi - lo; k = size / max(ext); ctr = (lo + hi) / 2
+    holder.location = -ctr * k; holder.scale = (k, k, k)
+    longest = max(range(3), key=lambda i: ext[i]); want = 'XYZ'.index(align)
+    if longest != want:   # rotate the longest axis onto the wanted one
+        rot = {(0, 1): (0, 0, 90), (1, 0): (0, 0, -90), (2, 0): (0, -90, 0), (0, 2): (0, 90, 0), (1, 2): (-90, 0, 0), (2, 1): (90, 0, 0)}[(longest, want)]
+        root.rotation_euler = tuple(math.radians(a) for a in rot)
+        outer = link(bpy.data.objects.new(root.name + '_o', None)); root.parent = outer; root = outer
+    for o in new:
+        if o.type == 'MESH':
+            for s in o.material_slots:
+                if s.material and s.material.use_nodes:
+                    b = s.material.node_tree.nodes.get('Principled BSDF')
+                    if not b: continue
+                    if b.inputs['Roughness'].default_value > .95: b.inputs['Roughness'].default_value = .55
+                    if not b.inputs['Metallic'].is_linked and b.inputs['Metallic'].default_value > .5:   # pure metal reflects black space -> looks black
+                        b.inputs['Metallic'].default_value = .35; b.inputs['Roughness'].default_value = max(.35, b.inputs['Roughness'].default_value)
+    return root
+
+def materials_of(root):
+    """all materials under a model root (e.g. to make a NASA model glow hot during reentry)"""
+    out = set(); stack = [root]
+    while stack:
+        o = stack.pop(); stack += list(o.children)
+        if o.type == 'MESH': out |= {s.material for s in o.material_slots if s.material}
+    return list(out)
+
+def heat_glow(root, frames_strengths, color=(1, .35, .05)):
+    """keyframe an emissive glow on every material of a model: frames_strengths = [(frame, strength), ...]"""
+    for m in materials_of(root):
+        b = m.node_tree.nodes.get('Principled BSDF') if m.use_nodes else None
+        if not b: continue
+        b.inputs['Emission Color'].default_value = (*color, 1)
+        for f, s in frames_strengths:
+            b.inputs['Emission Strength'].default_value = s; b.inputs['Emission Strength'].keyframe_insert('default_value', frame=f)
+
+
+def hubble(name='hubble', real=True, size=3.3):
+    """official NASA Hubble model (default) along +X; returns (root, parts). parts holds empties 'door', 'array1', 'array-1'
+    for script compatibility (the NASA model is one rigid piece). real=False gives the old stylized one."""
+    if not real: return hubble_procedural(name)
+    root = nasa_model('Hubble Space Telescope (A)', size, 'X'); root.name = name
+    parts = {k: link(bpy.data.objects.new(k, None), root) for k in ('door', 'array1', 'array-1')}
+    return root, parts
