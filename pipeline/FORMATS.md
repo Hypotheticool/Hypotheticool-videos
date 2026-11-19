@@ -6,6 +6,15 @@ Every Short is one of three formats. Store the format in the topic JSON as `"for
 Repeat this 4-step cycle: **what-if → would-you-rather → what-if → pick-a-scenario**.
 To find the next format, sort the Short topic files in `pipeline/topics/` and the claims in `pipeline/claims/` by post date/time and take the latest one that has a format (a claim file's first line can start with `format: <name>`). Then use the next step of the cycle. If two runs collide on the same slot, the claim file decides.
 
+## The first second (ALL Shorts): stop the swipe
+Our first Short kept only 54% of viewers (46% swiped away immediately). Top Shorts keep 70%+. Every Short must win the first second:
+- **Frame 1 is the payoff.** The most dramatic, high-contrast shot of the video is already in motion on the very first frame: the subject is big in frame, bright against the dark, with something visibly happening (exploding, falling, collapsing, glowing). No black or empty frames, no fade-in, no intro, no logo, no slow establishing shot.
+- **The voice starts on frame 1.** audio_prep/engine do this automatically (HOOK_LEAD = 0.02 s for line 1); never add silence or music before it. Line 1 is at most ~2 seconds when spoken (under 8 words).
+- **On-screen hook text from frame 1:** scene 0's meta.json must include `{"type":"hook","text":"<2-6 punchy words>"}`, a short, bold, TRUE version of the payoff (e.g. "THE SKY WOULD GO DARK", "2 TONS WOULD SURVIVE"). It's drawn big at the top (white, last row yellow) and is visible from frame 1, so people who scroll with the sound off are hooked too. Keep the line-1 caption too.
+- **Create a question in the viewer's head within 2 seconds** (stakes, surprise, a number, "you"), then answer it by the end, so they stay to the loop.
+- In market research, study the first second of the top Shorts you find (what's on screen, the first words) and use the patterns that work, in our own words and visuals.
+- When analytics are available (Metricool, or numbers the user shares), log each Short's "viewed vs swiped away" and average % viewed in the research log, and adjust hooks based on what keeps people.
+
 ## Market research: do this BEFORE choosing any topic (Shorts and the long video)
 The goal is to pick topics that are already proven to pull views, then make our own accurate, original 3D version. Spend about 15–25 minutes on this and use many searches.
 1. **What's working in this format right now.** Use WebSearch/WebFetch to find the most-viewed recent Shorts and videos for the chosen format, e.g. "what if" science shorts, "would you rather" space/science, and "pick a planet/scenario" shorts. Check YouTube search results, the Shorts tabs of the top channels in each niche, and pages that list viral Shorts. Note titles, view counts, upload age (views per day matters more than totals), hooks and thumbnails. Look for topics and angles that keep repeating among the big hits.

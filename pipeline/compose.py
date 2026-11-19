@@ -12,9 +12,9 @@ HL = {re.sub(r'[^A-Z0-9-]', '', h.upper()) for h in CFG['hl']}
 starts = np.concatenate([[0], np.cumsum(DURS)[:-1]]); total = float(sum(DURS))
 caps = []
 for i, ln in enumerate(LINES):
-    clip = DURS[i] - E.LEAD - E.GAP
+    clip = DURS[i] - E.lead(i) - E.GAP
     for words, t0, t1 in E.chunk_words(ln, E.word_times(ln, clip)):
-        caps.append((words, starts[i] + E.LEAD + t0 - .05, starts[i] + E.LEAD + t1))
+        caps.append((words, max(0, starts[i] + E.lead(i) + t0 - .05), starts[i] + E.lead(i) + t1))
 metas = [json.load(open(f'{ROOT}/s{i}/meta.json')) for i in range(len(DURS))]
 cache = {}
 def scene_frame(i, local):
@@ -68,7 +68,7 @@ def frame(T):
     cv.drawImage(skia.Image.fromarray(np.ascontiguousarray(bgra), colorType=skia.kBGRA_8888_ColorType), 0, 0)
     lt = T - starts[i]
     for ov in metas[i]['overlays']:
-        a = E.eout((lt - .4) / .5)
+        a = 1.0 if (ov['type'] == 'hook' or ov.get('instant')) else E.eout((lt - .4) / .5)   # the hook is on screen from frame 1
         if a <= 0: continue
         x, y = ov['pos'][0] * E.W, min(ov['pos'][1] * E.H, 1640)
         if ov['type'] == 'label':
@@ -116,6 +116,15 @@ def frame(T):
                 f = skia.Font(E.TF, int(220 * sc))
                 cv.drawCircle(x, y - 75, 160, E.P(E.C(0, 0, 0, 150), blur=6))
                 text_c(str(nnum), x, y, f, (255, 255, 255), 1)
+        elif ov['type'] == 'hook':   # big bold on-screen hook (2-6 words) at the top from frame 1, gentle punch-in
+            words = ov['text'].upper().split(); rows, cur = [], ''
+            for w_ in words:
+                t_ = (cur + ' ' + w_).strip()
+                if skia.Font(E.TF, 104).measureText(t_) > E.W * .88 and cur: rows.append(cur); cur = w_
+                else: cur = t_
+            rows.append(cur); sc = 1 + .06 * (1 - E.eout(min(lt / .35, 1))); f = skia.Font(E.TF, int(104 * sc))
+            col = tuple(ov.get('color', (255, 222, 40))); y0 = ov.get('y', .11) * E.H
+            for k, row in enumerate(rows[:3]): text_c(row, E.W / 2, y0 + k * 112 * sc, f, col if k == len(rows[:3]) - 1 else (255, 255, 255), 1)
         elif ov['type'] == 'handle':
             f = skia.Font(E.TF, 80); w = f.measureText('@HypotheticoolHQ')
             cv.drawString('@HypotheticoolHQ', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 14))

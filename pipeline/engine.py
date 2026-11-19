@@ -9,6 +9,8 @@ TTS_DIR = os.environ.get('TTS_DIR', '/home/claude/tts')
 VOICE, VOICE_SPEED = 'am_puck', 0.93
 XF = 0.35                     # crossfade between scenes (s)
 LEAD, GAP = 0.22, 0.55        # silence before each line / after it
+HOOK_LEAD = 0.02              # the hook line starts speaking on frame 1 (no dead air: viewers swipe in the first second)
+def lead(i): return HOOK_LEAD if i == 0 else LEAD
 rng = np.random.default_rng(11)
 TF = skia.Typeface.MakeFromFile(FONT_FILE)
 
@@ -314,12 +316,12 @@ def build(SCENES, name, outdir, HL=()):
     os.makedirs(outdir, exist_ok=True)
     lines = [ln for _, ln in SCENES]
     clips = tts_lines(lines); sr = clips[0][1]
-    durs = [len(a) / sr + LEAD + GAP for a, _ in clips]
+    durs = [len(a) / sr + lead(k) + GAP for k, (a, _) in enumerate(clips)]
     starts = np.concatenate([[0], np.cumsum(durs)[:-1]]); total = float(sum(durs))
     caps = []
     for i, ((a, _), ln) in enumerate(zip(clips, lines)):
         for words, t0, t1 in chunk_words(ln, word_times(ln, len(a) / sr)):
-            caps.append((words, starts[i] + LEAD + t0 - .05, starts[i] + LEAD + t1))
+            caps.append((words, max(0, starts[i] + lead(i) + t0 - .05), starts[i] + lead(i) + t1))
     mode = sys.argv[1] if len(sys.argv) > 1 else 'render'
     surf = skia.Surface(W, H); cv = surf.getCanvas()
 
@@ -347,8 +349,8 @@ def build(SCENES, name, outdir, HL=()):
 
     # audio: mastered voice + music bed
     n = int(total * sr) + sr; voice = np.zeros(n, np.float32)
-    for (a, _), s in zip(clips, starts):
-        i0 = int((s + LEAD) * sr); voice[i0:i0 + len(a)] += a
+    for k, ((a, _), s) in enumerate(zip(clips, starts)):
+        i0 = int((s + lead(k)) * sr); voice[i0:i0 + len(a)] += a
     sf.write(f'{outdir}/voice_raw.wav', voice, sr)
     sf.write(f'{outdir}/bed.wav', music_bed(n, sr, starts[1:], total), sr)
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', f'{outdir}/voice_raw.wav', '-i', f'{outdir}/bed.wav', '-filter_complex',
