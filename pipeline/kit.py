@@ -643,3 +643,169 @@ def hubble(name='hubble', real=True, size=3.3):
     root = nasa_model('Hubble Space Telescope (A)', size, 'X'); root.name = name
     parts = {k: link(bpy.data.objects.new(k, None), root) for k in ('door', 'array1', 'array-1')}
     return root, parts
+
+
+# ================================================================== REALISM TOOLKIT FOR NON-SPACE TOPICS
+# Same standard as space shots: real data where it exists, physically based everything else.
+
+def sky(sun_elevation=35.0, sun_rotation=200.0, strength=.12, air=1.0, dust=1.0, ozone=1.0, sun_lamp_energy=4.0):
+    """Physically based daylight: Blender's Nishita atmosphere model + a matching sun lamp (same direction).
+    sun_elevation in degrees above horizon (0-5 = sunrise/sunset glow, negative = twilight), rotation = compass heading."""
+    sc = bpy.context.scene; w = bpy.data.worlds.new('sky'); sc.world = w; nt, N, L = nodes(w)
+    out = N.new('ShaderNodeOutputWorld'); bg = N.new('ShaderNodeBackground'); st = N.new('ShaderNodeTexSky')
+    st.sky_type = 'NISHITA' if 'NISHITA' in [i.identifier for i in st.bl_rna.properties['sky_type'].enum_items] else st.sky_type
+    for k, v in (('sun_elevation', math.radians(sun_elevation)), ('sun_rotation', math.radians(sun_rotation)),
+                 ('air_density', air), ('dust_density', dust), ('ozone_density', ozone), ('sun_disc', True)):
+        if hasattr(st, k): setattr(st, k, v)
+    L.new(st.outputs[0], bg.inputs['Color']); bg.inputs['Strength'].default_value = strength; L.new(bg.outputs[0], out.inputs['Surface'])
+    el, az = math.radians(sun_elevation), math.radians(sun_rotation)
+    d = (math.sin(az) * math.cos(el), -math.cos(az) * math.cos(el), math.sin(el))   # direction toward the sun
+    warm = (1, .62, .38) if sun_elevation < 8 else (1, .96, .9)
+    return sun_lamp(d, sun_lamp_energy if sun_elevation > 0 else .2, warm)
+
+def mat_water(name='water', deep=(.0, .06, .09), clarity=6.0):
+    """real water: IOR 1.333, glossy surface, depth absorption (blue-green), for oceans, lakes, drops"""
+    m = bpy.data.materials.new(name); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); g = N.new('ShaderNodeBsdfGlass'); g.inputs['IOR'].default_value = 1.333; g.inputs['Roughness'].default_value = .02
+    g.inputs['Color'].default_value = (.9, .97, 1, 1)
+    v = N.new('ShaderNodeVolumeAbsorption'); v.inputs['Color'].default_value = (*deep, 1); v.inputs['Density'].default_value = 1 / clarity
+    L.new(g.outputs[0], o.inputs['Surface']); L.new(v.outputs[0], o.inputs['Volume']); return m
+
+def ocean(size=60.0, wave_scale=1.2, wind=12.0, time_frames=None, choppy=1.2, foam=True, resolution=12):
+    """Blender's spectral ocean simulation (Phillips/JONSWAP-style spectrum): real wave shapes, whitecaps from wind speed (m/s).
+    time_frames=(f0, f1) animates it. Returns the ocean object (use with sky() for daylight)."""
+    bpy.ops.mesh.primitive_plane_add(size=2); ob = bpy.context.object; ob.name = 'ocean'
+    md = ob.modifiers.new('Ocean', 'OCEAN'); md.geometry_mode = 'GENERATE'; md.size = 1.0; md.spatial_size = int(size); md.wave_scale = wave_scale
+    md.repeat_x = md.repeat_y = 2
+    md.wind_velocity = wind; md.choppiness = choppy; md.resolution = resolution
+    if hasattr(md, 'spectrum'): md.spectrum = 'PHILLIPS'
+    if foam: md.use_foam = True; md.foam_layer_name = 'foam'; md.foam_coverage = .25
+    if time_frames:
+        f0, f1 = time_frames; md.time = 1.0; md.keyframe_insert('time', frame=f0); md.time = 1.0 + (f1 - f0) / 24; md.keyframe_insert('time', frame=f1)
+        for fc in (ob.animation_data.action.fcurves if hasattr(ob.animation_data.action, 'fcurves') else []):
+            for kp in fc.keyframe_points: kp.interpolation = 'LINEAR'
+    m = bpy.data.materials.new('sea'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled')
+    bs.inputs['Base Color'].default_value = (.0, .045, .07, 1); bs.inputs['Roughness'].default_value = .04; bs.inputs['IOR'].default_value = 1.333
+    bs.inputs['Transmission Weight'].default_value = .0
+    if foam:
+        at = N.new('ShaderNodeAttribute'); at.attribute_name = 'foam'
+        fm = N.new('ShaderNodeMapRange'); fm.inputs['From Min'].default_value = .35; fm.inputs['From Max'].default_value = .9; L.new(at.outputs['Fac'], fm.inputs['Value'])
+        mix = N.new('ShaderNodeMixRGB'); L.new(fm.outputs[0], mix.inputs['Fac']); mix.inputs[1].default_value = (.0, .045, .07, 1); mix.inputs[2].default_value = (.85, .88, .9, 1)
+        L.new(mix.outputs[0], bs.inputs['Base Color'])
+        rr = N.new('ShaderNodeMapRange'); rr.inputs['To Min'].default_value = .04; rr.inputs['To Max'].default_value = .7; L.new(fm.outputs[0], rr.inputs['Value']); L.new(rr.outputs[0], bs.inputs['Roughness'])
+    L.new(bs.outputs[0], o.inputs[0]); ob.data.materials.append(m); smooth(ob, 0)
+    return ob
+
+def terrain(size=40.0, height=6.0, scale=3.0, detail=12, kind='rock', seed=0, res=7):
+    """detailed displaced landscape (fractal ridges + erosion-like detail) with a physically based material:
+    kind = 'rock' | 'desert' | 'snow' | 'grass' | 'lava' | 'volcanic' | 'ice' | 'mud'"""
+    bpy.ops.mesh.primitive_plane_add(size=size); ob = bpy.context.object; ob.name = f'terrain_{kind}'
+    sub = ob.modifiers.new('sub', 'SUBSURF'); sub.subdivision_type = 'SIMPLE'; sub.levels = res; sub.render_levels = res
+    tx = bpy.data.textures.new('ter', 'MUSGRAVE') if hasattr(bpy.types, 'MusgraveTexture') else bpy.data.textures.new('ter', 'CLOUDS')
+    if hasattr(tx, 'noise_scale'): tx.noise_scale = size / (scale * 2.5)   # big smooth landforms; fine detail comes from the material
+    if hasattr(tx, 'noise_depth'): tx.noise_depth = min(detail, 6)
+    disp = ob.modifiers.new('disp', 'DISPLACE'); disp.texture = tx; disp.strength = height; disp.mid_level = .5; disp.texture_coords = 'LOCAL'
+    if hasattr(tx, 'noise_basis'): tx.noise_basis = 'BLENDER_ORIGINAL'
+    ob.location.z = -height * .1
+    pal = {'rock': ((.18, .16, .14), (.42, .38, .33), .85), 'desert': ((.55, .36, .2), (.8, .6, .38), .9), 'snow': ((.75, .78, .82), (.95, .97, 1), .45),
+           'grass': ((.08, .16, .04), (.22, .3, .1), .8), 'lava': ((.03, .02, .02), (.12, .08, .06), .7), 'volcanic': ((.05, .04, .04), (.2, .17, .15), .9),
+           'ice': ((.55, .72, .82), (.85, .93, .98), .15), 'mud': ((.12, .08, .05), (.28, .2, .13), .6)}[kind]
+    m = bpy.data.materials.new(kind); nt, N, L = nodes(m); o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled'); tc = N.new('ShaderNodeTexCoord')
+    n1 = _noise(N, L, tc.outputs['Object'], 6.0, 15, .62); n2 = _noise(N, L, tc.outputs['Object'], 60.0, 8, .55)
+    cr = N.new('ShaderNodeValToRGB'); cr.color_ramp.elements[0].color = (*pal[0], 1); cr.color_ramp.elements[1].color = (*pal[1], 1)
+    L.new(n1.outputs['Fac'], cr.inputs['Fac']); L.new(cr.outputs['Color'], bs.inputs['Base Color']); bs.inputs['Roughness'].default_value = pal[2]
+    bp = N.new('ShaderNodeBump'); bp.inputs['Strength'].default_value = .6; L.new(n2.outputs['Fac'], bp.inputs['Height']); L.new(bp.outputs['Normal'], bs.inputs['Normal'])
+    if kind == 'lava':   # glowing cracks
+        cr2 = N.new('ShaderNodeTexVoronoi'); cr2.feature = 'DISTANCE_TO_EDGE'; cr2.inputs['Scale'].default_value = 3; L.new(tc.outputs['Object'], cr2.inputs['Vector'])
+        mr = N.new('ShaderNodeMapRange'); mr.inputs['From Min'].default_value = .04; mr.inputs['From Max'].default_value = 0; L.new(cr2.outputs['Distance'], mr.inputs['Value'])
+        bs.inputs['Emission Color'].default_value = (1, .3, .03, 1); ms = N.new('ShaderNodeMath'); ms.operation = 'MULTIPLY'; ms.inputs[1].default_value = 25
+        L.new(mr.outputs[0], ms.inputs[0]); L.new(ms.outputs[0], bs.inputs['Emission Strength'])
+    if kind in ('snow', 'ice'): bs.inputs['Subsurface Weight'].default_value = .3
+    L.new(bs.outputs[0], o.inputs[0]); ob.data.materials.append(m); smooth(ob, 0); return ob
+
+def mat_pbr(kind, name=None):
+    """physically based material presets with real optical values:
+    skin, bone, blood, muscle, organ, glass (IOR 1.5), diamond (2.42), ice (1.31), water (1.333), gold, silver, copper, iron, steel,
+    aluminium, rust, concrete, wood, plastic, rubber, fur_brown, feathers, leaf, bark, sand, rock, snow, lava, magma"""
+    P = {'skin': dict(c=(.8, .55, .45), r=.45, ss=.35, ssr=(1, .35, .2)), 'bone': dict(c=(.86, .82, .72), r=.6, ss=.1),
+         'blood': dict(c=(.35, .0, .01), r=.15, ss=.2), 'muscle': dict(c=(.55, .1, .1), r=.4, ss=.3, ssr=(1, .2, .2)),
+         'organ': dict(c=(.55, .2, .2), r=.3, ss=.4, ssr=(1, .3, .3)), 'glass': dict(c=(1, 1, 1), r=0, tr=1, ior=1.5),
+         'diamond': dict(c=(1, 1, 1), r=0, tr=1, ior=2.42), 'ice': dict(c=(.85, .95, 1), r=.05, tr=.9, ior=1.31),
+         'water': dict(c=(.9, .97, 1), r=.0, tr=1, ior=1.333), 'gold': dict(c=(1.0, .77, .34), r=.2, me=1), 'silver': dict(c=(.97, .96, .91), r=.15, me=1),
+         'copper': dict(c=(.95, .64, .54), r=.25, me=1), 'iron': dict(c=(.56, .57, .58), r=.4, me=1), 'steel': dict(c=(.63, .62, .6), r=.3, me=1),
+         'aluminium': dict(c=(.91, .92, .92), r=.3, me=1), 'rust': dict(c=(.42, .17, .06), r=.85), 'concrete': dict(c=(.5, .5, .48), r=.9),
+         'wood': dict(c=(.35, .2, .1), r=.6), 'plastic': dict(c=(.8, .8, .8), r=.35), 'rubber': dict(c=(.03, .03, .03), r=.8),
+         'fur_brown': dict(c=(.3, .18, .09), r=.7, sh=1), 'feathers': dict(c=(.7, .7, .68), r=.6, sh=.6), 'leaf': dict(c=(.12, .3, .05), r=.5, ss=.2, ssr=(.4, 1, .2)),
+         'bark': dict(c=(.18, .12, .08), r=.9), 'sand': dict(c=(.76, .6, .42), r=.95), 'rock': dict(c=(.35, .32, .3), r=.85), 'snow': dict(c=(.95, .96, 1), r=.5, ss=.4, ssr=(.8, .9, 1)),
+         'lava': dict(c=(.05, .02, .01), r=.6, em=(1, .28, .03), es=12), 'magma': dict(c=(1, .35, .05), r=.4, em=(1, .4, .05), es=30)}[kind]
+    m = bpy.data.materials.new(name or kind); m.use_nodes = True; b = m.node_tree.nodes['Principled BSDF']
+    b.inputs['Base Color'].default_value = (*P['c'], 1); b.inputs['Roughness'].default_value = P['r']
+    b.inputs['Metallic'].default_value = P.get('me', 0)
+    if 'tr' in P: b.inputs['Transmission Weight'].default_value = P['tr']; b.inputs['IOR'].default_value = P['ior']
+    if 'ss' in P:
+        b.inputs['Subsurface Weight'].default_value = P['ss']
+        if 'ssr' in P: b.inputs['Subsurface Radius'].default_value = P['ssr']
+    if 'sh' in P: b.inputs['Sheen Weight'].default_value = P['sh']
+    if 'em' in P: b.inputs['Emission Color'].default_value = (*P['em'], 1); b.inputs['Emission Strength'].default_value = P['es']
+    return m
+
+def volume_cloud(loc=(0, 0, 0), size=(4, 4, 2), density=3.0, color=(1, 1, 1), kind='cloud', seed=0):
+    """volumetric cloud / smoke / ash / fog / storm cell (real light scattering, not a flat card).
+    kind = 'cloud' | 'storm' | 'smoke' | 'ash' | 'fog' | 'steam' | 'dust'"""
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=1, location=loc); ob = bpy.context.object; ob.scale = size; ob.name = kind
+    pre = {'cloud': ((1, 1, 1), .0, 2.5), 'storm': ((.35, .37, .42), .0, 4.0), 'smoke': ((.25, .24, .23), .0, 2.0), 'ash': ((.18, .16, .15), .0, 5.0),
+           'fog': ((.85, .88, .9), .0, .35), 'steam': ((1, 1, 1), .0, 1.2), 'dust': ((.7, .55, .38), .0, 1.5)}[kind]
+    m = bpy.data.materials.new(kind); nt, N, L = nodes(m); o = N.new('ShaderNodeOutputMaterial'); pv = N.new('ShaderNodeVolumePrincipled')
+    pv.inputs['Color'].default_value = (*(color if color != (1, 1, 1) else pre[0]), 1); pv.inputs['Anisotropy'].default_value = .4
+    tc = N.new('ShaderNodeTexCoord'); nz = _noise(N, L, tc.outputs['Object'], 2.2, 10, .62); [setattr(i, 'default_value', seed) for i in nz.inputs if i.name == 'W']
+    ln = N.new('ShaderNodeVectorMath'); ln.operation = 'LENGTH'; L.new(tc.outputs['Object'], ln.inputs[0])
+    fall = N.new('ShaderNodeMapRange'); fall.inputs['From Min'].default_value = 1.0; fall.inputs['From Max'].default_value = .35; L.new(ln.outputs['Value'], fall.inputs['Value'])
+    sh = N.new('ShaderNodeMath'); sh.operation = 'MULTIPLY'; L.new(nz.outputs['Fac'], sh.inputs[0]); L.new(fall.outputs[0], sh.inputs[1])
+    th = N.new('ShaderNodeMapRange'); th.inputs['From Min'].default_value = .28; th.inputs['From Max'].default_value = .55; th.inputs['To Max'].default_value = density * pre[2]
+    L.new(sh.outputs[0], th.inputs['Value']); L.new(th.outputs[0], pv.inputs['Density']); L.new(pv.outputs[0], o.inputs['Volume'])
+    ob.data.materials.append(m); return ob
+
+ANATOMY_COLORS = [   # (regex, material kind, base color) – textbook/real tissue colors
+    (r'skin', 'skin', (.8, .55, .45)), (r'bone|femur|tibia|fibula|humerus|radius|ulna|vertebra|rib|sternum|skull|cranial|mandible|maxilla|clavicle|scapula|pelvis|hip bone|sacrum|patella|carpal|tarsal|phalan|metacarp|metatars', 'bone', (.86, .82, .72)),
+    (r'heart|myocard|ventricle|atrium', 'organ', (.55, .12, .1)), (r'aorta|artery|arterial', 'organ', (.7, .08, .06)), (r'vein|vena', 'organ', (.18, .2, .45)),
+    (r'lung|bronch|trachea', 'organ', (.85, .55, .55)), (r'liver', 'organ', (.42, .12, .08)), (r'kidney', 'organ', (.45, .15, .1)),
+    (r'brain|cerebr|cortex|gyrus|lobule|pons|medulla|thalamus|cerebell|midbrain|hindbrain', 'organ', (.85, .7, .65)), (r'spleen', 'organ', (.38, .1, .15)),
+    (r'stomach|intestin|colon|duoden|jejun|ileum|esophag|rectum', 'organ', (.8, .5, .45)), (r'muscle|tendon', 'muscle', (.55, .1, .1)),
+    (r'eye', 'organ', (.95, .95, .95)), (r'nerve|spinal cord', 'organ', (.95, .9, .6)), (r'cartilage|disc', 'bone', (.75, .8, .82)), (r'.', 'organ', (.7, .45, .4))]
+
+def anatomy(*patterns, size=None, smooth_sub=0):
+    """Real human anatomy from BodyParts3D (scanned/segmented reference male, CC BY-SA 2.1 JP — credit required).
+    patterns: regexes matched against part names in assets/anatomy_parts.txt, e.g. anatomy('wall of heart', 'aorta'),
+    anatomy('lobe of .* lung'), anatomy('femur'). Real proportions (mm -> m). Returns an empty holding all parts;
+    size=<units> rescales so the whole group's longest side = size. Downloads parts once to NASA_CACHE/anatomy."""
+    import re, numpy as np
+    cat = [l.rstrip('\n').split('\t') for l in open(os.path.join(os.path.dirname(tex_path('earth_day.jpg')), '..', 'anatomy_parts.txt'))]
+    picks = [(fid, nm) for fid, nm in cat if any(re.search(p, nm, re.I) for p in patterns)]
+    if not picks: raise ValueError(f'no anatomy part matches {patterns}')
+    cdir = os.path.join(NASA_CACHE, 'anatomy'); os.makedirs(cdir, exist_ok=True)
+    root = link(bpy.data.objects.new('anatomy', None)); holder = link(bpy.data.objects.new('anatomy_holder', None), root)
+    mats = {}
+    for fid, nm in picks:
+        p = os.path.join(cdir, fid + '.stl')
+        if not os.path.exists(p):
+            urllib.request.urlretrieve(f'https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/HEAD/assets/BodyParts3D_data/stl/{fid}.stl', p + '.part'); os.replace(p + '.part', p)
+        bpy.ops.wm.stl_import(filepath=p); ob = bpy.context.selected_objects[0]; ob.name = nm[:60]; ob.parent = holder; ob.scale = (.001, .001, .001)
+        for rx, kind, col in ANATOMY_COLORS:
+            if re.search(rx, nm, re.I):
+                key = (kind, col)
+                if key not in mats: mats[key] = mat_pbr(kind, f'anat_{kind}_{len(mats)}'); mats[key].node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (*col, 1)
+                ob.data.materials.append(mats[key]); break
+        smooth(ob, smooth_sub)
+    bpy.context.view_layer.update()
+    P = np.array([ob.matrix_world @ Vector(c) for ob in holder.children for c in ob.bound_box])
+    lo, hi = P.min(0), P.max(0); ctr = (lo + hi) / 2; k = (size / max(hi - lo)) if size else 1.0
+    holder.location = Vector(-ctr * k); holder.scale = (k, k, k)
+    return root
+
+def scale_ref(height_m=1.8, loc=(0, 0, 0)):
+    """the white astronaut mascot scaled to a real person's height, for honest size comparisons"""
+    root, limbs = astronaut(); bpy.context.view_layer.update()
+    pts = [root.matrix_world @ Vector(c) for o in root.children_recursive if o.type == 'MESH' for c in o.bound_box]
+    h = max(p.z for p in pts) - min(p.z for p in pts); s = height_m / h if h else 1
+    root.scale = (s, s, s); root.location = loc; return root, limbs
