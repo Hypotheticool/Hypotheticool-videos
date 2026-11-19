@@ -1,0 +1,71 @@
+{
+ "slug": "2026-11-20-what-if-the-sun-became-a-black-hole",
+ "title": "What if the Sun suddenly turned into a black hole?",
+ "root": "/home/claude/b3d/sunbh",
+ "lines": [
+  "Earth would keep orbiting, in the dark.",
+  "What if the Sun suddenly turned into a black hole?",
+  "Good news first: it can't. NASA says the Sun isn't massive enough, and it will end as a white dwarf.",
+  "But imagine all of its mass crushed into a ball only about six kilometers wide.",
+  "Same mass, same distance, so its pull on Earth would stay the same.",
+  "NASA says Earth wouldn't get sucked in. It would keep circling, just like today.",
+  "For about eight minutes, nobody would notice. That's how long sunlight takes to reach us.",
+  "Then the sky goes black. Within about a week, Earth's surface could fall below zero Fahrenheit.",
+  "The oceans would start freezing from the top down, while"
+ ],
+ "hl": [
+  "ORBITING",
+  "DARK",
+  "BLACK",
+  "HOLE",
+  "CAN'T",
+  "WHITE",
+  "DWARF",
+  "SIX",
+  "KILOMETERS",
+  "SAME",
+  "SUCKED",
+  "CIRCLING",
+  "EIGHT",
+  "MINUTES",
+  "WEEK",
+  "ZERO",
+  "FREEZING"
+ ],
+ "sources": {
+  "Earth would keep orbiting a same-mass black hole without being pulled in; loss of sunlight disastrous for life (NASA, Chandra)": [
+   "https://science.nasa.gov/universe/10-questions-you-might-have-about-black-holes",
+   "https://chandra.si.edu/graphics/resources/illustrations/shareables/astrofacts12A.pdf",
+   "https://www.iflscience.com/if-the-sun-turned-into-a-black-hole-earth-would-continue-its-orbit-73947",
+   "https://legacy.stardate.org/radio/program/black-hole-reality-0"
+  ],
+  "Sun not massive enough (needs ~20x mass); will become a white dwarf": [
+   "https://www.nasa.gov/image-article/why-sun-wont-become-black-hole",
+   "https://science.nasa.gov/universe/10-questions-you-might-have-about-black-holes"
+  ],
+  "Sun-mass black hole ~3 km radius (~6 km across)": [
+   "https://www.iflscience.com/if-the-sun-turned-into-a-black-hole-earth-would-continue-its-orbit-73947",
+   "https://w.astro.berkeley.edu/~basri/astro10-03/Ppt/NS-BH_files/slide0021.htm",
+   "https://legacy.stardate.org/radio/program/black-hole-reality-0"
+  ],
+  "sunlight takes ~8 min 20 s to reach Earth": [
+   "https://scied.ucar.edu/learning-zone/earth-system/energy-from-sun",
+   "https://www.worldatlas.com/space/what-would-happen-if-the-sun-disappeared.html"
+  ],
+  "without sunlight: average surface below 0 F within ~a week; oceans freeze from the top down": [
+   "https://www.popsci.com/science/article/2013-07/if-sun-went-out-how-long-could-life-earth-survive/",
+   "https://www.worldatlas.com/space/what-would-happen-if-the-sun-disappeared.html"
+  ]
+ },
+ "durs": [
+  2.557,
+  3.199,
+  6.825,
+  5.678,
+  4.366,
+  5.112,
+  5.424,
+  6.213,
+  3.58
+ ]
+}
