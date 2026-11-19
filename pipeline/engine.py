@@ -6,9 +6,9 @@ import numpy as np, skia
 W, H, FPS = int(os.environ.get('HC_W', 1080)), int(os.environ.get('HC_H', 1920)), 30
 FONT_FILE = '/usr/share/fonts/truetype/google-fonts/ofl/anton/Anton-Regular.ttf'
 TTS_DIR = os.environ.get('TTS_DIR', '/home/claude/tts')
-VOICE, VOICE_SPEED = 'am_puck', 1.0
+VOICE, VOICE_SPEED = 'am_puck', 0.93
 XF = 0.35                     # crossfade between scenes (s)
-LEAD, GAP = 0.18, 0.30        # silence before each line / after it
+LEAD, GAP = 0.22, 0.55        # silence before each line / after it
 rng = np.random.default_rng(11)
 TF = skia.Typeface.MakeFromFile(FONT_FILE)
 

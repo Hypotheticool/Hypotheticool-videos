@@ -269,16 +269,21 @@ def mat_atmo(color=(.25, .55, 1), strength=1.4):
     tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
     L.new(pw.outputs[0], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(e.outputs[0], mx.inputs[2]); L.new(mx.outputs[0], o.inputs[0]); return m
 
-def earth(R=2.0, sun_dir=(1, 0, 0), tilt_deg=23.4, axis=False):
+def earth(R=2.0, sun_dir=(1, 0, 0), tilt_deg=23.4, axis=False, clouds=True, atmo=True):
     """returns (tilt_root, spin) ; animate spin.rotation_euler.z for rotation, tilt_root.rotation_euler.y for tilt"""
     root = link(bpy.data.objects.new('earth_tilt', None)); root.rotation_euler = (0, math.radians(tilt_deg), 0)
     spin = link(bpy.data.objects.new('earth_spin', None), root)
     bpy.ops.mesh.primitive_uv_sphere_add(radius=R, segments=128, ring_count=64); e = bpy.context.object
     e.data.materials.append(mat_earth(sun_dir)); smooth(e, 0); e.parent = spin
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=R * 1.015, segments=96, ring_count=48); c = bpy.context.object
-    c.data.materials.append(mat_clouds()); smooth(c, 0); c.parent = spin; c.rotation_euler = (0, 0, .7)
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=R * 1.05, segments=96, ring_count=48); a = bpy.context.object
-    a.data.materials.append(mat_atmo()); smooth(a, 0); a.parent = root
+    if clouds:
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=R * 1.015, segments=96, ring_count=48); c = bpy.context.object
+        c.data.materials.append(mat_clouds()); smooth(c, 0); c.parent = spin; c.rotation_euler = (0, 0, .7)
+    for ob in [o for o in spin.children]:          # keep feature sizes the same for any planet radius
+        for n in ob.active_material.node_tree.nodes:
+            if n.type == 'TEX_NOISE': n.inputs['Scale'].default_value *= 2.0 / R
+    if atmo:
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=R * 1.05, segments=96, ring_count=48); a = bpy.context.object
+        a.data.materials.append(mat_atmo()); smooth(a, 0); a.parent = root
     if axis:
         bpy.ops.mesh.primitive_cylinder_add(radius=R * .018, depth=R * 3.2); ax = bpy.context.object
         ax.data.materials.append(mat_emit('axis', (1, .9, .5), 6)); ax.parent = root
@@ -301,3 +306,96 @@ def sun_lamp(direction=(1, 0, 0), energy=4.0, color=(1, .96, .9)):
     o = link(bpy.data.objects.new('sun', li))
     o.rotation_euler = Vector(direction).to_track_quat('-Z', 'Y').to_euler() if False else (Vector((0, 0, 0)) - Vector(direction)).to_track_quat('-Z', 'Y').to_euler()
     return o
+
+
+# ------------------------------------------------------------------ spacecraft
+def mat_panel(name='solarcell', color=(.05, .1, .35)):
+    m = bpy.data.materials.new(name); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled'); tc = N.new('ShaderNodeTexCoord')
+    br = N.new('ShaderNodeTexBrick'); br.inputs['Scale'].default_value = 6; br.inputs['Mortar Size'].default_value = .02
+    br.inputs['Color1'].default_value = (*color, 1); br.inputs['Color2'].default_value = tuple(c * 1.4 for c in color) + (1,)
+    br.inputs['Mortar'].default_value = (.7, .7, .75, 1)
+    L.new(tc.outputs['UV'], br.inputs['Vector']); L.new(br.outputs['Color'], bs.inputs['Base Color'])
+    bs.inputs['Metallic'].default_value = .3; bs.inputs['Roughness'].default_value = .3
+    L.new(bs.outputs[0], o.inputs[0]); return m
+
+def mat_foil(name='foil', color=(.85, .86, .88), rough=.3):
+    m = bpy.data.materials.new(name); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled'); tc = N.new('ShaderNodeTexCoord')
+    bs.inputs['Base Color'].default_value = (*color, 1); bs.inputs['Metallic'].default_value = .55; bs.inputs['Roughness'].default_value = rough
+    nz = _noise(N, L, tc.outputs['Object'], 9, 3); bp = N.new('ShaderNodeBump'); bp.inputs['Strength'].default_value = .25
+    L.new(nz.outputs['Fac'], bp.inputs['Height']); L.new(bp.outputs['Normal'], bs.inputs['Normal']); L.new(bs.outputs[0], o.inputs[0]); return m
+
+def hubble(name='hubble'):
+    """Hubble-like telescope along +X, ~3.3 units long (1 unit ~ 4 m). Returns root; parts dict for animation."""
+    root = link(bpy.data.objects.new(name, None)); parts = {}
+    foil, white, dark = mat_foil('hst_foil'), mat_principled('hst_white', (.82, .83, .85), .55), mat_principled('hst_dark', (.03, .03, .04), .4)
+    def add(o, m, sub=1, bev=0): o.data.materials.append(m); smooth(o, sub, bev); o.parent = root; return o
+    bpy.ops.mesh.primitive_cylinder_add(radius=.56, depth=1.25, location=(-1.0, 0, 0), rotation=(0, math.radians(90), 0), vertices=48)
+    add(bpy.context.object, foil, 1, .03)
+    bpy.ops.mesh.primitive_cylinder_add(radius=.5, depth=2.05, location=(.62, 0, 0), rotation=(0, math.radians(90), 0), vertices=48)
+    add(bpy.context.object, white, 1, .02)
+    for x in (-.4, .3, 1.0):
+        bpy.ops.mesh.primitive_torus_add(major_radius=.5, minor_radius=.015, location=(x, 0, 0), rotation=(0, math.radians(90), 0)); add(bpy.context.object, dark, 0)
+    bpy.ops.mesh.primitive_cylinder_add(radius=.47, depth=.04, location=(1.65, 0, 0), rotation=(0, math.radians(90), 0), vertices=48)
+    add(bpy.context.object, dark, 0)
+    door = link(bpy.data.objects.new('door_hinge', None), root); door.location = (1.66, 0, .5)
+    bpy.ops.mesh.primitive_cylinder_add(radius=.5, depth=.04, location=(0, 0, -.5), rotation=(0, math.radians(90), 0), vertices=48)
+    d = bpy.context.object; d.data.materials.append(foil); d.parent = door; door.rotation_euler = (0, math.radians(-100), 0)
+    panel = mat_panel('hst_cells', (.1, .2, .62))
+    for side in (1, -1):
+        boom = link(bpy.data.objects.new(f'array{side}', None), root); boom.location = (-.9, side * .58, 0)
+        bpy.ops.mesh.primitive_cylinder_add(radius=.025, depth=.35, location=(0, side * .17, 0), rotation=(math.radians(90), 0, 0)); bm = bpy.context.object; bm.data.materials.append(foil); bm.parent = boom
+        bpy.ops.mesh.primitive_plane_add(size=1, location=(0, side * 1.25, 0)); p = bpy.context.object
+        p.scale = (.65, 1.8, 1); p.data.materials.append(panel); p.parent = boom
+        bpy.ops.mesh.primitive_cube_add(size=1, location=(0, side * 1.25, -.008)); fr = bpy.context.object; fr.scale = (.68, 1.83, .012)
+        fr.data.materials.append(dark); fr.parent = boom
+        boom.rotation_euler = (0, math.radians(65), 0); parts[f'array{side}'] = boom
+    for z in (1, -1):
+        bpy.ops.mesh.primitive_cylinder_add(radius=.02, depth=.6, location=(.1, 0, z * .78)); add(bpy.context.object, foil, 0)
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=.22, location=(.1, 0, z * 1.1), segments=24, ring_count=12); dish = bpy.context.object
+        dish.scale = (1, 1, .3); add(dish, white, 0)
+    parts['door'] = door
+    return root, parts
+
+def school_bus(name='bus'):
+    root = link(bpy.data.objects.new(name, None))
+    yel = mat_principled('bus_yellow', (1, .62, .02), .35, coat=.6); blk = mat_principled('bus_black', (.02, .02, .02), .5); win = mat_principled('bus_glass', (.1, .15, .2), .05, metal=.3)
+    bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, .55)); b = bpy.context.object; b.scale = (3.3, .62, .75); b.data.materials.append(yel); smooth(b, 2, .08); b.parent = root
+    bpy.ops.mesh.primitive_cube_add(size=1, location=(-.15, 0, .72)); w = bpy.context.object; w.scale = (2.7, .64, .22); w.data.materials.append(win); smooth(w, 1, .03); w.parent = root
+    bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, .3)); s = bpy.context.object; s.scale = (3.32, .64, .04); s.data.materials.append(blk); s.parent = root
+    for x in (-1.1, 1.1):
+        for y in (-.31, .31):
+            bpy.ops.mesh.primitive_cylinder_add(radius=.2, depth=.14, location=(x, y, .18), rotation=(math.radians(90), 0, 0)); t = bpy.context.object; t.data.materials.append(blk); t.parent = root
+    return root
+
+def servicer(name='servicer'):
+    root = link(bpy.data.objects.new(name, None))
+    gold = mat_foil('gold_foil', (1, .62, .2), .35); cells = mat_panel('srv_cells', (.05, .08, .25)); grey = mat_principled('srv_grey', (.5, .52, .58), .4, metal=.6)
+    bpy.ops.mesh.primitive_cube_add(size=1); b = bpy.context.object; b.scale = (.7, .6, .6); b.data.materials.append(gold); smooth(b, 1, .03); b.parent = root
+    for side in (1, -1):
+        bpy.ops.mesh.primitive_plane_add(size=1, location=(0, side * 1.0, 0)); p = bpy.context.object; p.scale = (.5, 1.1, 1); p.rotation_euler = (math.radians(90), 0, 0)
+        p.data.materials.append(cells); p.parent = root
+    bpy.ops.mesh.primitive_cylinder_add(radius=.06, depth=.6, location=(.6, 0, 0), rotation=(0, math.radians(90), 0)); a = bpy.context.object; a.data.materials.append(grey); a.parent = root
+    bpy.ops.mesh.primitive_torus_add(major_radius=.12, minor_radius=.03, location=(.92, 0, 0), rotation=(0, math.radians(90), 0)); r = bpy.context.object; r.data.materials.append(grey); r.parent = root
+    bpy.ops.mesh.primitive_cone_add(radius1=.15, depth=.3, location=(-.48, 0, 0), rotation=(0, math.radians(-90), 0)); n = bpy.context.object; n.data.materials.append(grey); n.parent = root
+    return root
+
+def fireball(parent, length=3.0, radius=.9, strength=10.0, name='plasma'):
+    """glowing reentry plasma sheath + trail around an object; trail extends along +Z of `parent`. 'plasma_fade' node scales it (0..1)"""
+    m = bpy.data.materials.new(name); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); lw = N.new('ShaderNodeLayerWeight'); lw.inputs['Blend'].default_value = .45
+    tc = N.new('ShaderNodeTexCoord'); nz = _noise(N, L, tc.outputs['Object'], 4.0, 4)
+    rim = N.new('ShaderNodeMath'); rim.operation = 'POWER'; rim.inputs[1].default_value = 1.6; L.new(lw.outputs['Facing'], rim.inputs[0])
+    nzm = N.new('ShaderNodeMapRange'); nzm.inputs['To Min'].default_value = .35; nzm.inputs['To Max'].default_value = 1.0; L.new(nz.outputs['Fac'], nzm.inputs['Value'])
+    a = N.new('ShaderNodeMath'); a.operation = 'MULTIPLY'; L.new(rim.outputs[0], a.inputs[0]); L.new(nzm.outputs[0], a.inputs[1])
+    fm = N.new('ShaderNodeMath'); fm.name = 'plasma_fade'; fm.operation = 'MULTIPLY'; fm.inputs[1].default_value = 1.0; L.new(a.outputs[0], fm.inputs[0])
+    cl = N.new('ShaderNodeClamp'); L.new(fm.outputs[0], cl.inputs['Value'])
+    ramp = N.new('ShaderNodeValToRGB'); ramp.color_ramp.elements[0].color = (1, .06, .0, 1); ramp.color_ramp.elements[1].color = (1, .32, .02, 1)
+    L.new(nz.outputs['Fac'], ramp.inputs['Fac'])
+    e = N.new('ShaderNodeEmission'); L.new(ramp.outputs['Color'], e.inputs['Color']); e.inputs['Strength'].default_value = strength
+    tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
+    L.new(cl.outputs[0], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(e.outputs[0], mx.inputs[2]); L.new(mx.outputs[0], o.inputs[0])
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=radius, segments=48, ring_count=24); s = bpy.context.object; s.scale = (1, 1, length / radius * .5)
+    s.location = (0, 0, length * .3); s.data.materials.append(m); smooth(s, 0); s.parent = parent
+    return s, m

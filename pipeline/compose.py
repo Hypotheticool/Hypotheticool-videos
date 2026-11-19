@@ -21,8 +21,15 @@ def scene_frame(i, local):
     n = metas[i]['frames']; f = min(n, max(1, int(local * FPS) + 1))
     key = (i, f)
     if key not in cache:
-        if len(cache) > 6: cache.clear()
-        cache[key] = cv2.imread(f'{ROOT}/s{i}/f_{f:04d}.png', cv2.IMREAD_COLOR).astype(np.float32)
+        if len(cache) > 12: cache.clear()
+        im = cv2.imread(f'{ROOT}/s{i}/f_{f:04d}.png', cv2.IMREAD_UNCHANGED).astype(np.float32)
+        plates = metas[i].get('plates') or []
+        if im.shape[2] == 4 and plates:          # transparent foreground over a pre-rendered background plate
+            pth = [p for f0, p in plates if f0 <= f][-1] if any(f0 <= f for f0, _ in plates) else plates[0][1]
+            if pth not in cache: cache[pth] = cv2.imread(pth, cv2.IMREAD_COLOR).astype(np.float32)
+            a = im[..., 3:4] / 255.0; im = im[..., :3] * a + cache[pth] * (1 - a)
+        elif im.shape[2] == 4: im = im[..., :3]
+        cache[key] = im
     return cache[key]
 
 def bloom(img):

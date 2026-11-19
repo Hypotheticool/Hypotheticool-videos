@@ -1,0 +1,72 @@
+{
+ "slug": "2026-11-23-what-if-hubble-fell-out-of-the-sky",
+ "title": "What if the Hubble Space Telescope fell out of the sky?",
+ "root": "/home/claude/b3d/hubble",
+ "lines": [
+  "Two tons of telescope could survive the fall.",
+  "What if the Hubble Space Telescope fell out of the sky?",
+  "Hubble has no engine of its own, and the thin air up there slowly drags it lower.",
+  "NASA estimates a fifty percent chance it reenters by the end of twenty thirty three.",
+  "It's about the size of a school bus, and weighs around twelve thousand kilograms.",
+  "Most of it would burn up, slamming into the atmosphere at around twenty seven thousand kilometers per hour.",
+  "But an earlier NASA study found about two tons of parts could survive, scattered along a path over a thousand kilometers long.",
+  "That's why NASA is asking companies to boost it higher, or bring it down safely.",
+  "Because if nobody catches it in time,"
+ ],
+ "hl": [
+  "TWO",
+  "TONS",
+  "SURVIVE",
+  "HUBBLE",
+  "ENGINE",
+  "DRAGS",
+  "FIFTY",
+  "PERCENT",
+  "SCHOOL",
+  "BUS",
+  "BURN",
+  "THOUSAND",
+  "SAFELY",
+  "CATCHES"
+ ],
+ "sources": {
+  "no propulsion, uncontrolled reentry, 10% by Sep 2032 / 50% by Dec 2033 (NASA RFI, July 2026 lifetime analysis)": [
+   "https://www.iflscience.com/nasa-is-looking-for-ways-to-save-the-hubble-space-telescope-from-an-uncontrolled-reentry-and-extend-its-mission-beyond-2032-85078",
+   "https://universemagazine.com/en/nasa-turns-to-private-companies-to-save-the-hubble/"
+  ],
+  "drag from thin upper atmosphere lowers the orbit": [
+   "https://universemagazine.com/en/nasa-turns-to-private-companies-to-save-the-hubble/",
+   "https://savedelete.com/article/nasa-hubble-commercial-reboost/"
+  ],
+  "mass ~12,000 kg": [
+   "https://tech-insider.org/nasa-hubble-reboost-industry-plans-600-km-2032-2026/",
+   "https://www.space.com/460-experts-calculate-risk-uncontrolled-hubble-entry.html"
+  ],
+  "speed ~28,000 km/h": [
+   "https://www.iflscience.com/hubble-has-traveled-over-6-billion-kilometers-soon-it-will-crash-down-to-earth-82180"
+  ],
+  "NASA ORSAT study: ~2,055 kg survives, debris footprint ~1,220 km": [
+   "https://www.space.com/460-experts-calculate-risk-uncontrolled-hubble-entry.html",
+   "https://pairlist2.pair.net/pipermail/meteorite-list/2005-May/013014.html"
+  ],
+  "NASA RFI: reboost, servicing, or controlled reentry; responses due Nov 30 2026": [
+   "https://gagadget.com/en/732393-nasa-asks-industry-how-to-keep-hubble-from-falling-out-of-the-sky/",
+   "https://sciencedaily.com/releases/2026/11/261104012254.htm"
+  ],
+  "size of a large school bus, 12,200 kg, ~27,000 km/h (NASA)": [
+   "https://science.nasa.gov/mission/hubble/overview/about-hubble/hubble-by-the-numbers/",
+   "https://science.nasa.gov/wp-content/uploads/2023/04/hst_overview_fact_sheet.pdf"
+  ]
+ },
+ "durs": [
+  3.127,
+  3.527,
+  5.39,
+  5.672,
+  4.989,
+  6.638,
+  8.631,
+  5.483,
+  2.684
+ ]
+}
