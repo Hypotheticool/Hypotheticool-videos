@@ -1,0 +1,95 @@
+{
+ "slug": "2026-11-20-would-you-rather-a-day-on-the-moon-or-mars",
+ "title": "Would you rather spend a day on the Moon or on Mars?",
+ "format": "would-you-rather",
+ "root": "/home/claude/b3d/moonmars",
+ "lines": [
+  "One of them has blue sunsets.",
+  "Would you rather spend a day on the Moon, or a day on Mars?",
+  "Comment A or B. Take a second, and think about it.",
+  "On the Moon, you'd weigh about one sixth of what you weigh on Earth.",
+  "But the Sun stays up for about two weeks, in a pitch black sky.",
+  "And in that sunlight, the ground can reach about 250 degrees Fahrenheit.",
+  "On Mars, one day lasts about 24 hours and 40 minutes. Almost like home.",
+  "You'd weigh about 38 percent of your Earth weight, but the thin air is mostly carbon dioxide.",
+  "And on average, it's around minus 80 degrees Fahrenheit.",
+  "You'd need a spacesuit on both, but Mars gives you a much more Earth-like day.",
+  "And when the Sun goes down there, here's the twist."
+ ],
+ "hl": [
+  "BLUE",
+  "SUNSETS",
+  "MOON",
+  "MARS",
+  "B",
+  "SIXTH",
+  "TWO",
+  "WEEKS",
+  "BLACK",
+  "250",
+  "24",
+  "40",
+  "HOME",
+  "38",
+  "CARBON",
+  "DIOXIDE",
+  "MINUS",
+  "80",
+  "SPACESUIT",
+  "EARTH-LIKE",
+  "TWIST"
+ ],
+ "sources": {
+  "Mars sunsets look blue: fine dust scatters blue light forward near the Sun's direction (Curiosity, 2015)": [
+   "https://svs.gsfc.nasa.gov/11875",
+   "https://www.jpl.nasa.gov/images/pia19400-sunset-in-mars-gale-crater",
+   "https://www.cbsnews.com/news/nasa-captures-image-of-blue-sunset-on-mars"
+  ],
+  "Moon surface gravity about 1/6 (16.5%) of Earth's": [
+   "https://science.nasa.gov/moon/facts/",
+   "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+  ],
+  "Lunar day (sunrise to sunrise) ~29.5 Earth days, so ~2 weeks of daylight; no atmosphere so the sky is black": [
+   "https://science.nasa.gov/moon/weather-on-the-moon/",
+   "https://moon.nasa.gov/resources/pdfs/LRO_Lithograph_TemperatureVariation_27May2014.pdf",
+   "https://www.space.com/18175-moon-temperature.html"
+  ],
+  "Moon equator daytime surface ~250 F (121 C)": [
+   "https://science.nasa.gov/moon/weather-on-the-moon/",
+   "https://www.space.com/18175-moon-temperature.html",
+   "https://www.livescience.com/space/the-moon/what-temperature-is-the-moon"
+  ],
+  "Mars solar day (sol) = 24 h 39 min 35 s": [
+   "https://www.jpl.nasa.gov/news/press_kits/insight/launch/facts/mars-at-a-glance",
+   "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+   "https://science.nasa.gov/mars/facts/"
+  ],
+  "Mars gravity ~38% of Earth's; atmosphere ~95% CO2, under 1% of Earth's surface pressure": [
+   "https://www.jpl.nasa.gov/news/press_kits/insight/launch/facts/mars-at-a-glance",
+   "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+   "https://science.nasa.gov/mars/facts/"
+  ],
+  "Mars average temperature about -80 F (-60 C)": [
+   "https://science.nasa.gov/mars/facts/",
+   "https://www.jpl.nasa.gov/news/press_kits/insight/launch/facts/mars-at-a-glance",
+   "https://www.space.com/16907-what-is-the-temperature-of-mars.html"
+  ],
+  "Both need pressure suits (no breathable air on either)": [
+   "https://science.nasa.gov/mars/facts/",
+   "https://science.nasa.gov/moon/facts/"
+  ]
+ },
+ "durs": [
+  2.081,
+  3.757,
+  3.633,
+  4.011,
+  4.208,
+  5.52,
+  6.016,
+  6.514,
+  3.951,
+  4.865,
+  2.993
+ ]
+}
