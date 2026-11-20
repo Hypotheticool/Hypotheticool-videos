@@ -1,0 +1,74 @@
+{
+ "slug": "gta6-11-minutes-vs-12-hours",
+ "title": "GTA 6: 11 minutes. Real Florida: 12 hours.",
+ "format": "special-what-if",
+ "root": "/home/claude/b3d/gta6v2",
+ "lines": [
+  "GTA 6: eleven minutes. Real Florida: twelve hours.",
+  "What if you drove the real Leonida instead of the game?",
+  "Rockstar says Leonida is about twice the size of GTA 5's map.",
+  "In Kotaku's test, crossing it on the highway took about eleven minutes.",
+  "But Leonida is based on Florida: Vice City is Miami, Grassrivers is the Everglades, and the Keys are the Keys.",
+  "The real drive, from Key West to Pensacola, is about eight hundred and thirty miles.",
+  "That's over twelve hours behind the wheel, with no stops.",
+  "Real Florida also covers about sixty-six thousand square miles, with thirteen hundred and fifty miles of coast.",
+  "So next time you cross Leonida in eleven minutes,"
+ ],
+ "hl": [
+  "GTA",
+  "eleven",
+  "twelve",
+  "Leonida",
+  "Florida",
+  "Kotaku",
+  "Miami",
+  "Everglades",
+  "Pensacola"
+ ],
+ "sources": {
+  "rockstar_twice_gta5": [
+   "https://insider-gaming.com/gta-6-map-size-revealed/",
+   "https://rockstarreport.com/features/gta-6-map-locations-confirmed-leaked-rumoured-leonida",
+   "https://gta6mapsize.com/"
+  ],
+  "kotaku_highway_10m53s": [
+   "https://kotaku.com/it-took-me-over-three-hours-to-walk-across-gta-6s-massive-map-2000755572",
+   "https://leonidaplayers.com/guides/gta-6-map-size-how-long-to-cross"
+  ],
+  "leonida_is_florida_regions": [
+   "https://wlos.com/news/offbeat/rockstar-games-grand-theft-auto-vi-brings-series-back-florida-inspired-vice-city-leonida-everglades-miami-florida-keys-wetland-video-game-xbox-playstation-jason-duval-lucia-caminos",
+   "https://www.esports.net/news/where-is-gta-6-set/",
+   "https://consolepulse.com/multiplatform/gta/guides/gta-6-vice-city-leonida-locations-guide"
+  ],
+  "key_west_pensacola_830_mi": [
+   "https://www.rome2rio.com/s/Key-West/Perdido-Key",
+   "https://getjerry.com/advice/pensacola-to-key-west-road-trip",
+   "https://distancebetween2.com/pensacola/key_west"
+  ],
+  "over_12_hours": [
+   "https://lazytrips.com/blog/how-long-does-it-take-to-drive-through-florida",
+   "https://1map.com/routes/us-fl-pensacola_to_us-fl-key-west",
+   "https://blog.wayro.ai/key-west-pensacola-floridas-epic-road-trip-guide"
+  ],
+  "area_65758_sq_mi": [
+   "https://dos.fl.gov/florida-facts/quick-facts/",
+   "https://www.census.gov/geographies/reference-files/2010/geo/state-area.html"
+  ],
+  "coastline_1350_mi": [
+   "https://dos.fl.gov/florida-facts/quick-facts/",
+   "https://webarchive.library.unt.edu/web/20161109091438/https://coast.noaa.gov/data/docs/states/shorelines.pdf"
+  ]
+ },
+ "notes": "Replaces the first GTA 6 special. Game numbers are Rockstar's statement (about 2x GTA 5) and one reviewer's timed highway drive (Kotaku, 10:53 at top speed); worded as such. No Rockstar art, map, footage or logos; visuals are our real-data Earth map.",
+ "durs": [
+  4.377,
+  3.644,
+  5.165,
+  4.733,
+  7.738,
+  5.902,
+  3.861,
+  7.788,
+  3.33
+ ]
+}

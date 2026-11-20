@@ -126,6 +126,15 @@ def frame(T):
             rows.append(cur); sc = 1 + .06 * (1 - E.eout(min(lt / .35, 1))); f = skia.Font(E.TF, int(104 * sc))
             col = tuple(ov.get('color', (255, 222, 40))); y0 = ov.get('y', .11) * E.H
             for k, row in enumerate(rows[:3]): text_c(row, E.W / 2, y0 + k * 112 * sc, f, col if k == len(rows[:3]) - 1 else (255, 255, 255), 1)
+        elif ov['type'] == 'versus':   # head-to-head stat banner at the top: {'left': [header, value], 'right': [header, value]}
+            top, bw, bh = E.H * .075, E.W * .43, 230
+            for (hd, val), colr, x0 in ((ov['left'], (205, 45, 150), E.W * .045), (ov['right'], (35, 110, 220), E.W * .525)):
+                pill(x0, top, bw, bh, colr, a)
+                text_c(hd.upper(), x0 + bw / 2, top + 72, fit_font(hd.upper(), bw - 40, 50), (255, 255, 255), a)
+                text_c(val.upper(), x0 + bw / 2, top + 178, fit_font(val.upper(), bw - 30, 96), (255, 222, 40), a)
+            cv.drawCircle(E.W / 2, top + bh / 2, 54, E.P(E.C(20, 20, 30, 240 * a)))
+            cv.drawCircle(E.W / 2, top + bh / 2, 54, E.P(E.C(255, 222, 40, 255 * a), 'stroke', 5))
+            text_c('VS', E.W / 2, top + bh / 2 + 17, skia.Font(E.TF, 48), (255, 222, 40), a)
         elif ov['type'] == 'handle':
             f = skia.Font(E.TF, 80); w = f.measureText('@HypotheticoolHQ')
             cv.drawString('@HypotheticoolHQ', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 14))
