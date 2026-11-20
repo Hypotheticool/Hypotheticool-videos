@@ -135,6 +135,28 @@ def frame(T):
             cv.drawCircle(E.W / 2, top + bh / 2, 54, E.P(E.C(20, 20, 30, 240 * a)))
             cv.drawCircle(E.W / 2, top + bh / 2, 54, E.P(E.C(255, 222, 40, 255 * a), 'stroke', 5))
             text_c('VS', E.W / 2, top + bh / 2 + 17, skia.Font(E.TF, 48), (255, 222, 40), a)
+        elif ov['type'] == 'badge':    # stat pill: big number + small unit, e.g. {"value": "2.5", "unit": "miles", "pos": [x, y]}
+            fv = skia.Font(E.TF, ov.get('size', 84)); fu = skia.Font(E.TF, int(ov.get('size', 84) * .5))
+            wv = fv.measureText(ov['value']); wu = fu.measureText(' ' + ov.get('unit', '')); w = wv + wu + 60; h = ov.get('size', 84) * 1.25
+            pill(x - w / 2, y - h / 2, w, h, tuple(ov.get('bg', (25, 32, 40))), a, h / 2)
+            cv.drawString(ov['value'], x - w / 2 + 30, y + h * .27, fv, E.P(E.C(255, 196, 60, 255 * a)))
+            cv.drawString(' ' + ov.get('unit', ''), x - w / 2 + 30 + wv, y + h * .27, fu, E.P(E.C(255, 196, 60, 255 * a)))
+        elif ov['type'] == 'bubble':   # speech/message bubble with a tail, e.g. {"text": "All good here", "pos": [x, y]}
+            f = skia.Font(E.TF, ov.get('size', 64)); w = f.measureText(ov['text']) + 56; h = ov.get('size', 64) * 1.5
+            col = tuple(ov.get('bg', (240, 140, 30)))
+            tail = skia.Path(); tail.moveTo(x - w * .25, y + h / 2 - 4); tail.lineTo(x - w * .32, y + h / 2 + 30); tail.lineTo(x - w * .12, y + h / 2 - 4); tail.close()
+            cv.drawPath(tail, E.P(E.C(*col, 240 * a)))
+            pill(x - w / 2, y - h / 2, w, h, col, a, 28)
+            cv.drawString(ov['text'], x - w / 2 + 28, y + h * .2, f, E.P(E.C(255, 255, 255, 255 * a)))
+        elif ov['type'] == 'measure':  # vertical measuring line with arrow caps, {"x": .9, "y0": .3, "y1": .8} (+ optional badge on it)
+            mx = ov.get('x', .9) * E.W; y0 = ov['y0'] * E.H; y1 = y0 + (ov['y1'] * E.H - y0) * E.eout(min(lt / .6, 1))
+            pen = E.P(E.C(235, 205, 140, 230 * a), 'stroke', 4); cv.drawLine(mx, y0, mx, y1, pen)
+            for yy, d in ((y0, 1), (y1, -1)): cv.drawLine(mx - 14, yy + 16 * d, mx, yy, pen); cv.drawLine(mx + 14, yy + 16 * d, mx, yy, pen)
+        elif ov['type'] == 'datestamp':  # boxed place/date stamp top-left, e.g. "NORTH ATLANTIC · 18 JUNE 2023"
+            f = fit_font(ov['text'].upper(), E.W * .8, 46); w = f.measureText(ov['text'].upper()) + 40
+            r = skia.Rect.MakeXYWH(E.W * .05, E.H * .1, w, 70); cv.drawRect(r, E.P(E.C(10, 12, 16, 200 * a)))
+            cv.drawRect(r, E.P(E.C(255, 196, 60, 255 * a), 'stroke', 3))
+            cv.drawString(ov['text'].upper(), E.W * .05 + 20, E.H * .1 + 52, f, E.P(E.C(255, 196, 60, 255 * a)))
         elif ov['type'] == 'handle':
             f = skia.Font(E.TF, 80); w = f.measureText('@HypotheticoolHQ')
             cv.drawString('@HypotheticoolHQ', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 14))

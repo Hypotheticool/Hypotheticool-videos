@@ -6,6 +6,22 @@ Every Short is one of three formats. Store the format in the topic JSON as `"for
 Repeat this 4-step cycle: **what-if → would-you-rather → what-if → pick-a-scenario**.
 Special posts (claim/topic format starting with `special-`, e.g. a trending-event special the user asked for) are SKIPPED when working out the rotation. To find the next format, sort the Short topic files in `pipeline/topics/` and the claims in `pipeline/claims/` by post date/time and take the latest one that has a format (a claim file's first line can start with `format: <name>`). Then use the next step of the cycle. If two runs collide on the same slot, the claim file decides.
 
+## HOUSE STYLE: the user's reference video (applies to EVERY Short, all formats; overrides older "calm pacing / one cut per scene" rules)
+The user showed a reference Short they love (a story-explainer about the Titan sub implosion). It's the target for animation, speed, detail and facts. Copy its *techniques*, never its script, visuals or topic.
+**Story and facts**
+- Tell it like a mini-documentary of a real event or real phenomenon: a place/date stamp opener, then concrete, specific facts (exact depths, pressures, dates, times, distances, real quotes and messages), rising stakes, and a payoff or twist at the end. Even "what if" topics are told as a vivid sequence of events ("At 9:14 AM...").
+- **Every big number gets a relatable comparison** shown on screen (e.g. pressure = "a pickup truck balanced on a postage stamp", a material = "the same carbon fiber as racing bikes"). The comparison must be checked and true.
+- Real quotes and messages appear as **speech bubbles** (`{"type":"bubble","text":"..."}`) only when they're sourced word for word.
+**Speed**
+- The visual changes every **1.5–2.5 s**: a new shot, a cut to a closer angle, a push-in, or a new overlay. A narration line usually has 2–3 shots (use timeline-marker camera cuts or several cameras per scene). The voice pace stays the same (never change it). It's the picture that moves fast.
+- No shot lingers on a static image. There's always motion (camera drift, particles, light shafts, objects moving).
+**Look**
+- Cinematic, stylized 3D illustration: clean simple shapes with fine detail where it matters (panels, bolts, windows, labels on the real object), soft volumetric light shafts, rain/particles/bubbles/dust, a moody dark palette (deep teal/navy/charcoal) with warm accent light (sunset orange, amber lamps). One consistent palette per video.
+- Use the real-data assets for accuracy (real Earth/planets/NASA models/anatomy), graded into this palette. For scenes like the deep ocean, a ship at sunset or a city, build clean stylized models in kit.py.
+- Use **cross-section and diagram shots** for scale: surface-to-depth views with a `{"type":"measure","x":..,"y0":..,"y1":..}` line plus a **stat badge** `{"type":"badge","value":"2.5","unit":"miles","pos":[x,y]}`. Use a `{"type":"datestamp","text":"PLACE · DATE"}` on the opener when the story has a real place and date.
+**Captions**
+- 1–2 words at a time in sentence case, with the key word highlighted (engine.py already does this: CAP_WORDS = 2, CAP_UPPER = False). Stat values go in badges, not only in the captions.
+
 ## The first second (ALL Shorts): stop the swipe
 Our first Short kept only 54% of viewers (46% swiped away immediately). Top Shorts keep 70%+. Every Short must win the first second:
 - **Frame 1 is the payoff.** The most dramatic, high-contrast shot of the video is already in motion on the very first frame: the subject is big in frame, bright against the dark, with something visibly happening (exploding, falling, collapsing, glowing). No black or empty frames, no fade-in, no intro, no logo, no slow establishing shot.

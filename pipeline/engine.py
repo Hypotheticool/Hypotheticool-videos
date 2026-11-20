@@ -242,11 +242,13 @@ def arrow(c, x0, y0, x1, y1, w, color, a=1.0):
 
 # ---------------------------------------------------------------- captions (word-synced chunks)
 HL_COLOR, TXT_COLOR = C(255, 222, 40), C(255, 255, 255)
+CAP_WORDS, CAP_CHARS = 2, 14   # 1-2 word punchy captions (story-explainer style); was 3 / 15
+CAP_UPPER = False              # sentence case like top explainer Shorts
 def chunk_words(text, words_t):
     words = text.split(); chunks = []; cur = []
     for i, w in enumerate(words):
         cur.append(i)
-        if len(cur) >= 3 or len(' '.join(words[j] for j in cur)) > 15 or re.search(r'[,.!?…]$', w): chunks.append(cur); cur = []
+        if len(cur) >= CAP_WORDS or len(' '.join(words[j] for j in cur)) > CAP_CHARS or re.search(r'[,.!?…]$', w): chunks.append(cur); cur = []
     if cur: chunks.append(cur)
     return [([words[j] for j in ch], words_t[ch[0]][0], words_t[ch[-1]][1]) for ch in chunks]
 
@@ -254,7 +256,7 @@ def caption(c, words, t_in, t, hl, y=1330):
     pop = eout((t - t_in) / .16); sc = .82 + .18 * pop + .06 * math.sin(min(1, (t - t_in) / .16) * math.pi)
     size = 112 if H > W else 74
     font = skia.Font(TF, size)
-    txt = [w.upper() for w in words]
+    txt = [w.upper() if CAP_UPPER else w for w in words]
     widths = [font.measureText(w + ' ') for w in txt]; total = sum(widths) - font.measureText(' ')
     if total > W * .89:
         size = size * W * .89 / total; font = skia.Font(TF, size)

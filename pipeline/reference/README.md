@@ -1,0 +1,1 @@
+Frames (1 per second) from the user's reference Short (story-explainer about the Titan sub implosion, by another creator). They're here ONLY to study pacing, framing, palette, captions and overlays. Never reuse these images or that video's script.
