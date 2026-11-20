@@ -51,6 +51,9 @@ Space, Earth science, the human body, oceans, weather, animals, physics, enginee
 **Credits:** the post text must end with the credit line(s) in pipeline/assets/CREDITS.md for the assets actually used (attribution is required for CC BY / CC BY-SA assets).
 **Setup:** `pip install --break-system-packages DracoPy pygltflib` is required (NASA models are Draco-compressed and kit decodes them once). Models and anatomy parts download on demand to /home/claude/nasa_cache.
 
+## Counting posts
+When counting posts for the monthly cap or the 2-a-day cap, ignore Metricool posts with draft = true (they never publish).
+
 ## Rules for all formats
 - ACCURACY IS #1. Every claim is backed by at least two reputable sources (NASA, ESA, NOAA, USGS, universities, peer-reviewed summaries, major science outlets). Hedge where the science is uncertain. Options must be real-science hypotheticals, never made-up "facts".
 - Hook first (line 1 = punchy true payoff under 8 words over the most dramatic shot), seamless loop (the last line flows back into line 1 and the last shot matches the first), calm pacing (at most one camera cut per scene), the same voice and pace, and 3D scenes built with kit.py.
