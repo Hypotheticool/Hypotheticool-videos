@@ -1,2 +1,2 @@
 format: would-you-rather
-topic: TBD (market research)
+topic: Would you rather spend a day on the Moon or on Mars?
