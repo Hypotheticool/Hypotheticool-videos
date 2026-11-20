@@ -68,7 +68,7 @@ def frame(T):
     cv.drawImage(skia.Image.fromarray(np.ascontiguousarray(bgra), colorType=skia.kBGRA_8888_ColorType), 0, 0)
     lt = T - starts[i]
     for ov in metas[i]['overlays']:
-        a = 1.0 if (ov['type'] == 'hook' or ov.get('instant')) else E.eout((lt - .4) / .5)   # the hook is on screen from frame 1
+        a = 1.0 if (ov['type'] == 'hook' or ov.get('instant')) else E.eout((lt - ov.get('from', .4)) / .5)   # the hook is on screen from frame 1
         if a <= 0: continue
         x, y = ov['pos'][0] * E.W, min(ov['pos'][1] * E.H, 1640)
         if ov['type'] == 'label':

@@ -809,3 +809,25 @@ def scale_ref(height_m=1.8, loc=(0, 0, 0)):
     pts = [root.matrix_world @ Vector(c) for o in root.children_recursive if o.type == 'MESH' for c in o.bound_box]
     h = max(p.z for p in pts) - min(p.z for p in pts); s = height_m / h if h else 1
     root.scale = (s, s, s); root.location = loc; return root, limbs
+
+
+def latlon(lat, lon, R, face_lon=-80.0, h=0.0):
+    """position of a real latitude/longitude on kit.earth(R, face_lon=...) in the earth's SPIN frame
+    (parent objects to the returned `spin` empty, or use with tilt_deg=0 and no spin rotation). h = height above surface."""
+    la, lo = math.radians(lat), math.radians(lon - 90 - face_lon)
+    return Vector((math.cos(la) * math.cos(lo), math.cos(la) * math.sin(lo), math.sin(la))) * (R + h)
+
+def geo_path(points, R, face_lon=-80.0, h=0.004, width=0.012, color=(1, .78, .25), strength=8.0, name='route', steps=24):
+    """glowing route along real lat/lon waypoints, hugging the globe (great-circle interpolation between waypoints).
+    Animate obj.data.bevel_factor_end 0->1 to draw it."""
+    pts = []
+    for (a1, o1), (a2, o2) in zip(points[:-1], points[1:]):
+        p1, p2 = latlon(a1, o1, 1, face_lon), latlon(a2, o2, 1, face_lon)
+        for k in range(steps):
+            t = k / steps; v = p1.slerp(p2, t) if hasattr(p1, 'slerp') else (p1 * (1 - t) + p2 * t)
+            pts.append(v.normalized() * (R + h))
+    pts.append(latlon(*points[-1], R, face_lon, h))
+    cu = bpy.data.curves.new(name, 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = width; cu.bevel_resolution = 3
+    cu.use_fill_caps = True; sp = cu.splines.new('POLY'); sp.points.add(len(pts) - 1)
+    for p, v in zip(sp.points, pts): p.co = (v.x, v.y, v.z, 1)
+    ob = link(bpy.data.objects.new(name, cu)); ob.data.materials.append(mat_emit(name + '_m', color, strength)); return ob
