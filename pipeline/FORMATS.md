@@ -4,7 +4,7 @@ Every Short is one of three formats. Store the format in the topic JSON as `"for
 
 ## Rotation (Shorts only; the weekly long video is always What If)
 Repeat this 4-step cycle: **what-if → would-you-rather → what-if → pick-a-scenario**.
-To find the next format, sort the Short topic files in `pipeline/topics/` and the claims in `pipeline/claims/` by post date/time and take the latest one that has a format (a claim file's first line can start with `format: <name>`). Then use the next step of the cycle. If two runs collide on the same slot, the claim file decides.
+Special posts (claim/topic format starting with `special-`, e.g. a trending-event special the user asked for) are SKIPPED when working out the rotation. To find the next format, sort the Short topic files in `pipeline/topics/` and the claims in `pipeline/claims/` by post date/time and take the latest one that has a format (a claim file's first line can start with `format: <name>`). Then use the next step of the cycle. If two runs collide on the same slot, the claim file decides.
 
 ## The first second (ALL Shorts): stop the swipe
 Our first Short kept only 54% of viewers (46% swiped away immediately). Top Shorts keep 70%+. Every Short must win the first second:
