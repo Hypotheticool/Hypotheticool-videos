@@ -24,3 +24,4 @@ Rank ideas by **views per day** (views ÷ days since upload) and by **outlier sc
 
 ## Running log (each run appends: date, format, our topic, the 3 best comparable Shorts with views + views/day, and our own results once known)
 - 2026-11-20 special: GTA 6 launch (released 2026-11-19). Format chosen: real-Florida "how big is real Leonida" (Miami-vs-Vice City comparison lane). Our results: pending.
+- 2026-11-21 what-if: "What if you texted Voyager 1?" (news: one light-day on Nov 18). Comparables: TK Space "How Are We Still in Contact with Voyager 1?" 2.9M views, outlier 237×; jost_cosmic "Why anyone who goes to Mars will never come back" 470K in 13 days (~36K/day); space.dudeYT "The Ten Most Scary Space Theories" 98K in 3 days (~33K/day). Our results: pending (Metricool shows no view data yet).

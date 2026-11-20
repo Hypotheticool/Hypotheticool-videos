@@ -1,0 +1,75 @@
+{
+ "slug": "2026-11-21-what-if-you-texted-voyager-1",
+ "title": "What if you texted Voyager 1?",
+ "format": "what-if",
+ "root": "/home/claude/b3d/voyager",
+ "lines": [
+  "You'd wait two days for a reply.",
+  "What if you sent a text to Voyager 1?",
+  "This week, it became the first spacecraft one light-day from Earth, about sixteen billion miles away.",
+  "Your message would leave one of NASA's giant radio dishes, racing out at the speed of light.",
+  "And it would still take a full twenty four hours just to reach it.",
+  "Voyager talks back with a radio about as strong as a fridge light bulb.",
+  "By the time it gets here, that signal is less than a billionth of a trillionth of a watt.",
+  "Meanwhile, Voyager has flown almost two million miles farther away.",
+  "It's been flying since nineteen seventy seven, and it's still listening.",
+  "So if you texted it hello today,"
+ ],
+ "hl": [
+  "TWO",
+  "DAYS",
+  "VOYAGER",
+  "LIGHT-DAY",
+  "SIXTEEN",
+  "BILLION",
+  "LIGHT",
+  "TWENTY",
+  "FOUR",
+  "HOURS",
+  "FRIDGE",
+  "BULB",
+  "TRILLIONTH",
+  "MILLION",
+  "HELLO",
+  "NINETEEN",
+  "SEVENTY-SEVEN",
+  "LISTENING"
+ ],
+ "sources": {
+  "Voyager 1 reached one light-day from Earth on Nov 18, 2026 (first human-made object that far)": [
+   "https://svs.gsfc.nasa.gov/15120",
+   "https://earthsky.org/space/voyager-1-1-light-day-from-earth-november-17-18-2026/",
+   "https://iflscience.com/its-official-voyager-1-will-cross-the-1-light-day-threshold-on-november-18-2026-82733"
+  ],
+  "distance about 16 billion miles (25.9 billion km, 173 AU)": [
+   "https://svs.gsfc.nasa.gov/15120",
+   "https://earthsky.org/space/voyager-1-1-light-day-from-earth-november-17-18-2026/"
+  ],
+  "a command takes ~24 h to reach Voyager 1 and ~24 h for the reply: about two days round trip": [
+   "https://svs.gsfc.nasa.gov/15120",
+   "https://www.19fortyfive.com/2026/07/nasas-voyager-1-radio-transmitter-is-weaker-than-a-refrigerator-lightbulb-it-still-reaches-earth-from-15-billion-miles-away/"
+  ],
+  "commands are sent by NASA Deep Space Network dish antennas (largest 70 m) at the speed of light (radio)": [
+   "https://www.jpl.nasa.gov/news/two-voyagers-taught-us-how-to-listen-to-space/",
+   "https://svs.gsfc.nasa.gov/15120"
+  ],
+  "transmitter about as strong as a refrigerator light bulb (~20-22 W)": [
+   "https://www.jpl.nasa.gov/news/two-voyagers-taught-us-how-to-listen-to-space/",
+   "https://www.19fortyfive.com/2026/07/nasas-voyager-1-radio-transmitter-is-weaker-than-a-refrigerator-lightbulb-it-still-reaches-earth-from-15-billion-miles-away/"
+  ],
+  "signal arrives at Earth at ~one-tenth of a billionth-trillionth of a watt (1e-22 W)": [
+   "https://www.jpl.nasa.gov/news/two-voyagers-taught-us-how-to-listen-to-space/",
+   "https://www.sciencefocus.com/space/talking-to-voyager-2",
+   "https://spacedaily.com/t-voyagers-signal-now-reaches-earth-as-a-whisper-measured-in-fractions-of-a-billionth-of/"
+  ],
+  "speed ~38,000 mph (17 km/s) -> ~1.8 million miles in 48 h (derived); ~1.5 million km per day": [
+   "https://www.space.com/17688-voyager-1.html",
+   "https://science.nasa.gov/mission/voyager/voyager-1/",
+   "https://www.spacedaily.com/voyager-1s-signal-now-takes-more-than-23-hours-to-reach-earth-and-by-the-time-nasa-receives-the-next-status-check-the-spacecraft-will-already-be-1-5-million-kilometres-further-into-interstellar-spa/"
+  ],
+  "launched Sept 5, 1977; still in contact with Earth": [
+   "https://www.space.com/17688-voyager-1.html",
+   "https://earthsky.org/space/voyager-1-1-light-day-from-earth-november-17-18-2026/"
+  ]
+ }
+}
