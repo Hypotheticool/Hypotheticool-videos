@@ -1,2 +1,2 @@
 format: what-if
-topic: TBD (market research)
+topic: What if you texted Voyager 1? (one light-day away)
