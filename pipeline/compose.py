@@ -70,7 +70,7 @@ def frame(T):
     for ov in metas[i]['overlays']:
         a = 1.0 if (ov['type'] == 'hook' or ov.get('instant')) else E.eout((lt - ov.get('from', .4)) / .5)   # the hook is on screen from frame 1
         if a <= 0: continue
-        x, y = ov['pos'][0] * E.W, min(ov['pos'][1] * E.H, 1640)
+        x, y = ov.get('pos', [.5, .5])[0] * E.W, min(ov.get('pos', [.5, .5])[1] * E.H, 1640)
         if ov['type'] == 'label':
             r, g, b = ov['color']; w = LBL.measureText(ov['text'])
             cv.drawString(ov['text'], x - w / 2, y, LBL, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 12))
@@ -118,6 +118,7 @@ def frame(T):
                 text_c(str(nnum), x, y, f, (255, 255, 255), 1)
         elif ov['type'] == 'hook':   # big bold on-screen hook (2-6 words) at the top from frame 1, gentle punch-in
             words = ov['text'].upper().split(); rows, cur = [], ''
+            if '|' in ov['text']: words = []; rows = [r_.strip() for r_ in ov['text'].upper().split('|')]; cur = rows.pop()
             for w_ in words:
                 t_ = (cur + ' ' + w_).strip()
                 if skia.Font(E.TF, 104).measureText(t_) > E.W * .88 and cur: rows.append(cur); cur = w_
