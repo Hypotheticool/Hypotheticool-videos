@@ -1,2 +1,2 @@
 format: pick-a-scenario
-topic: TBD (market research)
+topic: Pick a world to skydive into (Mars, Venus, Jupiter, Titan)
