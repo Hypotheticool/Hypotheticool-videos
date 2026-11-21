@@ -1,0 +1,101 @@
+{
+ "slug": "2026-11-22-what-if-a-nuke-went-off-in-space",
+ "title": "What if a nuke went off in space?",
+ "format": "what-if",
+ "root": "/home/claude/b3d/nuke",
+ "lines": [
+  "One bomb could kill nearly every satellite.",
+  "What if a nuke went off in space?",
+  "This month, scientists simulated one megaton, five hundred kilometers up.",
+  "That's about seventy Hiroshimas, above the Space Station.",
+  "The flash alone knocks out about three percent of satellites.",
+  "But the real killer: electrons, trapped in Earth's magnetic field.",
+  "They form a radiation belt, and every orbit through it adds damage.",
+  "After one day, a quarter are disabled. After three days, seventy eight percent.",
+  "After a week, ninety eight percent of satellites in low orbit.",
+  "And it's happened before.",
+  "In nineteen sixty two, Starfish Prime lit up the Pacific sky and knocked out hundreds of Hawaii's streetlights.",
+  "Its radiation helped kill Telstar, the first satellite to relay live TV.",
+  "So today,"
+ ],
+ "hl": [
+  "BOMB",
+  "SATELLITE",
+  "NUKE",
+  "SPACE",
+  "MEGATON",
+  "FIVE",
+  "HUNDRED",
+  "SEVENTY",
+  "HIROSHIMA",
+  "STATION",
+  "FLASH",
+  "THREE",
+  "INVISIBLE",
+  "ELECTRONS",
+  "MAGNETIC",
+  "RADIATION",
+  "BELT",
+  "QUARTER",
+  "SEVENTY-EIGHT",
+  "NINETY-EIGHT",
+  "THIRTEEN",
+  "THOUSAND",
+  "HAPPENED",
+  "STARFISH",
+  "PRIME",
+  "STREETLIGHTS",
+  "HAWAII",
+  "TELSTAR",
+  "TV",
+  "TODAY"
+ ],
+ "sources": {
+  "Nov 2026 simulation (Petersen, Qin, Thiele, Philippe; UW-Madison & Princeton; arXiv 2611.09827, preprint): 1-Mt detonation at 500 km over the South Atlantic (20S, 35W)": [
+   "https://arxiv.org/pdf/2611.09827",
+   "https://gizmodo.com/scientists-simulated-a-nuclear-blast-in-orbit-and-nearly-every-satellite-died-2000841217",
+   "https://dailygalaxy.com/2026/11/nuclear-blast-orbit-graveyard-satellites/"
+  ],
+  "1 megaton is ~70x the ~15-kiloton Hiroshima bomb (1.4 Mt Starfish Prime ~100x Hiroshima per SciAm)": [
+   "https://www.scientificamerican.com/article/what-happens-if-a-nuclear-weapon-goes-off-in-space/",
+   "https://ahf.nuclearmuseum.org/ahf/history/little-boy-and-fat-man/",
+   "https://www.britannica.com/event/atomic-bombings-of-Hiroshima-and-Nagasaki"
+  ],
+  "500 km is above the ISS (~400-420 km; Starfish Prime's 400 km is 'about the height where the ISS orbits')": [
+   "https://www.nationalgeographic.com/science/article/why-the-us-once-set-off-a-nuclear-bomb-in-space-called-starfish-prime",
+   "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/"
+  ],
+  "prompt X-rays disable ~2.9% (383 objects) at t=0": [
+   "https://arxiv.org/pdf/2611.09827",
+   "https://dailygalaxy.com/2026/11/nuclear-blast-orbit-graveyard-satellites/"
+  ],
+  "fission-product electrons trapped in Earth's magnetic field form an artificial radiation belt that drives most losses (not the prompt pulse)": [
+   "https://arxiv.org/pdf/2611.09827",
+   "https://www.scientificamerican.com/article/what-happens-if-a-nuclear-weapon-goes-off-in-space/",
+   "https://gizmodo.com/scientists-simulated-a-nuclear-blast-in-orbit-and-nearly-every-satellite-died-2000841217"
+  ],
+  "central case: ~25% disabled after 1 day, 78% after 3 days, 98% after 1 week": [
+   "https://arxiv.org/pdf/2611.09827",
+   "https://dailygalaxy.com/2026/11/nuclear-blast-orbit-graveyard-satellites/",
+   "https://gizmodo.com/scientists-simulated-a-nuclear-blast-in-orbit-and-nearly-every-satellite-died-2000841217"
+  ],
+  "more than 13,000 satellites in low Earth orbit (Jan 2026 population modeled)": [
+   "https://arxiv.org/pdf/2611.09827",
+   "https://dailygalaxy.com/2026/11/nuclear-blast-orbit-graveyard-satellites/"
+  ],
+  "Starfish Prime: US test, 1.4 Mt, 400 km (250 mi) over Johnston Atoll in the Pacific, 11 PM July 8, 1962 Hawaii time (09:00 UTC July 9); artificial aurora lit the sky": [
+   "https://www.nationalgeographic.com/science/article/why-the-us-once-set-off-a-nuclear-bomb-in-space-called-starfish-prime",
+   "https://www.discovermagazine.com/the-sciences/the-50th-anniversary-of-starfish-prime-the-nuke-that-shook-the-world",
+   "https://www.scientificamerican.com/article/what-happens-if-a-nuclear-weapon-goes-off-in-space/"
+  ],
+  "hundreds of streetlights went out in Hawaii (Discover: 'hundreds'; SciAm: about 300 on Oahu)": [
+   "https://www.discovermagazine.com/the-sciences/the-50th-anniversary-of-starfish-prime-the-nuke-that-shook-the-world",
+   "https://www.scientificamerican.com/article/what-happens-if-a-nuclear-weapon-goes-off-in-space/",
+   "https://www.nationalgeographic.com/science/article/why-the-us-once-set-off-a-nuclear-bomb-in-space-called-starfish-prime"
+  ],
+  "Starfish Prime's radiation belt contributed to the failure of Telstar 1 (first satellite to relay live TV), launched the day after": [
+   "https://www.nationalgeographic.com/science/article/why-the-us-once-set-off-a-nuclear-bomb-in-space-called-starfish-prime",
+   "https://www.scientificamerican.com/article/what-happens-if-a-nuclear-weapon-goes-off-in-space/"
+  ]
+ }
+}
