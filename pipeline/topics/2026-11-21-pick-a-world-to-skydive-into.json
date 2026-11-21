@@ -1,0 +1,108 @@
+{
+ "slug": "2026-11-21-pick-a-world-to-skydive-into",
+ "title": "Pick a world to skydive into... which jump survives?",
+ "format": "pick-a-scenario",
+ "root": "/home/claude/b3d/skydive",
+ "lines": [
+  "Only one of these jumps survives.",
+  "Pick one: a world to skydive into.",
+  "Pick one, two, three or four, and comment. Think about it.",
+  "One, Mars. The air is less than one percent as thick as Earth's.",
+  "Even under its parachute, NASA's rover was still falling at two hundred miles an hour.",
+  "Two, Venus. Below its acid clouds, the air pressure is ninety times Earth's.",
+  "It's hot enough to melt lead. The toughest lander lasted about two hours.",
+  "Three, Jupiter. There's no ground. You'd just keep falling into crushing heat.",
+  "NASA's Galileo probe tried it in nineteen ninety five, and went silent after about an hour.",
+  "Four, Titan. Thick air and tiny gravity mean you fall slowly.",
+  "Its Huygens probe drifted down for nearly two and a half hours.",
+  "Strap on wings, and scientists think you might even fly."
+ ],
+ "hl": [
+  "ONE",
+  "SURVIVES",
+  "SKYDIVE",
+  "COMMENT",
+  "MARS",
+  "PERCENT",
+  "PARACHUTE",
+  "HUNDRED",
+  "VENUS",
+  "ACID",
+  "NINETY",
+  "LEAD",
+  "TWO",
+  "HOURS",
+  "JUPITER",
+  "GROUND",
+  "HEAT",
+  "GALILEO",
+  "SILENT",
+  "HOUR",
+  "TITAN",
+  "SLOWLY",
+  "HUYGENS",
+  "HALF",
+  "WINGS",
+  "FLY"
+ ],
+ "sources": {
+  "Mars air pressure is less than 1% of Earth's (about 100x thinner)": [
+   "https://science.nasa.gov/mars/facts/",
+   "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+   "https://www.jpl.nasa.gov/edu/news/2021/2/18/how-nasa-lands-on-mars/"
+  ],
+  "Perseverance's parachute slowed it to about 200 mph (320 km/h); rockets/sky crane did the rest": [
+   "https://www.jpl.nasa.gov/images/pia24316-perseverance-deploys-its-parachute-illustration/",
+   "https://www.digitaltrends.com/features/perseverance-rover-nasa-mars-landing-sequence-explained/",
+   "https://jpl.nasa.gov/news/press_kits/mars_2020/landing/mission/spacecraft/getting_to_mars"
+  ],
+  "Venus has sulfuric acid clouds; surface pressure ~90x Earth's (Venera 13 measured 89 atm), like ~1 km / half a mile+ under the ocean": [
+   "https://science.nasa.gov/venus/venus-facts/",
+   "https://www.guinnessworldrecords.com/world-records/78367-longest-time-survived-on-venus-by-a-spacecraft",
+   "https://www.esa.int/Science_Exploration/Space_Science/Venus_Express"
+  ],
+  "Venus surface ~465 C / 870 F, hot enough to melt lead": [
+   "https://science.nasa.gov/venus/venus-facts/",
+   "https://www.space.com/18551-venera-13.html"
+  ],
+  "Venera 13 (1982) lasted 127 minutes on the surface, the record": [
+   "https://www.guinnessworldrecords.com/world-records/78367-longest-time-survived-on-venus-by-a-spacecraft",
+   "https://www.space.com/18551-venera-13.html"
+  ],
+  "Jupiter has no solid surface; pressure and temperature rise with depth": [
+   "https://science.nasa.gov/jupiter/jupiter-facts/",
+   "https://science.nasa.gov/mission/galileo-jupiter-atmospheric-probe/"
+  ],
+  "Galileo probe entered Jupiter Dec 7 1995 and returned data for 58 minutes (transmitter failed ~61 min after entry)": [
+   "https://science.nasa.gov/mission/galileo-jupiter-atmospheric-probe/",
+   "https://flightglobal.com/galileo-probe-transmits-data-from-jupiters-atmosphere/13418.article"
+  ],
+  "Titan: surface pressure ~1.5x Earth's, gravity ~14% of Earth's, ~-179 C / -290 F": [
+   "https://www.planetary.org/articles/what-would-it-be-like-to-stand-on-the-surface-of-titan",
+   "https://science.nasa.gov/saturn/moons/titan/"
+  ],
+  "Huygens' parachute descent to Titan lasted 2 h 27 min (NASA) / 2 h 28 min (ESA), Jan 14 2005": [
+   "https://science.nasa.gov/mission/cassini/spacecraft/huygens-probe/",
+   "https://esa.int/Science_Exploration/Space_Science/Results_from_Mars_Express_and_Huygens/Highlights_of_ESA_s_Huygens_mission"
+  ],
+  "A human with wings strapped on could plausibly fly on Titan (hedged: 'could even be possible')": [
+   "https://www.planetary.org/articles/what-would-it-be-like-to-stand-on-the-surface-of-titan",
+   "https://journals.le.ac.uk/index.php/pst/article/view/997",
+   "https://phys.org/news/2014-03-usain-superhuman-power-flight-titan.html"
+  ]
+ },
+ "durs": [
+  2.405,
+  2.766,
+  3.893,
+  4.211,
+  5.662,
+  5.18,
+  5.008,
+  4.792,
+  6.415,
+  4.276,
+  4.248,
+  3.832
+ ]
+}

@@ -101,8 +101,9 @@ def frame(T):
             top = E.H * .07
             for k, txt in enumerate(items):
                 aa = a * (0.35 if ov.get('pick') is not None and ov['pick'] != k else 1)
-                yk = top + k * (bh + gap); pill(E.W * .08, yk, E.W * .84, bh, OPT_COLS[k % 4], aa, 30)
-                text_c(str(k + 1), E.W * .08 + 58, yk + bh / 2 + 22, skia.Font(E.TF, 64), (255, 255, 255), aa)
+                nk = ov.get('num', k + 1)   # 'num' shows one option alone with its own number/color
+                yk = top + k * (bh + gap); pill(E.W * .08, yk, E.W * .84, bh, OPT_COLS[(nk - 1) % 4], aa, 30)
+                text_c(str(nk), E.W * .08 + 58, yk + bh / 2 + 22, skia.Font(E.TF, 64), (255, 255, 255), aa)
                 f = fit_font(txt.upper(), E.W * .84 - 150, 50)
                 w = f.measureText(txt.upper()); cx = E.W * .08 + 110 + (E.W * .84 - 130) / 2
                 text_c(txt.upper(), cx, yk + bh / 2 + 18, f, (255, 255, 255), aa)
@@ -154,9 +155,9 @@ def frame(T):
             for yy, d in ((y0, 1), (y1, -1)): cv.drawLine(mx - 14, yy + 16 * d, mx, yy, pen); cv.drawLine(mx + 14, yy + 16 * d, mx, yy, pen)
         elif ov['type'] == 'datestamp':  # boxed place/date stamp top-left, e.g. "NORTH ATLANTIC · 18 JUNE 2023"
             f = fit_font(ov['text'].upper(), E.W * .8, 46); w = f.measureText(ov['text'].upper()) + 40
-            r = skia.Rect.MakeXYWH(E.W * .05, E.H * .1, w, 70); cv.drawRect(r, E.P(E.C(10, 12, 16, 200 * a)))
+            dy = ov.get('y', .1) * E.H; r = skia.Rect.MakeXYWH(E.W * .05, dy, w, 70); cv.drawRect(r, E.P(E.C(10, 12, 16, 200 * a)))
             cv.drawRect(r, E.P(E.C(255, 196, 60, 255 * a), 'stroke', 3))
-            cv.drawString(ov['text'].upper(), E.W * .05 + 20, E.H * .1 + 52, f, E.P(E.C(255, 196, 60, 255 * a)))
+            cv.drawString(ov['text'].upper(), E.W * .05 + 20, dy + 52, f, E.P(E.C(255, 196, 60, 255 * a)))
         elif ov['type'] == 'handle':
             f = skia.Font(E.TF, 80); w = f.measureText('@HypotheticoolHQ')
             cv.drawString('@HypotheticoolHQ', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(0, 0, 0, 220 * a), 'stroke', 14))
