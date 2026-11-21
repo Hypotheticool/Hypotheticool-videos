@@ -1,2 +1,2 @@
 format: what-if
-topic: TBD (market research)
+topic: What if a nuke went off in space? (98% of LEO satellites in a week; Starfish Prime)
