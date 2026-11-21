@@ -1,0 +1,2 @@
+format: pick-a-scenario
+topic: TBD (market research)
