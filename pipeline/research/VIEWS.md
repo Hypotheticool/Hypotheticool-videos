@@ -19,7 +19,7 @@ Rank ideas by **views per day** (views ÷ days since upload) and by **outlier sc
 1. **Relatable beats grand.** Prefer "you" and everyday angles (your body, your house, your city, Earth tomorrow) over abstract cosmic facts. Space works best when it's about what happens to *you* or to Earth.
 2. **Dark curiosity and stakes** (danger, survival, "would you survive", huge numbers, things going wrong) is the biggest proven lane for 3D Shorts.
 3. **Ride big pop-culture moments** (a game, movie or event everyone is talking about) with an accurate science or real-world angle. Never use their footage or art.
-4. **Length 41–55 s** with a hook in the first second. Never pad. Every line must earn the next.
+4. **Length 60–90 s** (user's rule, 2026-11-22). Hook in the first second, never pad, every line earns the next. Story Shorts with a recurring cast and a strange premise (e.g. a viral 'the bottom floor disappears every day' cartoon) hold attention for 1–2 min.
 5. **Judge topics by views/day and outlier score** of comparable Shorts from the last 30 days, not by a channel's lifetime totals.
 
 ## Running log (each run appends: date, format, our topic, the 3 best comparable Shorts with views + views/day, and our own results once known)

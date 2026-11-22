@@ -831,3 +831,99 @@ def geo_path(points, R, face_lon=-80.0, h=0.004, width=0.012, color=(1, .78, .25
     cu.use_fill_caps = True; sp = cu.splines.new('POLY'); sp.points.add(len(pts) - 1)
     for p, v in zip(sp.points, pts): p.co = (v.x, v.y, v.z, 1)
     ob = link(bpy.data.objects.new(name, cu)); ob.data.materials.append(mat_emit(name + '_m', color, strength)); return ob
+
+
+# ================================================================== CARTOON CAST (story style like the user's 2nd reference)
+# Recurring characters: big round heads with expressive faces, simple stick bodies, bold colored clothes.
+# Faces are textures from faces.py (assets/faces/<expr>.png): neutral, surprised, worried, smirk, happy, angry, scared, bored.
+CAST = {   # name: hair style, hair color, shirt color, stripe color (or None), pants color, voice for dialogue
+    'kai':  dict(hair='spiky', hair_c=(.28, .12, .05), shirt=(.32, .38, .12), stripe=None, pants=(.08, .08, .09), voice='am_michael'),
+    'leo':  dict(hair='curly', hair_c=(.85, .35, .07), shirt=(.95, .7, .1), stripe=(.08, .07, .06), pants=(.08, .08, .09), voice='am_echo'),
+    'mia':  dict(hair='bob', hair_c=(.15, .08, .05), shirt=(.75, .15, .2), stripe=None, pants=(.1, .12, .25), voice='af_heart'),
+    'nora': dict(hair='beanie', hair_c=(.9, .25, .08), shirt=(.2, .45, .75), stripe=(.95, .95, .95), pants=(.15, .15, .15), voice='af_nova'),
+}
+EXPRS = ['neutral', 'surprised', 'worried', 'smirk', 'happy', 'angry', 'scared', 'bored']
+
+def _face_mat(name):
+    """head material holding all expressions; switch with set_expr(char, frame, 'surprised')"""
+    m = bpy.data.materials.new(f'{name}_face'); nt, N, L = nodes(m)
+    o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled'); bs.inputs['Roughness'].default_value = .55
+    bs.inputs['Subsurface Weight'].default_value = .08
+    uv = N.new('ShaderNodeTexCoord'); val = N.new('ShaderNodeValue'); val.name = 'expr'; val.outputs[0].default_value = 0
+    prev = None
+    for k, ex in enumerate(EXPRS):
+        t = N.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(os.path.join(os.path.dirname(tex_path('earth_day.jpg')), '..', 'faces', f'{ex}.png'), check_existing=True)
+        L.new(uv.outputs['UV'], t.inputs['Vector'])
+        if prev is None: prev = t.outputs['Color']; continue
+        cmp = N.new('ShaderNodeMath'); cmp.operation = 'COMPARE'; cmp.inputs[1].default_value = k; cmp.inputs[2].default_value = .5
+        L.new(val.outputs[0], cmp.inputs[0])
+        mx = N.new('ShaderNodeMixRGB'); L.new(cmp.outputs[0], mx.inputs['Fac']); L.new(prev, mx.inputs[1]); L.new(t.outputs['Color'], mx.inputs[2]); prev = mx.outputs[0]
+    L.new(prev, bs.inputs['Base Color']); L.new(bs.outputs[0], o.inputs[0]); return m
+
+def _cloth(name, color, stripe=None, scale=9.0):
+    m = bpy.data.materials.new(name); nt, N, L = nodes(m); o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled')
+    bs.inputs['Roughness'].default_value = .8; bs.inputs['Sheen Weight'].default_value = .4
+    if stripe:
+        tc = N.new('ShaderNodeTexCoord'); wv = N.new('ShaderNodeTexWave'); wv.wave_type = 'BANDS'; wv.bands_direction = 'Z'; wv.inputs['Scale'].default_value = scale
+        L.new(tc.outputs['Object'], wv.inputs['Vector']); st = N.new('ShaderNodeMath'); st.operation = 'GREATER_THAN'; st.inputs[1].default_value = .5
+        L.new(wv.outputs['Fac'], st.inputs[0]); mx = N.new('ShaderNodeMixRGB'); L.new(st.outputs[0], mx.inputs['Fac'])
+        mx.inputs[1].default_value = (*color, 1); mx.inputs[2].default_value = (*stripe, 1); L.new(mx.outputs[0], bs.inputs['Base Color'])
+    else: bs.inputs['Base Color'].default_value = (*color, 1)
+    L.new(bs.outputs[0], o.inputs[0]); return m
+
+def character(who='kai', loc=(0, 0, 0), height=1.0):
+    """a cartoon cast member (head ~ 0.45 of the height, like the reference). returns (root, parts):
+    parts = head, face_mat, arm_l, arm_r, leg_l, leg_r, body. Pose arms with rotation_euler on the arm empties (pivot at the shoulder)."""
+    c = CAST[who]; root = link(bpy.data.objects.new(f'{who}', None)); root.location = loc; root.scale = (height, height, height)
+    ink = mat_principled(f'{who}_ink', (.03, .03, .035), .6)
+    # body
+    bpy.ops.mesh.primitive_cylinder_add(radius=.12, depth=.32, location=(0, 0, .42)); body = bpy.context.object; body.parent = root
+    bev = body.modifiers.new('b', 'BEVEL'); bev.width = .05; bev.segments = 6; body.data.materials.append(_cloth(f'{who}_shirt', c['shirt'], c['stripe'])); smooth(body, 1)
+    bpy.ops.mesh.primitive_cylinder_add(radius=.115, depth=.08, location=(0, 0, .24)); hip = bpy.context.object; hip.parent = root; hip.data.materials.append(mat_principled(f'{who}_pants', c['pants'], .7))
+    # legs and arms: thin dark sticks (pivot empties so they can swing)
+    parts = {'body': body}
+    for side, nm in ((-1, 'leg_l'), (1, 'leg_r')):
+        piv = link(bpy.data.objects.new(f'{who}_{nm}', None), root); piv.location = (side * .055, 0, .22)
+        bpy.ops.mesh.primitive_cylinder_add(radius=.018, depth=.22, location=(0, 0, -.11)); lg = bpy.context.object; lg.parent = piv; lg.data.materials.append(ink)
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=.04, location=(side * .01, -.02, -.23)); ft = bpy.context.object; ft.scale = (1, 1.6, .6); ft.parent = piv; ft.data.materials.append(ink)
+        parts[nm] = piv
+    for side, nm in ((-1, 'arm_l'), (1, 'arm_r')):
+        piv = link(bpy.data.objects.new(f'{who}_{nm}', None), root); piv.location = (side * .125, 0, .55)
+        bpy.ops.mesh.primitive_cylinder_add(radius=.016, depth=.24, location=(0, 0, -.12)); ar = bpy.context.object; ar.parent = piv; ar.data.materials.append(ink)
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=.03, location=(0, 0, -.25)); hd = bpy.context.object; hd.parent = piv; hd.data.materials.append(ink)
+        piv.rotation_euler = (0, side * math.radians(12), 0); parts[nm] = piv
+    # neck + big head with the face texture
+    bpy.ops.mesh.primitive_cylinder_add(radius=.025, depth=.06, location=(0, 0, .6)); nk = bpy.context.object; nk.parent = root; nk.data.materials.append(ink)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=.22, segments=64, ring_count=32, location=(0, 0, .8)); head = bpy.context.object; head.parent = root
+    head.scale = (1, .95, .92); head.rotation_euler = (0, 0, math.radians(-90)); fm = _face_mat(who); head.data.materials.append(fm); smooth(head, 1); parts['head'] = head; parts['face_mat'] = fm
+    # hair
+    hm = mat_principled(f'{who}_hair', c['hair_c'], .75)
+    if c['hair'] == 'curly':
+        for k in range(26):
+            a = k / 26 * 2 * math.pi; z = .93 + .06 * math.sin(3 * a)
+            bpy.ops.mesh.primitive_uv_sphere_add(radius=.06, location=(.17 * math.cos(a), .14 * math.sin(a) + .03, z)); b = bpy.context.object; b.parent = root; b.data.materials.append(hm)
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=.2, location=(0, .03, .9)); cap = bpy.context.object; cap.scale = (1, 1, .55); cap.parent = root; cap.data.materials.append(hm)
+    elif c['hair'] == 'spiky':
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=.215, location=(0, .03, .86)); cap = bpy.context.object; cap.scale = (1.02, 1, .62); cap.parent = root; cap.data.materials.append(hm)
+        for k in range(9):
+            a = math.radians(-70 + k * 17.5); bpy.ops.mesh.primitive_cone_add(radius1=.05, depth=.14, location=(.15 * math.sin(a), .05 + .06 * math.cos(a), .99))
+            sp = bpy.context.object; sp.rotation_euler = (math.radians(-25), math.radians(35 * math.sin(a)), 0); sp.parent = root; sp.data.materials.append(hm)
+    elif c['hair'] == 'beanie':
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=.225, location=(0, .02, .88)); cap = bpy.context.object; cap.scale = (1, 1, .7); cap.parent = root
+        cap.data.materials.append(_cloth(f'{who}_beanie', c['hair_c'], (min(1, c['hair_c'][0] * .8), c['hair_c'][1] * .8, c['hair_c'][2] * .8), 28))
+    else:   # bob
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=.235, location=(0, .04, .82)); cap = bpy.context.object; cap.scale = (1.02, 1, .85); cap.parent = root; cap.data.materials.append(hm)
+    for o in (cap,): smooth(o, 1)
+    return root, parts
+
+def set_expr(parts, frame, expr):
+    """switch a character's face at a frame (instant, like the reference's quick reaction cuts)"""
+    v = parts['face_mat'].node_tree.nodes['expr'].outputs[0]; v.default_value = EXPRS.index(expr); v.keyframe_insert('default_value', frame=frame)
+    for fc in getattr(parts['face_mat'].node_tree.animation_data.action, 'fcurves', []):
+        for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'
+
+def talk(parts, f0, f1, amp=6):
+    """small head bobs while a character speaks"""
+    h = parts['head']; base = tuple(h.rotation_euler)
+    for k, f in enumerate(range(f0, f1, 5)): h.rotation_euler = (base[0] + math.radians(amp * (k % 2)), base[1], base[2] + math.radians(amp * .5 * ((k + 1) % 2))); h.keyframe_insert('rotation_euler', frame=f)
+    h.rotation_euler = base; h.keyframe_insert('rotation_euler', frame=f1)

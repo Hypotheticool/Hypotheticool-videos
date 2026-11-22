@@ -284,8 +284,19 @@ HETERONYMS = {'lead', 'leads', 'read', 'live', 'lives', 'wind', 'winds', 'wound'
               'polish', 'entrance', 'resume', 'separate', 'estimate', 'moderate', 'subject', 'conduct',
               'contract', 'contrast', 'convert', 'defect', 'increase', 'decrease', 'permit', 'rebel', 'compact', 'console',
               'excuse', 'graduate'}
-def shown(line): return MARK.sub(lambda m: m.group(1), line)
-def spoken(line): return MARK.sub(lambda m: m.group(2), line)
+AUTO_SAY = [   # words the voice gets wrong on its own; fixed automatically everywhere (add to this list when you find one)
+    (r'\b([Mm])egaton(s?)\b', r'\1ega ton\2'), (r'\b([Kk])iloton(s?)\b', r'\1ilo ton\2'), (r'\b([Gg])igaton(s?)\b', r'\1iga ton\2'),
+    (r'\bHuygens\b', 'Hoy gens'), (r'\bIo\b', 'Eye oh'), (r'\bKuiper\b', 'Kyper'), (r'\bBetelgeuse\b', 'Beetle juice'),
+    (r'\bCharon\b', 'Kair on'), (r'\bVenera\b', 'Veh nair a'), (r'\bNASA\b', 'Nasa'), (r'\bkm\b', 'kilometers'), (r'\bmph\b', 'miles per hour'),
+    (r'°C\b', ' degrees Celsius'), (r'°F\b', ' degrees Fahrenheit'), (r'\bkm/h\b', 'kilometers per hour')]
+VOICE_TAG = re.compile(r'^@([a-z]{2}_[a-z]+):\s*')   # '@af_heart: "Kai, stop."' = this line is spoken by a character voice
+def line_voice(line):
+    m = VOICE_TAG.match(line); return m.group(1) if m else VOICE
+def shown(line): line = VOICE_TAG.sub('', line); return MARK.sub(lambda m: m.group(1), line)
+def spoken(line):
+    line = VOICE_TAG.sub('', line); line = MARK.sub(lambda m: m.group(2), line)
+    for a, b in AUTO_SAY: line = re.sub(a, b, line)
+    return line
 def unmarked_heteronyms(line):
     plain = MARK.sub(' ', line)
     return sorted({w for w in re.findall(r"[A-Za-z']+", plain.lower()) if w in HETERONYMS})
@@ -295,7 +306,7 @@ def tts_lines(lines):
     k = Kokoro(f'{TTS_DIR}/kokoro-v1.0.onnx', f'{TTS_DIR}/voices-v1.0.bin')
     out = []
     for ln in lines:
-        a, sr = k.create(spoken(ln), voice=VOICE, speed=VOICE_SPEED, lang='en-us')
+        a, sr = k.create(spoken(ln), voice=line_voice(ln), speed=VOICE_SPEED, lang='en-us')
         a = np.asarray(a, np.float32); env = np.abs(a) > 0.01
         i0 = max(0, np.argmax(env) - int(.03 * sr)); i1 = min(len(a), len(a) - np.argmax(env[::-1]) + int(.08 * sr))
         out.append((a[i0:i1], sr))

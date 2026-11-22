@@ -3,6 +3,7 @@ import sys, os, json, math, subprocess
 sys.path.insert(0, '/home/claude/pro')
 import numpy as np, cv2, skia
 import engine as E
+CAP_Y = float(os.environ.get('HC_CAP_Y', .62))   # captions sit just below the middle (reference style); keep subjects' faces above this line
 
 import re
 CFG = json.load(open(sys.argv[1]))
@@ -164,7 +165,7 @@ def frame(T):
             cv.drawString('@HypotheticoolHQ', E.W / 2 - w / 2 + 120, y, f, E.P(E.C(255, 255, 255, 255 * a)))
     for words, t0, t1 in caps:
         if t0 <= T < max(t1, t0 + .25):
-            E.caption(cv, words, t0, T, HL, y=(1470 if E.H > E.W else E.H * .9)); break
+            E.caption(cv, words, t0, T, HL, y=(E.H * CAP_Y if E.H > E.W else E.H * .9)); break
     return surf.makeImageSnapshot().toarray()
 
 if __name__ == '__main__':

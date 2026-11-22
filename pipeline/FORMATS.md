@@ -6,6 +6,20 @@ Every Short is one of three formats. Store the format in the topic JSON as `"for
 Repeat this 4-step cycle: **what-if → would-you-rather → what-if → pick-a-scenario**.
 Special posts (claim/topic format starting with `special-`, e.g. a trending-event special the user asked for) are SKIPPED when working out the rotation. To find the next format, sort the Short topic files in `pipeline/topics/` and the claims in `pipeline/claims/` by post date/time and take the latest one that has a format (a claim file's first line can start with `format: <name>`). Then use the next step of the cycle. If two runs collide on the same slot, the claim file decides.
 
+## LENGTH: every Short is 60–90 seconds (user's rule, 2026-11-22). Never over 1:30.
+About 18–26 narration lines. Longer Shorts must still move: a new shot every 1.5–2.5 s, and the story keeps escalating so nobody swipes. Keep the full render within the run's time: use plates + 2D motion, simple sets and cheaper samples on wide shots.
+
+## STORY MODE: the user's 2nd reference ("The Bottom Floor Disappears Every Day", a viral cartoon story Short). Apply to EVERY Short.
+Study pipeline/reference/story_ref_*.jpg. Copy the techniques, never the story, characters or visuals.
+- **A strange rule as the premise, told as a story with characters.** Our "What if…?" questions become lived-through stories: "What if the Sun went out?" → our cast wakes up, notices it's dark at 8 AM, the clock ticks, they react, the facts unfold through what happens to them. The science stays 100% accurate and sourced. Characters, dialogue and plot are clearly fiction, the physics/biology/numbers are real.
+- **Recurring cast** (kit.character): `kai` (spiky brown hair, olive shirt: the calm, skeptical one), `leo` (orange curly hair, yellow-black stripes: the jumpy one), `mia` (dark bob, red top: the smart one who explains), `nora` (red beanie, blue-white stripes: the brave one). Use 1–3 per video, same personalities every time, so viewers come back for them. Switch faces with kit.set_expr(parts, frame, 'neutral|surprised|worried|smirk|happy|angry|scared|bored') on reaction beats, and use kit.talk() while they speak. The white astronaut mascot can still appear in space scenes.
+- **Dialogue:** characters speak short quoted lines in their own voice: write the line as `@am_michael: "Kai, the Sun's gone."` (voices: kai am_michael, leo am_echo, mia af_heart, nora af_nova; the narrator stays am_puck). Mix about 70% narrator and 30% dialogue.
+- **In-world props carry facts:** notices, signs, clocks, screens, newspapers, phone alerts with real numbers on them (e.g. a clock reading 8:20 = the 8 min 20 s for sunlight to reach Earth). Close-ups of the props are their own shots.
+- **Escalation and countdown:** a timer, a shrinking number or rising stakes all the way through ("41 floors left", "12 hours of oxygen").
+- **Shot grammar:** wide establishing shot → over-the-shoulder → extreme close-up on a face reaction → prop insert → wide. Quick whip-pans or motion-blur transitions between beats. Shallow depth of field on close-ups. Warm practical lights (lamps, screens) in moody, dark-blue/industrial sets.
+- **Captions:** 1–2 words, white with a heavy dark outline and the key word highlighted, placed just below the middle of the frame (compose.py CAP_Y = 0.62). Keep faces and key action above that line.
+- **Ending:** end on a twist or cliffhanger that loops back into line 1, or ends with "Part 2?" if the story is worth continuing (log it in the research file so a later run can make Part 2).
+
 ## HOUSE STYLE: the user's reference video (applies to EVERY Short, all formats; overrides older "calm pacing / one cut per scene" rules)
 The user showed a reference Short they love (a story-explainer about the Titan sub implosion). It's the target for animation, speed, detail and facts. Copy its *techniques*, never its script, visuals or topic.
 **Story and facts**
@@ -20,7 +34,7 @@ The user showed a reference Short they love (a story-explainer about the Titan s
 - Use the real-data assets for accuracy (real Earth/planets/NASA models/anatomy), graded into this palette. For scenes like the deep ocean, a ship at sunset or a city, build clean stylized models in kit.py.
 - Use **cross-section and diagram shots** for scale: surface-to-depth views with a `{"type":"measure","x":..,"y0":..,"y1":..}` line plus a **stat badge** `{"type":"badge","value":"2.5","unit":"miles","pos":[x,y]}`. Use a `{"type":"datestamp","text":"PLACE · DATE"}` on the opener when the story has a real place and date.
 **Captions**
-- 1–2 words at a time in sentence case, with the key word highlighted (engine.py already does this: CAP_WORDS = 2, CAP_UPPER = False). Stat values go in badges, not only in the captions.
+- 1–2 words at a time in sentence case, with the key word highlighted (engine.py already does this: CAP_WORDS = 2, CAP_UPPER = False), just below the middle of the frame. Stat values go in badges, not only in the captions.
 
 ## Pronunciation (EVERY video): the voice must say every word correctly
 The voice engine reads words without context, so it guesses wrong on words spelled the same but said differently. It once said "melt lead" as "leed" instead of "led" (the metal).
@@ -84,9 +98,9 @@ When counting posts for the monthly cap or the 2-a-day cap, ignore Metricool pos
 - Captions stay in the lower third, so overlays only use the top ~25% and the middle.
 
 ## what-if
-As before: line 2 asks "What if…?", then explains what would really happen. CTA uses the default text. Titles keep the "What if" framing. Hashtags include #whatif #shorts.
+18–26 lines, 60–90 s. As before: line 2 asks "What if…?", then explains what would really happen. CTA uses the default text. Titles keep the "What if" framing. Hashtags include #whatif #shorts.
 
-## would-you-rather (8–11 lines, ~45–60 s)
+## would-you-rather (18–26 lines, 60–90 s)
 - Two science-based options that are interesting to compare, e.g. "a day on Mars or a day on the Moon", "swim in the Dead Sea or float on Titan's lakes".
 - Line 2: "Would you rather <A> or <B>?". Keep a `{"type":"choice","a":"<A, max ~4 words>","b":"<B>"}` overlay on every scene from line 2 until the verdict.
 - Next scene: "Comment A or B." with a `{"type":"prompt","text":"Comment A or B","pos":[0.5,0.42]}` overlay and a `{"type":"countdown","secs":3,"pos":[0.5,0.55]}` overlay. Make this scene at least 3.5 s; a pause or "Think about it" line helps.
@@ -95,7 +109,7 @@ As before: line 2 asks "What if…?", then explains what would really happen. CT
 - Last line loops back into the hook. Use `{"type":"cta","text":"FOLLOW FOR MORE WOULD YOU RATHERS"}` on the last scene with no choice overlay there.
 - Title: "Would you rather <A> or <B>? 🤔 #shorts" (accurate, under 100 chars). Hashtags include #wouldyourather #shorts #science.
 
-## pick-a-scenario (9–12 lines, ~45–60 s)
+## pick-a-scenario (18–26 lines, 60–90 s)
 - 3 or 4 short options in one theme, e.g. "Pick a planet to stand on for 10 seconds: Venus, Mars, Jupiter, Neptune".
 - Line 2: "Pick one: <theme>." Show `{"type":"options","items":["<option 1, max ~5 words>", ...]}` on that scene and the next one.
 - Next scene: "Pick 1, 2, 3 or 4 and comment." with `{"type":"countdown","secs":3,"pos":[0.5,0.55]}` (at least 3.5 s).

@@ -1,1 +1,2 @@
 Frames (1 per second) from the user's reference Short (story-explainer about the Titan sub implosion, by another creator). They're here ONLY to study pacing, framing, palette, captions and overlays. Never reuse these images or that video's script.
+story_ref_*.jpg: frames (1 every 2 s) from the user's 2nd reference, a viral cartoon story Short ("The Bottom Floor Disappears Every Day", by another creator). They're here ONLY to study the story structure, cast, shot grammar and captions. Never reuse these images, its characters or its story.
