@@ -272,12 +272,30 @@ def caption(c, words, t_in, t, hl, y=1330):
     c.restore()
 
 # ---------------------------------------------------------------- audio
+
+# ---------------- pronunciation control ----------------
+# Write a word as [shown](spoken) in a script line: captions show "shown", the voice says "spoken".
+#   e.g. "hot enough to melt [lead](led)", "she [read](red) it", "a [minute](my-newt) speck", "[Huygens](HOY-gens)"
+# The voice engine reads words without context, so every heteronym below MUST be marked (audio_prep refuses otherwise).
+MARK = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
+HETERONYMS = {'lead', 'leads', 'read', 'live', 'lives', 'wind', 'winds', 'wound', 'tear', 'tears', 'minute', 'close', 'closes',
+              'bass', 'bow', 'bows', 'row', 'rows', 'sow', 'sows', 'dove', 'does', 'desert', 'deserts', 'object', 'objects',
+              'present', 'presents', 'record', 'records', 'content', 'produce', 'refuse', 'project', 'projects', 'invalid',
+              'polish', 'entrance', 'resume', 'separate', 'estimate', 'moderate', 'subject', 'conduct',
+              'contract', 'contrast', 'convert', 'defect', 'increase', 'decrease', 'permit', 'rebel', 'compact', 'console',
+              'excuse', 'graduate'}
+def shown(line): return MARK.sub(lambda m: m.group(1), line)
+def spoken(line): return MARK.sub(lambda m: m.group(2), line)
+def unmarked_heteronyms(line):
+    plain = MARK.sub(' ', line)
+    return sorted({w for w in re.findall(r"[A-Za-z']+", plain.lower()) if w in HETERONYMS})
+
 def tts_lines(lines):
     from kokoro_onnx import Kokoro
     k = Kokoro(f'{TTS_DIR}/kokoro-v1.0.onnx', f'{TTS_DIR}/voices-v1.0.bin')
     out = []
     for ln in lines:
-        a, sr = k.create(ln, voice=VOICE, speed=VOICE_SPEED, lang='en-us')
+        a, sr = k.create(spoken(ln), voice=VOICE, speed=VOICE_SPEED, lang='en-us')
         a = np.asarray(a, np.float32); env = np.abs(a) > 0.01
         i0 = max(0, np.argmax(env) - int(.03 * sr)); i1 = min(len(a), len(a) - np.argmax(env[::-1]) + int(.08 * sr))
         out.append((a[i0:i1], sr))
@@ -322,7 +340,7 @@ def build(SCENES, name, outdir, HL=()):
     starts = np.concatenate([[0], np.cumsum(durs)[:-1]]); total = float(sum(durs))
     caps = []
     for i, ((a, _), ln) in enumerate(zip(clips, lines)):
-        for words, t0, t1 in chunk_words(ln, word_times(ln, len(a) / sr)):
+        for words, t0, t1 in chunk_words(shown(ln), word_times(shown(ln), len(a) / sr)):
             caps.append((words, max(0, starts[i] + lead(i) + t0 - .05), starts[i] + lead(i) + t1))
     mode = sys.argv[1] if len(sys.argv) > 1 else 'render'
     surf = skia.Surface(W, H); cv = surf.getCanvas()

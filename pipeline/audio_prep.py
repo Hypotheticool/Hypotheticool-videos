@@ -5,6 +5,14 @@ import numpy as np, soundfile as sf
 import engine as E
 
 cfg = json.load(open(sys.argv[1])); out = cfg['root']; os.makedirs(out, exist_ok=True)
+bad = {i: E.unmarked_heteronyms(ln) for i, ln in enumerate(cfg['lines'])}; bad = {i: w for i, w in bad.items() if w}
+if bad:
+    sys.exit('PRONUNCIATION CHECK FAILED. Mark these words as [word](how-to-say-it) in the script lines (see pipeline/FORMATS.md):\n'
+             + '\n'.join(f'  line {i}: {w}  ->  {cfg["lines"][i]}' for i, w in bad.items()))
+from kokoro_onnx import Kokoro as _K
+_tok = _K(f'{E.TTS_DIR}/kokoro-v1.0.onnx', f'{E.TTS_DIR}/voices-v1.0.bin').tokenizer
+with open(os.path.join(cfg['root'], 'pronunciation.txt'), 'w') as _f:     # review this: how every line will actually be said
+    for ln in cfg['lines']: _f.write(E.shown(ln) + '\n   ' + _tok.phonemize(E.spoken(ln), 'en-us') + '\n')
 clips = E.tts_lines(cfg['lines']); sr = clips[0][1]
 durs = [round(len(a) / sr + E.lead(k) + E.GAP, 3) for k, (a, _) in enumerate(clips)]
 starts = np.concatenate([[0], np.cumsum(durs)[:-1]]); total = float(sum(durs))
@@ -15,7 +23,7 @@ if cfg.get('pops', True):   # soft pop on every caption chunk (pacing)
     L = int(.045 * sr); tt = np.arange(L) / sr
     pop = (np.sin(2 * np.pi * (950 - 4000 * tt) * tt) * np.exp(-tt * 90)).astype(np.float32) * .07
     for i, ((a, _), ln) in enumerate(zip(clips, cfg['lines'])):
-        for words, t0, t1 in E.chunk_words(ln, E.word_times(ln, len(a) / sr)):
+        for words, t0, t1 in E.chunk_words(E.shown(ln), E.word_times(E.shown(ln), len(a) / sr)):
             k = int(max(0, starts[i] + E.lead(i) + t0 - .05) * sr)
             if 0 <= k < n - L: voice[k:k + L] += pop
 sf.write(f'{out}/voice_raw.wav', voice, sr)

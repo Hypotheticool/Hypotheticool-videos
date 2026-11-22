@@ -13,7 +13,7 @@ starts = np.concatenate([[0], np.cumsum(DURS)[:-1]]); total = float(sum(DURS))
 caps = []
 for i, ln in enumerate(LINES):
     clip = DURS[i] - E.lead(i) - E.GAP
-    for words, t0, t1 in E.chunk_words(ln, E.word_times(ln, clip)):
+    for words, t0, t1 in E.chunk_words(E.shown(ln), E.word_times(E.shown(ln), clip)):
         caps.append((words, max(0, starts[i] + E.lead(i) + t0 - .05), starts[i] + E.lead(i) + t1))
 metas = [json.load(open(f'{ROOT}/s{i}/meta.json')) for i in range(len(DURS))]
 cache = {}

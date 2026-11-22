@@ -22,6 +22,13 @@ The user showed a reference Short they love (a story-explainer about the Titan s
 **Captions**
 - 1–2 words at a time in sentence case, with the key word highlighted (engine.py already does this: CAP_WORDS = 2, CAP_UPPER = False). Stat values go in badges, not only in the captions.
 
+## Pronunciation (EVERY video): the voice must say every word correctly
+The voice engine reads words without context, so it guesses wrong on words spelled the same but said differently. It once said "melt lead" as "leed" instead of "led" (the metal).
+- Write the word as `[shown](spoken)` in the script line: the captions show the first part, the voice says the second. Examples: `[lead](led)` (the metal), `[read](red)` (past tense), `[minute](mynoot)` (tiny), `[tear](tair)` (a rip), `[wound](woond)` (an injury), `[live](lyve)` (adjective), `[wind](wynd)` (verb), `[close](cloze)` (verb), `[desert](dezzert)`, `[record](REK-ord)` (noun), `[Huygens](HOY-gens)`.
+- audio_prep.py stops with "PRONUNCIATION CHECK FAILED" if a common heteronym (lead, read, live, wind, tear, minute, close, bass, bow, row, wound, object, present, record, content, produce, project…) isn't marked. Mark it even when the default reading is right (e.g. `[lead](leed)` for "to lead").
+- After audio_prep, READ `<root>/pronunciation.txt` (the phonemes the voice will use for every line) and fix anything wrong: names (people, probes, places), units and symbols (write "kilometers", "degrees Celsius", never "km" or "°C" in the spoken part), abbreviations (NASA = "NASA", ESA = "E S A" or "ee-sa" as officially said), big numbers (write them in words), and years.
+- Listen check: render line 1 and any line with a name or number, and confirm by its phonemes that it matches the intended pronunciation before the full render.
+
 ## The first second (ALL Shorts): stop the swipe
 Our first Short kept only 54% of viewers (46% swiped away immediately). Top Shorts keep 70%+. Every Short must win the first second:
 - **Frame 1 is the payoff.** The most dramatic, high-contrast shot of the video is already in motion on the very first frame: the subject is big in frame, bright against the dark, with something visibly happening (exploding, falling, collapsing, glowing). No black or empty frames, no fade-in, no intro, no logo, no slow establishing shot.
