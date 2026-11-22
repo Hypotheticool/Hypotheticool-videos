@@ -288,7 +288,7 @@ AUTO_SAY = [   # words the voice gets wrong on its own; fixed automatically ever
     (r'\b([Mm])egaton(s?)\b', r'\1ega ton\2'), (r'\b([Kk])iloton(s?)\b', r'\1ilo ton\2'), (r'\b([Gg])igaton(s?)\b', r'\1iga ton\2'),
     (r'\bHuygens\b', 'Hoy gens'), (r'\bIo\b', 'Eye oh'), (r'\bKuiper\b', 'Kyper'), (r'\bBetelgeuse\b', 'Beetle juice'),
     (r'\bCharon\b', 'Kair on'), (r'\bVenera\b', 'Veh nair a'), (r'\bNASA\b', 'Nasa'), (r'\bkm\b', 'kilometers'), (r'\bmph\b', 'miles per hour'),
-    (r'°C\b', ' degrees Celsius'), (r'°F\b', ' degrees Fahrenheit'), (r'\bkm/h\b', 'kilometers per hour')]
+    (r'\bA or B\b', 'eh or B'), (r'\bOption A\b', 'Option eh'), (r'°C\b', ' degrees Celsius'), (r'°F\b', ' degrees Fahrenheit'), (r'\bkm/h\b', 'kilometers per hour')]
 VOICE_TAG = re.compile(r'^@([a-z]{2}_[a-z]+):\s*')   # '@af_heart: "Kai, stop."' = this line is spoken by a character voice
 def line_voice(line):
     m = VOICE_TAG.match(line); return m.group(1) if m else VOICE

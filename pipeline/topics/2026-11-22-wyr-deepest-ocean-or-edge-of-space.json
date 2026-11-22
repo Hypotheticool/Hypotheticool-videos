@@ -1,0 +1,107 @@
+{
+ "slug": "wyr-deepest-ocean-or-edge-of-space",
+ "title": "Would you rather dive to the deepest point in the ocean or fly to the edge of space?",
+ "format": "would-you-rather",
+ "root": "/home/claude/b3d/wyr",
+ "lines": [
+  "Only twenty-seven people have ever been here.",
+  "Would you rather dive to the deepest point in the ocean, or fly to the edge of space?",
+  "Pick one. Comment A or B.",
+  "Option A: Challenger Deep, at the bottom of the Mariana Trench.",
+  "It's nearly eleven kilometers down.",
+  "That's deeper than Mount Everest is tall, by more than two kilometers.",
+  "Sunlight fades out in the first few hundred meters, so you'd sink for hours in total darkness.",
+  "At the bottom, the water presses down with about eight tons on every square inch.",
+  "That's about a thousand times the pressure you feel right now.",
+  "Option B: the edge of space, one hundred kilometers straight up.",
+  "A suborbital rocket gets you there, and the whole trip lasts only about ten minutes.",
+  "Up there, the sky turns black, and you can see the curve of the Earth.",
+  "And for a few minutes, you float, weightless.",
+  "More than six hundred people have flown to space.",
+  "That's over twenty times as many as have reached Challenger Deep.",
+  "So if you want the rarer trip, it's A, by far.",
+  "Because at the very bottom of the ocean,"
+ ],
+ "hl": [
+  "twenty-seven",
+  "deepest",
+  "space",
+  "eleven",
+  "Everest",
+  "darkness",
+  "eight",
+  "thousand",
+  "hundred",
+  "ten",
+  "black",
+  "weightless",
+  "six",
+  "twenty",
+  "A"
+ ],
+ "sources": {
+  "27_people_as_of_2022": [
+   "https://www.rmg.co.uk/stories/ocean/challenger-deep-deepest-point-ocean",
+   "https://en.wikipedia.org/wiki/Challenger_Deep",
+   "https://spacedaily.com/?p=1086646"
+  ],
+  "depth_10935m": [
+   "https://www.livescience.com/how-deep-is-the-mariana-trench",
+   "https://repository.library.noaa.gov/view/noaa/33477",
+   "https://www.worldatlas.com/oceans/the-deepest-point-in-the-ocean.html"
+  ],
+  "deeper_than_everest_by_2km": [
+   "https://www.livescience.com/how-deep-is-the-mariana-trench",
+   "https://earthdate.org/node/481"
+  ],
+  "sunlight_few_hundred_m": [
+   "https://storymaps.arcgis.com/stories/08a75d3687e749989840e7d236aab74d",
+   "https://amp.cnn.com/cnn/2023/06/23/world/mariana-trench-challenger-deep-facts-scn"
+  ],
+  "descent_hours": [
+   "https://www.nationalgeographic.com/magazine/2013/06/125-deepsea-challenge-part-two/",
+   "https://www.livescience.com/astronaut-explorer-richard-garriott-dives-challenger-deep.html",
+   "https://storymaps.arcgis.com/stories/0d389600f3464e3185a84c199f04e859"
+  ],
+  "8_tons_per_sq_in_1000x": [
+   "https://www.nationalgeographic.com/science/article/accidental-implosion-yields-new-measurement-for-oceans-deepest-point",
+   "https://earthdate.org/node/481",
+   "https://www.livescience.com/23387-mariana-trench.html"
+  ],
+  "karman_100km": [
+   "https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n_line",
+   "https://www.britannica.com/science/Karman-line"
+  ],
+  "flight_about_10_min_few_min_weightless": [
+   "https://www.rnz.co.nz/news/top/558109/katy-perry-gayle-king-and-four-other-women-are-headed-for-the-edge-of-space-here-s-what-that-means",
+   "https://everydayastronaut.com/News/space/"
+  ],
+  "black_sky_curvature": [
+   "https://www.thejournal.ie/article.php?id=5500555",
+   "https://www.rnz.co.nz/news/top/558109/katy-perry-gayle-king-and-four-other-women-are-headed-for-the-edge-of-space-here-s-what-that-means"
+  ],
+  "600_plus_space_20x": [
+   "https://spacedaily.com/m-more-than-600-people-have-flown-into-space-since-1961-yet-only-27-people-were-documented-as-having-reached-challenger-deep-by-july-2022-the-deepest-known-point-in-earths-oceans-nea/",
+   "https://www.myjoyonline.com/former-astronaut-becomes-first-person-to-visit-both-space-and-the-deepest-place-in-the-ocean/"
+  ]
+ },
+ "durs": [
+  2.914,
+  5.421,
+  2.333,
+  4.252,
+  2.737,
+  4.653,
+  6.241,
+  5.182,
+  3.794,
+  4.168,
+  5.524,
+  4.223,
+  2.739,
+  3.179,
+  4.114,
+  3.183,
+  2.637
+ ]
+}
