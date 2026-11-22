@@ -1,15 +1,16 @@
 # Hypotheticool Short formats
 
-Every Short is one of three formats. Store the format in the topic JSON as `"format": "what-if" | "would-you-rather" | "pick-a-scenario"`. Older topic files with no `format` field count as `what-if`.
+Every Short is one of four formats. Store the format in the topic JSON as `"format": "story" | "what-if" | "would-you-rather" | "pick-a-scenario"`. **story** = a cartoon-cast story (STORY MODE below); the other three are **fact videos** (HOUSE STYLE, no cast needed). Older topic files with no `format` field count as `what-if`.
 
 ## Rotation (Shorts only; the weekly long video is always What If)
-Repeat this 4-step cycle: **what-if → would-you-rather → what-if → pick-a-scenario**.
+Repeat this 6-step cycle (half stories, half fact videos): **story → what-if → story → would-you-rather → story → pick-a-scenario**.
+**Part 2s:** when a story's topic json has `"cliffhanger": true`, the NEXT story slot makes its Part 2 (same `series`, `part` + 1, same cast and set, a 1-line "Previously…" recap, then the payoff). It's still 60–90 s, still accurate, and it can end on another cliffhanger for a Part 3 (max 3 parts), otherwise it resolves. Story topic jsons carry `"series": "<slug of part 1>"`, `"part": N`, `"cliffhanger": true|false`. Titles: "... (Part 2)".
 Special posts (claim/topic format starting with `special-`, e.g. a trending-event special the user asked for) are SKIPPED when working out the rotation. To find the next format, sort the Short topic files in `pipeline/topics/` and the claims in `pipeline/claims/` by post date/time and take the latest one that has a format (a claim file's first line can start with `format: <name>`). Then use the next step of the cycle. If two runs collide on the same slot, the claim file decides.
 
 ## LENGTH: every Short is 60–90 seconds (user's rule, 2026-11-22). Never over 1:30.
 About 18–26 narration lines. Longer Shorts must still move: a new shot every 1.5–2.5 s, and the story keeps escalating so nobody swipes. Keep the full render within the run's time: use plates + 2D motion, simple sets and cheaper samples on wide shots.
 
-## STORY MODE: the user's 2nd reference ("The Bottom Floor Disappears Every Day", a viral cartoon story Short). Apply to EVERY Short.
+## STORY MODE (format: story): the user's 2nd reference ("The Bottom Floor Disappears Every Day", a viral cartoon story Short). Fact videos (what-if, would-you-rather, pick-a-scenario) follow HOUSE STYLE instead, though they may borrow the cast for a quick reaction shot.
 Study pipeline/reference/story_ref_*.jpg. Copy the techniques, never the story, characters or visuals.
 - **A strange rule as the premise, told as a story with characters.** Our "What if…?" questions become lived-through stories: "What if the Sun went out?" → our cast wakes up, notices it's dark at 8 AM, the clock ticks, they react, the facts unfold through what happens to them. The science stays 100% accurate and sourced. Characters, dialogue and plot are clearly fiction, the physics/biology/numbers are real.
 - **Recurring cast** (kit.character): `kai` (spiky brown hair, olive shirt: the calm, skeptical one), `leo` (orange curly hair, yellow-black stripes: the jumpy one), `mia` (dark bob, red top: the smart one who explains), `nora` (red beanie, blue-white stripes: the brave one). Use 1–3 per video, same personalities every time, so viewers come back for them. Switch faces with kit.set_expr(parts, frame, 'neutral|surprised|worried|smirk|happy|angry|scared|bored') on reaction beats, and use kit.talk() while they speak. The white astronaut mascot can still appear in space scenes.
@@ -18,7 +19,8 @@ Study pipeline/reference/story_ref_*.jpg. Copy the techniques, never the story, 
 - **Escalation and countdown:** a timer, a shrinking number or rising stakes all the way through ("41 floors left", "12 hours of oxygen").
 - **Shot grammar:** wide establishing shot → over-the-shoulder → extreme close-up on a face reaction → prop insert → wide. Quick whip-pans or motion-blur transitions between beats. Shallow depth of field on close-ups. Warm practical lights (lamps, screens) in moody, dark-blue/industrial sets.
 - **Captions:** 1–2 words, white with a heavy dark outline and the key word highlighted, placed just below the middle of the frame (compose.py CAP_Y = 0.62). Keep faces and key action above that line.
-- **Ending:** end on a twist or cliffhanger that loops back into line 1, or ends with "Part 2?" if the story is worth continuing (log it in the research file so a later run can make Part 2).
+- **Ending:** end on a twist that loops back into line 1, or on a cliffhanger with on-screen "PART 2?" (set `"cliffhanger": true`; the next story slot continues it). Viewers should feel they must follow to see what happens.
+- **Titles:** story-style, e.g. "The Sun went out at 8:12 AM 🌑" / "... (Part 2)", plus #shorts. Hashtags include #story #whatif #shorts #science.
 
 ## HOUSE STYLE: the user's reference video (applies to EVERY Short, all formats; overrides older "calm pacing / one cut per scene" rules)
 The user showed a reference Short they love (a story-explainer about the Titan sub implosion). It's the target for animation, speed, detail and facts. Copy its *techniques*, never its script, visuals or topic.
