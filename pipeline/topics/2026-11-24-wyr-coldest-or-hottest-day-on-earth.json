@@ -1,0 +1,111 @@
+{
+ "slug": "wyr-coldest-or-hottest-day-on-earth",
+ "title": "Would you rather face the coldest day ever recorded on Earth, or the hottest?",
+ "format": "would-you-rather",
+ "root": "/home/claude/b3d/wyrtemp",
+ "lines": [
+  "Colder than dry ice, or [134 \u00b0F](a hundred and thirty-four degrees)?",
+  "Would you rather face Earth's coldest day ever, or its hottest?",
+  "Pick one right now, and comment A or B. Think fast.",
+  "Option A: Vostok Station, Antarctica, [July 1983](July, nineteen eighty-three).",
+  "[Minus 89.2 \u00b0C](Minus eighty-nine point two Celsius). Colder than dry ice.",
+  "In July, the Sun never rises there.",
+  "At that cold, exposed skin can freeze in minutes.",
+  "Satellites later spotted hollows on the ice sheet near [minus 98 \u00b0C](minus ninety-eight).",
+  "Option B: Death Valley, California, [July 1913](July, nineteen thirteen).",
+  "[134 \u00b0F](A hundred thirty-four Fahrenheit), the hottest ever officially recorded.",
+  "Thirty degrees hotter than a hot tub's safety limit.",
+  "In [1972](nineteen seventy-two), the ground hit [201 \u00b0F](two hundred and one degrees).",
+  "Rangers say drink a gallon of water a day.",
+  "So which one wins? By the science, the hot day.",
+  "With shade and water, crowds visit every summer.",
+  "Without polar gear, Vostok's cold would beat you far faster.",
+  "At the South Pole, the [300 Club](three hundred club) tries both.",
+  "They sit in a [200 \u00b0F](two hundred degree) sauna, then run outside at [minus 100 \u00b0F](minus one hundred).",
+  "A three hundred degree swing. So which would you pick?"
+ ],
+ "hl": [
+  "dry",
+  "134",
+  "coldest",
+  "hottest",
+  "A",
+  "Vostok",
+  "89.2",
+  "Sun",
+  "freeze",
+  "98",
+  "Death",
+  "hot",
+  "201",
+  "gallon",
+  "wins",
+  "shade",
+  "faster",
+  "300",
+  "sauna",
+  "100",
+  "swing",
+  "pick",
+  "hottest",
+  "both"
+ ],
+ "sources": {
+  "vostok_-89.2C_21jul1983": [
+   "https://wmo.int/asu-map?map=Temp_020",
+   "https://www.guinnessworldrecords.com/world-records/66137-lowest-temperature-recorded-on-earth",
+   "https://en.wikipedia.org/wiki/Vostok_Station"
+  ],
+  "dry_ice_-78.5C_-109.3F": [
+   "https://en.wikipedia.org/wiki/Dry_ice",
+   "https://www.britannica.com/science/dry-ice"
+  ],
+  "vostok_polar_night_elevation_3488m": [
+   "https://en.wikipedia.org/wiki/Vostok_Station",
+   "https://www.scientificamerican.com/blog/life-unbounded/the-coldest-place-on-earth/"
+  ],
+  "frostbite_minutes": [
+   "https://www.weather.gov/safety/cold-wind-chill-chart",
+   "https://www.mayoclinic.org/diseases-conditions/frostbite/symptoms-causes/syc-20372656"
+  ],
+  "death_valley_134F_10jul1913_official": [
+   "https://wmo.int/asu-map?map=Temp_010",
+   "https://www.nps.gov/deva/learn/nature/weather-and-climate.htm",
+   "https://guinnessworldrecords.com/world-records/highest-recorded-temperature"
+  ],
+  "hot_tub_104F_limit": [
+   "https://www.cpsc.gov/Safety-Education/Safety-Guides/Pools-and-Spas/Hot-Tub-Safety",
+   "https://www.cdc.gov/healthy-swimming/about/hot-tub-safety.html"
+  ],
+  "ground_201F_15jul1972": [
+   "https://www.nps.gov/deva/learn/nature/weather-and-climate.htm",
+   "https://en.wikipedia.org/wiki/Death_Valley"
+  ],
+  "egg_sets_below_201F": [
+   "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/eggs/shell-eggs-farm-table",
+   "https://www.exploratorium.edu/cooking/eggs/eggscience.html"
+  ],
+  "badwater_282ft_lowest_NA": [
+   "https://www.nps.gov/deva/planyourvisit/badwater-basin.htm",
+   "https://en.wikipedia.org/wiki/Badwater_Basin"
+  ],
+  "gallon_a_day_heat_deaths": [
+   "https://www.nps.gov/deva/planyourvisit/safety.htm",
+   "https://www.nps.gov/deva/learn/news/heat-press-kit.htm"
+  ],
+  "summer_visitors": [
+   "https://www.nps.gov/deva/learn/news/heat-press-kit.htm",
+   "https://en.wikipedia.org/wiki/Death_Valley_National_Park"
+  ],
+  "300_club_200F_sauna_-100F": [
+   "https://en.wikipedia.org/wiki/300_Club",
+   "https://alaskapublic.org/news/2014-01-10/joining-antarcticas-exclusive-300-club",
+   "https://www.mentalfloss.com/article/58810/8-antarctic-traditions"
+  ],
+  "nearby": [
+   "https://news.agu.org/press-release/coldest-place-on-earth-is-colder-than-scientists-thought/",
+   "https://www.nationalgeographic.com/science/article/coldest-place-earth-measured-temperature-antarctica-science",
+   "https://livescience.com/62918-coldest-place-on-earth.html"
+  ]
+ }
+}
