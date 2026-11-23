@@ -1,2 +1,2 @@
 format: would-you-rather
-topic: TBD (market research)
+topic: Would you rather face the coldest day ever recorded (Vostok, -89.2 C) or the hottest (Death Valley, 134 F)?
