@@ -1,2 +1,2 @@
 format: what-if
-topic: What if the Carrington solar storm (1859) hit today?
+topic: What if the biggest solar storm on record (Carrington 1859) hit today?

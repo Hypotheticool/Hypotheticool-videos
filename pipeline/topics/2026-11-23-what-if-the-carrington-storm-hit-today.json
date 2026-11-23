@@ -1,0 +1,162 @@
+{
+ "slug": "2026-11-23-what-if-the-carrington-storm-hit-today",
+ "title": "What if the biggest solar storm ever recorded hit today?",
+ "format": "what-if",
+ "root": "/home/claude/b3d/storm",
+ "lines": [
+  "Up to forty million Americans, in the dark.",
+  "What if the biggest solar storm on [record](rekkerd) hit today?",
+  "September first, eighteen fifty nine, near London.",
+  "Richard Carrington sees two blinding flashes on the Sun.",
+  "Five minutes later, they're gone.",
+  "But a cloud of magnetized plasma is racing toward Earth.",
+  "Most take days. This one: about seventeen and a half hours.",
+  "Auroras glow as far south as Cuba and Hawaii.",
+  "Gold miners in the Rockies wake up and make breakfast, thinking it's morning.",
+  "Telegraph lines spark, shock operators, and set paper on fire.",
+  "Some unplug their batteries and keep sending on the storm's current alone.",
+  "Now picture that today.",
+  "In nineteen eighty nine, a weaker storm blacked out Quebec for nine hours.",
+  "In twenty twenty two, a minor storm doomed up to forty new Starlinks.",
+  "A storm like Carrington's could fry giant transformers that take over a year to replace.",
+  "Lloyd's estimated up to forty million Americans could lose power, for weeks, or even years.",
+  "Cost: up to two point six trillion dollars, over seven thousand per American.",
+  "In July twenty twelve, a storm that strong crossed Earth's orbit.",
+  "One week earlier, and it would have hit us.",
+  "One scientist said we'd still be picking up the pieces.",
+  "The odds of another this decade? One [estimate](estimit) says about twelve percent.",
+  "So if it hit tonight..."
+ ],
+ "hl": [
+  "FORTY",
+  "MILLION",
+  "DARK",
+  "SOLAR",
+  "STORM",
+  "TODAY",
+  "1859",
+  "LONDON",
+  "CARRINGTON",
+  "FLASHES",
+  "GONE",
+  "PLASMA",
+  "EARTH",
+  "DAYS",
+  "SEVENTEEN",
+  "HOURS",
+  "CUBA",
+  "HAWAII",
+  "BREAKFAST",
+  "MORNING",
+  "SPARK",
+  "FIRE",
+  "BATTERIES",
+  "ALONE",
+  "TODAY",
+  "QUEBEC",
+  "SIX",
+  "NINE",
+  "STARLINK",
+  "TRANSFORMERS",
+  "YEAR",
+  "LLOYD'S",
+  "YEARS",
+  "TRILLION",
+  "SEVEN",
+  "THOUSAND",
+  "2012",
+  "ORBIT",
+  "WEEK",
+  "PIECES",
+  "TWELVE",
+  "PERCENT",
+  "TONIGHT"
+ ],
+ "sources": {
+  "Carrington saw two bright white patches on the Sun from Redhill near London, 1 Sept 1859, gone ~5 min later": [
+   "https://www.history.com/articles/a-perfect-solar-superstorm-the-1859-carrington-event",
+   "https://www.space.com/the-carrington-event",
+   "https://www.nesdis.noaa.gov/about/k-12-education/space-weather/what-was-the-carrington-event"
+  ],
+  "most intense geomagnetic storm on record": [
+   "https://en.wikipedia.org/wiki/Carrington_Event",
+   "https://www.nesdis.noaa.gov/about/k-12-education/space-weather/what-was-the-carrington-event"
+  ],
+  "CME arrived in 17.6 hours; CMEs usually take several days": [
+   "https://www.space.com/the-carrington-event",
+   "https://en.wikipedia.org/wiki/Carrington_Event"
+  ],
+  "auroras as far south as Cuba and Hawaii": [
+   "https://www.space.com/the-carrington-event",
+   "https://www.history.com/articles/a-perfect-solar-superstorm-the-1859-carrington-event",
+   "https://en.wikipedia.org/wiki/Carrington_Event"
+  ],
+  "Rocky Mountain gold miners made breakfast thinking it was morning": [
+   "https://en.wikipedia.org/wiki/Carrington_Event",
+   "https://www.nesdis.noaa.gov/about/k-12-education/space-weather/what-was-the-carrington-event"
+  ],
+  "telegraph lines sparked, shocked operators, set paper on fire": [
+   "https://en.wikipedia.org/wiki/Carrington_Event",
+   "https://www.history.com/articles/a-perfect-solar-superstorm-the-1859-carrington-event",
+   "https://science.nasa.gov/science-research/planetary-science/23jul_superstorm/"
+  ],
+  "Boston-Portland operators unplugged batteries and sent on auroral current": [
+   "https://www.history.com/articles/a-perfect-solar-superstorm-the-1859-carrington-event",
+   "https://en.wikipedia.org/wiki/Carrington_Event"
+  ],
+  "1989 storm blacked out Quebec, 6 million people, 9 hours": [
+   "https://www.insurancejournal.com/news/international/2013/05/23/293060.htm",
+   "https://www.nasa.gov/science-research/heliophysics/the-day-the-sun-brought-darkness/"
+  ],
+  "Feb 2022 minor geomagnetic storm doomed up to 40 of 49 new Starlink satellites": [
+   "https://www.spacex.com/updates#sl-geostorm",
+   "https://www.space.com/spacex-starlink-satellites-lost-geomagnetic-storm"
+  ],
+  "large power transformers take over a year to replace (lead times 5-16+ months)": [
+   "https://www.energy.gov/oe/articles/large-power-transformers-and-us-electric-grid-report-update-april-2014",
+   "https://www.openphilanthropy.org/wp-content/uploads/Lloyds_2013.pdf"
+  ],
+  "Lloyd's 2013: 20-40 million Americans, outages of several weeks to 1-2 years, US cost $0.6-2.6 trillion": [
+   "https://www.insurancejournal.com/news/international/2013/05/23/293060.htm",
+   "https://www.openphilanthropy.org/wp-content/uploads/Lloyds_2013.pdf",
+   "https://en.wikipedia.org/wiki/Carrington_Event"
+  ],
+  "$2.6T / ~340M people = ~$7,600 each; 40M ~ California (39.4M)": [
+   "https://www.census.gov/popclock/",
+   "https://www.census.gov/quickfacts/CA"
+  ],
+  "23 July 2012 CME as strong as Carrington crossed Earth's orbit; one week earlier would have hit; Baker quote": [
+   "https://science.nasa.gov/science-research/planetary-science/23jul_superstorm/",
+   "https://www.pbs.org/newshour/science/two-years-ago-intense-solar-storm-barely-misses-earth",
+   "https://www.cbsnews.com/news/solar-super-storm-just-missed-earth-in-2012"
+  ],
+  "Riley: ~12% chance of a Carrington-class storm per decade": [
+   "https://science.nasa.gov/science-research/planetary-science/23jul_superstorm/",
+   "https://discovermagazine.com/the-sciences/pure-dumb-luck-saved-us-from-a-calamity-in-2012-sparked-by-one-of-the-strongest-solar-storms-in-recorded-history"
+  ]
+ },
+ "durs": [
+  2.951,
+  3.525,
+  3.481,
+  3.862,
+  2.238,
+  4.12,
+  4.13,
+  3.512,
+  4.741,
+  4.707,
+  4.797,
+  2.099,
+  4.949,
+  4.815,
+  5.932,
+  6.418,
+  5.318,
+  4.345,
+  2.56,
+  3.599,
+  4.844,
+  1.978
+ ]
+}
