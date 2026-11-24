@@ -1,0 +1,154 @@
+{
+ "slug": "pick-a-planet-to-spend-one-night-on",
+ "title": "Pick a planet to spend one night on: Mercury, Venus, Mars or Uranus",
+ "format": "pick-a-scenario",
+ "root": "/home/claude/b3d/nights",
+ "lines": [
+  "One of these nights lasts [42](forty-two) years.",
+  "Pick one: spend a single night on Mercury, Venus, Mars or Uranus.",
+  "You get a spacesuit, but you stay until sunrise.",
+  "Pick one, two, three or four, and comment. Think fast.",
+  "Number one, Mercury. The Sun sets and stays down about [88](eighty-eight) Earth days.",
+  "With almost no air to hold the heat, it drops to [minus 180 °C](minus one hundred eighty Celsius).",
+  "That's about [100](one hundred) degrees colder than dry ice.",
+  "Number two, Venus. The Sun sets in the east, and night lasts about [58](fifty-eight) days.",
+  "But the dark doesn't cool it. Thick air keeps it near [470 °C](four hundred seventy Celsius).",
+  "Hot enough to melt [lead](led), with air pressing [90](ninety) times harder than on Earth.",
+  "Number three, Mars. A day there is only about [40](forty) minutes longer than ours.",
+  "Nights hit about [minus 70 °C](minus seventy Celsius). Cold, but nothing like the others.",
+  "Look up: its tiny moon [Phobos](Foebus) rises in the west and races across the sky.",
+  "And that bright evening star? It's Earth. A NASA rover photographed it.",
+  "Number four, Uranus. There's no ground, so you'd float in its clouds.",
+  "It's tipped on its side, so near its poles, a night lasts about [42](forty-two) years.",
+  "Arrive at [20](twenty), and you'd be [62](sixty-two) before the Sun came back.",
+  "So the winner is Mars: the shortest night, and a view of home.",
+  "Every other pick ends badly. Especially number four, because..."
+ ],
+ "hl": [
+  "42",
+  "nights",
+  "Mercury",
+  "Venus",
+  "Mars",
+  "Uranus",
+  "spacesuit",
+  "sunrise",
+  "comment",
+  "88",
+  "180",
+  "dry",
+  "58",
+  "east",
+  "470",
+  "lead",
+  "90",
+  "40",
+  "70",
+  "Phobos",
+  "west",
+  "Earth",
+  "2014",
+  "ground",
+  "clouds",
+  "side",
+  "years",
+  "62",
+  "20",
+  "winner",
+  "home",
+  "four",
+  "badly"
+ ],
+ "sources": {
+  "mercury_solar_day_176d_night_~88d": [
+   "https://science.nasa.gov/mercury/facts/",
+   "https://www.esa.int/Science_Exploration/Space_Science/BepiColombo/Meet_Mercury",
+   "https://www.planetary.org/worlds/mercury",
+   "https://space.worldatlas.com/space/which-planet-has-the-longest-night.html"
+  ],
+  "mercury_night_-180C_-290F_no_atmosphere": [
+   "https://science.nasa.gov/mercury/facts/",
+   "https://www.esa.int/Science_Exploration/Space_Science/BepiColombo/Meet_Mercury",
+   "https://www.planetary.org/worlds/mercury"
+  ],
+  "dry_ice_-78.5C": [
+   "https://en.wikipedia.org/wiki/Dry_ice",
+   "https://www.britannica.com/science/dry-ice"
+  ],
+  "venus_sunrise_to_sunrise_117d_night_~58d": [
+   "https://science.nasa.gov/venus/facts",
+   "https://www.planetary.org/worlds/venus",
+   "https://www.space.com/44-venus-second-planet-from-the-sun-brightest-planet-in-solar-system",
+   "https://space.worldatlas.com/space/which-planet-has-the-longest-night.html"
+  ],
+  "venus_sun_rises_west_sets_east": [
+   "https://science.nasa.gov/venus/facts",
+   "https://www.space.com/44-venus-second-planet-from-the-sun-brightest-planet-in-solar-system"
+  ],
+  "venus_~470C_day_and_night_greenhouse": [
+   "https://science.nasa.gov/venus/facts",
+   "https://www.planetary.org/worlds/venus",
+   "https://www.space.com/18526-venus-temperature.html",
+   "https://www.universetoday.com/articles/how-hot-is-venus"
+  ],
+  "lead_melts_327.5C": [
+   "https://www.britannica.com/science/lead-chemical-element",
+   "https://pubchem.ncbi.nlm.nih.gov/element/Lead"
+  ],
+  "venus_pressure_~90x": [
+   "https://www.space.com/44-venus-second-planet-from-the-sun-brightest-planet-in-solar-system",
+   "https://www.guinnessworldrecords.com/world-records/longest-surviving-venus-lander",
+   "https://science.nasa.gov/venus/facts"
+  ],
+  "mars_sol_24h39m35s": [
+   "https://science.nasa.gov/mars/facts/",
+   "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html"
+  ],
+  "mars_night_~-70C": [
+   "https://www.jpl.nasa.gov/images/pia16913-steady-temperatures-at-mars-gale-crater/",
+   "https://www.space.com/16907-what-is-the-temperature-of-mars.html"
+  ],
+  "phobos_rises_west_sets_east": [
+   "https://www.jpl.nasa.gov/news/nasa-orbiter-eyes-phobos-over-mars-horizon/",
+   "https://earthsky.org/space/video-mars-moon-phobos-passing-overhead"
+  ],
+  "earth_evening_star_from_mars_curiosity_2014": [
+   "https://www.jpl.nasa.gov/news/nasa-mars-rover-curiosity-sees-evening-star-earth/",
+   "https://science.nasa.gov/earth/earth-observatory/twinkle-twinkle-little-earth-83296/"
+  ],
+  "uranus_no_solid_surface": [
+   "https://science.nasa.gov/uranus/facts/",
+   "https://airandspace.si.edu/explore/stories/uranus"
+  ],
+  "uranus_tilt_~98deg": [
+   "https://science.nasa.gov/uranus/facts/",
+   "https://earthsky.org/space/seasons-of-uranus-strange-sideways-world/",
+   "https://www.timeanddate.com/astronomy/planets/uranus"
+  ],
+  "uranus_pole_night_~42_years": [
+   "https://www.universetoday.com/articles/seasons-on-uranus",
+   "https://stardate.org/podcast/2025-11-19"
+  ]
+ },
+ "durs": [
+  2.64,
+  4.943,
+  3.306,
+  3.714,
+  5.564,
+  5.546,
+  3.519,
+  5.629,
+  5.38,
+  4.854,
+  5.275,
+  5.292,
+  5.5,
+  4.8,
+  4.595,
+  5.264,
+  4.407,
+  3.81,
+  4.355
+ ]
+}
