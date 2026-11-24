@@ -1,0 +1,156 @@
+{
+ "slug": "2026-11-25-the-sun-went-out-day-7",
+ "title": "The Sun went out. Day 7: where you'd survive (Part 2)",
+ "format": "story",
+ "series": "2026-11-23-the-sun-went-out-at-8-12-am",
+ "part": 2,
+ "cliffhanger": false,
+ "cast": [
+  "kai",
+  "leo",
+  "mia"
+ ],
+ "root": "/home/claude/b3d/sunout2",
+ "lines": [
+  "Still alive. Day seven without the Sun.",
+  "Previously: the Sun went out. Now Kai, Leo and Mia are in Iceland.",
+  "Earth's average temperature is below zero Fahrenheit, and falling.",
+  "@am_echo: \"Why is it still night? It's noon!\"",
+  "@af_heart: \"No sunlight means no blue sky. The stars never leave.\"",
+  "So how are Iceland's homes still warm?",
+  "Magma heats the rock and water deep underground.",
+  "Plants like [Hellishei\u00f0i](hettlis-haythee) pipe that heat to the capital's homes.",
+  "Almost nine in ten Icelandic homes were already heated this way.",
+  "@am_michael: \"So we're safe here forever?\"",
+  "@af_heart: \"Not forever. Earth's inner heat is thousands of times weaker than sunlight.\"",
+  "@am_echo: \"What about everyone else?\"",
+  "Some could survive in deep submarines, or underground on nuclear power.",
+  "In [1977](nineteen seventy-seven), the sub Alvin found animals thriving at deep-sea vents.",
+  "Microbes there make food from chemicals, not sunlight.",
+  "Vent water reaches about four hundred degrees Celsius. Hot enough to melt [lead](led).",
+  "Up on land, big trees could hang on for decades.",
+  "@am_michael: \"So how cold [does](duz) it finally get?\"",
+  "After millions of years, about minus four hundred Fahrenheit. As cold as Pluto.",
+  "Even the air would freeze and fall to the ground.",
+  "But people could keep using volcanic heat for hundreds of years.",
+  "@af_heart: \"So as long as Earth stays warm inside, we're...\""
+ ],
+ "hl": [
+  "alive",
+  "seven",
+  "Sun",
+  "dark",
+  "Iceland",
+  "zero",
+  "noon",
+  "stars",
+  "warm",
+  "magma",
+  "underground",
+  "nine",
+  "forever",
+  "thousands",
+  "weaker",
+  "submarines",
+  "nuclear",
+  "1977",
+  "Alvin",
+  "vents",
+  "chemicals",
+  "hundred",
+  "lead",
+  "trees",
+  "decades",
+  "sugar",
+  "cold",
+  "millions",
+  "Pluto",
+  "air",
+  "freeze",
+  "volcanic",
+  "years",
+  "inside"
+ ],
+ "sources": {
+  "below 0F average within a week": [
+   "https://www.popsci.com/science/article/2013-07/if-sun-went-out-how-long-could-life-earth-survive/",
+   "https://experts.caltech.edu/news/caltech-question-month-if-sun-ceased-exist-right-now-how-long-would-mankind-survive-would",
+   "https://www.livescience.com/planet-earth/what-would-happen-to-earth-if-the-sun-suddenly-vanished"
+  ],
+  "no blue sky without sunlight; stars stay visible": [
+   "https://theconversation.com/curious-kids-why-do-we-see-the-sky-during-the-day-but-the-galaxy-at-night-170096",
+   "https://www.amnh.org/explore/ology/astronomy/ask-a-scientist-about-the-milky-way-galaxy",
+   "https://www.livescience.com/planet-earth/what-would-happen-to-earth-if-the-sun-suddenly-vanished"
+  ],
+  "Iceland geothermal: magma heats rock and groundwater; ~85-90% of home heating": [
+   "https://orkustofnun.is/en/natural_resources/district_heating",
+   "https://government.is/topics/business-and-industry/energy",
+   "https://www.popsci.com/science/article/2013-07/if-sun-went-out-how-long-could-life-earth-survive/"
+  ],
+  "Hellisheidi heats the capital area (303 MWe, 200 MWth)": [
+   "https://www.on.is/en/virkjanirnar-okkar",
+   "https://www.thinkgeoenergy.com/hellisheidi-sees-commission-of-133-mw-thermal-heating-plant/"
+  ],
+  "Earth's internal heat 44-47 TW (~0.09 W/m2) vs ~240 W/m2 sunlight absorbed": [
+   "https://se.copernicus.org/articles/1/5/2010/",
+   "https://blogs.scientificamerican.com/observations/nuclear-fission-confirmed-as-source-of-more-than-half-of-earths-heat/",
+   "https://science.nasa.gov/earth/earth-observatory/climate-and-earths-energy-budget/"
+  ],
+  "refuges: deep submarines, nuclear/geothermal habitats underground": [
+   "https://www.popsci.com/science/article/2013-07/if-sun-went-out-how-long-could-life-earth-survive/",
+   "https://www.livescience.com/planet-earth/what-would-happen-to-earth-if-the-sun-suddenly-vanished",
+   "https://experts.caltech.edu/news/caltech-question-month-if-sun-ceased-exist-right-now-how-long-would-mankind-survive-would"
+  ],
+  "Alvin, Galapagos Rift, Feb 1977: vent life without sunlight (chemosynthesis)": [
+   "https://www.whoi.edu/feature/history-hydrothermal-vents/discovery/1977.html",
+   "https://manoa.hawaii.edu/exploringourfluidearth/biological/aquatic-plants-and-algae/energy-acquisition/weird-science-hydrothermal-vents-and-cold-seeps"
+  ],
+  "vent fluid up to ~400 C; lead melts at 327.5 C": [
+   "https://www.whoi.edu/know-your-ocean/ocean-topics/seafloor-below/hydrothermal-vents/",
+   "https://oceanservice.noaa.gov/facts/vents.html",
+   "https://www.rsc.org/periodic-table/element/82/lead"
+  ],
+  "big trees survive decades on stored sugar": [
+   "https://www.popsci.com/science/article/2013-07/if-sun-went-out-how-long-could-life-earth-survive/",
+   "https://www.howitworksdaily.com/what-would-happen-if-the-sun-disappeared/"
+  ],
+  "about -400F (~30-35 K) after millions of years; Pluto about -375 to -400F": [
+   "https://www.popsci.com/science/article/2013-07/if-sun-went-out-how-long-could-life-earth-survive/",
+   "https://experts.caltech.edu/news/caltech-question-month-if-sun-ceased-exist-right-now-how-long-would-mankind-survive-would",
+   "https://thecore.uchicago.edu/Summer2011/departments/BTQ-the-loneliest-planet.shtml",
+   "https://science.nasa.gov/dwarf-planets/pluto/facts/"
+  ],
+  "atmosphere freezes out (solid nitrogen and oxygen)": [
+   "https://experts.caltech.edu/news/caltech-question-month-if-sun-ceased-exist-right-now-how-long-would-mankind-survive-would",
+   "https://www.howitworksdaily.com/what-would-happen-if-the-sun-disappeared/"
+  ],
+  "volcanic heat usable for hundreds of years (Blackman); survive a long time deep down": [
+   "https://www.popsci.com/science/article/2013-07/if-sun-went-out-how-long-could-life-earth-survive/",
+   "https://experts.caltech.edu/news/caltech-question-month-if-sun-ceased-exist-right-now-how-long-would-mankind-survive-would"
+  ]
+ },
+ "durs": [
+  2.771,
+  4.758,
+  4.551,
+  3.037,
+  4.46,
+  2.705,
+  3.392,
+  4.162,
+  4.702,
+  2.465,
+  5.291,
+  2.398,
+  5.004,
+  5.84,
+  3.687,
+  5.667,
+  3.435,
+  2.898,
+  5.74,
+  3.117,
+  4.214,
+  3.295
+ ]
+}
