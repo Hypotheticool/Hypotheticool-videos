@@ -1,0 +1,156 @@
+{
+ "slug": "2026-11-25-what-if-you-took-off-your-helmet-in-space",
+ "title": "What if you took off your helmet in space?",
+ "format": "what-if",
+ "root": "/home/claude/b3d/helmet",
+ "lines": [
+  "You'd have fifteen seconds, at most.",
+  "What if you took off your helmet in space?",
+  "First: you would not explode.",
+  "Your skin is tough enough to hold you together.",
+  "You would not freeze solid, either.",
+  "A vacuum carries heat away very slowly.",
+  "But the Sun's raw ultraviolet light would burn your skin.",
+  "The real danger is your own breath.",
+  "Hold it, and the air in your lungs expands and [tears](tairz) them.",
+  "So you breathe out, and the clock starts.",
+  "With no pressure, the water in your body starts turning to vapor.",
+  "Your tissues swell, up to twice their normal size.",
+  "In nineteen sixty, [Joe Kittinger's](Joe Kitt-in-jer's) pressure glove failed on a balloon flight.",
+  "His hand swelled to about double its normal size.",
+  "In nineteen sixty six, a NASA test suit leaked inside a vacuum chamber in Houston.",
+  "[Jim LeBlanc](Jim luh-Blonk) felt the saliva on his tongue start to bubble.",
+  "About fourteen seconds later, he passed out.",
+  "The air rushed back in, and he woke up, with no lasting harm.",
+  "In tests, dogs rescued within ninety seconds almost always survived.",
+  "But after about two minutes, you'd likely be gone.",
+  "That's about as long as brushing your teeth.",
+  "So if your helmet ever comes off..."
+ ],
+ "hl": [
+  "FIFTEEN",
+  "SECONDS",
+  "HELMET",
+  "SPACE",
+  "EXPLODE",
+  "SKIN",
+  "TOGETHER",
+  "FREEZE",
+  "SOLID",
+  "HEAT",
+  "SLOWLY",
+  "ULTRAVIOLET",
+  "BURN",
+  "DANGER",
+  "BREATH",
+  "LUNGS",
+  "TEARS",
+  "CLOCK",
+  "PRESSURE",
+  "VAPOR",
+  "TWICE",
+  "SWELL",
+  "NINETEEN",
+  "SIXTY",
+  "KITTINGER'S",
+  "GLOVE",
+  "DOUBLE",
+  "NASA",
+  "HOUSTON",
+  "LEBLANC",
+  "SALIVA",
+  "BUBBLE",
+  "FOURTEEN",
+  "PASSED",
+  "HARM",
+  "DOGS",
+  "NINETY",
+  "TWO",
+  "MINUTES",
+  "GONE",
+  "TEETH",
+  "OFF"
+ ],
+ "sources": {
+  "conscious for only ~10-15 seconds in vacuum": [
+   "https://aerospaceweb.org/question/atmosphere/q0291.shtml",
+   "https://www.space.com/how-long-could-you-survive-in-space-without-spacesuit",
+   "https://scientificamerican.com/article/survival-in-space-unprotected-possible",
+   "https://www.skyatnightmagazine.com/space-missions/astronaut-take-off-helmet-in-space"
+  ],
+  "you would not explode: skin holds you together": [
+   "https://scientificamerican.com/article/survival-in-space-unprotected-possible",
+   "https://www.space.com/how-long-could-you-survive-in-space-without-spacesuit",
+   "https://www.skyatnightmagazine.com/space-missions/astronaut-take-off-helmet-in-space"
+  ],
+  "no instant freezing: vacuum is a poor heat conductor, body cools slowly": [
+   "https://www.skyatnightmagazine.com/space-missions/astronaut-take-off-helmet-in-space",
+   "https://aerospaceweb.org/question/atmosphere/q0291.shtml",
+   "https://www.space.com/how-long-could-you-survive-in-space-without-spacesuit"
+  ],
+  "unfiltered UV sunlight burns the skin": [
+   "https://www.skyatnightmagazine.com/space-missions/astronaut-take-off-helmet-in-space",
+   "https://aerospaceweb.org/question/atmosphere/q0291.shtml",
+   "https://www.space.com/how-long-could-you-survive-in-space-without-spacesuit"
+  ],
+  "holding your breath ruptures the lungs; exhale": [
+   "https://aerospaceweb.org/question/atmosphere/q0291.shtml",
+   "https://www.skyatnightmagazine.com/space-missions/astronaut-take-off-helmet-in-space",
+   "https://scientificamerican.com/article/survival-in-space-unprotected-possible",
+   "https://engines.egr.uh.edu/episode/2691"
+  ],
+  "ebullism: body water turns to vapor, tissues swell up to ~2x": [
+   "https://www.livescience.com/human-body-no-spacesuit",
+   "https://engines.egr.uh.edu/episode/2691",
+   "https://aerospaceweb.org/question/atmosphere/q0291.shtml"
+  ],
+  "1960 Kittinger glove failure on balloon flight, hand swelled to ~double": [
+   "https://www.skyatnightmagazine.com/space-missions/astronaut-take-off-helmet-in-space",
+   "https://engines.egr.uh.edu/episode/2691",
+   "https://aerospaceweb.org/question/atmosphere/q0291.shtml"
+  ],
+  "1966 Houston vacuum chamber: Jim LeBlanc's suit leaked, saliva bubbled, passed out ~14 s, repressurized, no lasting effects": [
+   "https://www.guinnessworldrecords.com/world-records/447311-highest-equivalent-altitude-exposure-survived",
+   "https://www.livescience.com/human-body-no-spacesuit",
+   "https://aerospaceweb.org/question/atmosphere/q0291.shtml",
+   "https://scientificamerican.com/article/survival-in-space-unprotected-possible"
+  ],
+  "dogs recompressed within 90 s (almost) always survived": [
+   "https://scientificamerican.com/article/survival-in-space-unprotected-possible",
+   "https://aerospaceweb.org/question/atmosphere/q0291.shtml"
+  ],
+  "death likely in about two minutes": [
+   "https://www.livescience.com/human-body-no-spacesuit",
+   "https://www.skyatnightmagazine.com/space-missions/astronaut-take-off-helmet-in-space",
+   "https://aerospaceweb.org/question/atmosphere/q0291.shtml"
+  ],
+  "brushing teeth: two minutes recommended": [
+   "https://www.mouthhealthy.org/all-topics-a-z/brushing-your-teeth",
+   "https://www.nhs.uk/live-well/healthy-teeth-and-gums/how-to-keep-your-teeth-clean/"
+  ]
+ },
+ "durs": [
+  2.321,
+  2.757,
+  2.204,
+  3.017,
+  2.289,
+  2.963,
+  3.81,
+  2.623,
+  3.678,
+  2.734,
+  4.292,
+  3.536,
+  5.235,
+  3.464,
+  5.939,
+  3.901,
+  3.194,
+  4.083,
+  4.966,
+  3.211,
+  2.75,
+  2.53
+ ]
+}
