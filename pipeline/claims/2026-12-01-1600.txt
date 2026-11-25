@@ -1,3 +1,4 @@
 format: would-you-rather
 topic: Would you rather fall from a plane (no parachute) into snow or into the ocean? (terminal velocity ~120 mph, water knocks you out, snow 90-95% air; Alkemade 1944 18,000 ft into pines + snow; Vulovic 1972 33,333 ft record; snow wins)
 status: made 2026-11-24 ~9:15 PM ET; video videos/2026-12-01-wyr-fall-into-snow-or-ocean.mp4 (87.0 s)
+scheduled: Metricool 2026-12-01 16:00 America/New_York, https://app.metricool.com/planner/calendar?blogId=8192121&openWithPostUuid=-5993008325728974989
