@@ -1,3 +1,4 @@
 format: story
 topic: The cables snapped on floor 80: cast story (Kai, Leo, Mia) in a falling elevator; last-second jump barely helps (72->65 mph from 165 ft); governor + safety brakes clamp the rails; Otis 1854 rope-cut demo; true twist: Betty Lou Oliver fell 75 stories in the Empire State Building, 1945, and lived (Guinness record); standalone, loops
 status: made 2026-11-25 ~10:30 AM ET; video videos/2026-11-26-the-cables-snapped-on-floor-80.mp4 (87.6 s)
+draft: Metricool 2026-11-26 19:00 America/New_York (November cap reached), https://app.metricool.com/planner/calendar?blogId=8192121&openWithPostUuid=-2592570154437885456
