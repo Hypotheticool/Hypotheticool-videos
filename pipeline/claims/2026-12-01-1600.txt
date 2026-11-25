@@ -1,2 +1,2 @@
 format: would-you-rather
-topic: TBD (market research)
+topic: Would you rather fall from a plane (no parachute) into snow or into the ocean? (terminal velocity ~120 mph, water knocks you out, snow 90-95% air; Alkemade 1944 18,000 ft into pines + snow; Vulovic 1972 33,333 ft record; snow wins)
