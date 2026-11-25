@@ -1,0 +1,129 @@
+{
+ "slug": "wyr-fall-into-snow-or-ocean",
+ "title": "Would you rather fall from a plane into snow, or into the ocean?",
+ "format": "would-you-rather",
+ "root": "/home/claude/b3d/wyrfall",
+ "lines": [
+  "This man fell three miles, and lived.",
+  "No parachute. Would you rather land in snow, or in the ocean?",
+  "Pick one right now, and comment A or B. Think fast.",
+  "First, the fall. In about fourteen seconds, you hit top speed.",
+  "About [120 mph](a hundred and twenty miles per hour). Almost twice highway speed.",
+  "Option B: the ocean. It sounds softer, right?",
+  "But water barely squeezes. At that speed, it hits almost like concrete.",
+  "Fall experts say water tends to knock people out.",
+  "And even if you survive the hit, you could drown.",
+  "Option A: snow. Fresh snow is up to [95%](ninety-five percent) air.",
+  "It squashes under you, so you slow down more gently.",
+  "And it's the sudden stop that kills you, not the fall.",
+  "Germany, March [1944](nineteen forty-four). A burning bomber, eighteen thousand feet up.",
+  "Tail gunner Nicholas [Alkemade's](Alkuhmahds) parachute is on fire. So he jumps without it.",
+  "Pine trees, then deep snow, break his fall.",
+  "He wakes up with a twisted knee. Not one broken bone.",
+  "In [1972](nineteen seventy-two), flight attendant Vesna [Vulovi\u0107](Voolovitch) fell even farther.",
+  "Thirty-three thousand feet, higher than Mount Everest, inside a piece of her plane.",
+  "It came down on a snowy, wooded slope. Badly hurt, she survived.",
+  "Either way, survival is extremely rare. But by the science, option [A](eh) wins: the snow.",
+  "Snow is the reason why"
+ ],
+ "hl": [
+  "three",
+  "lived",
+  "snow",
+  "ocean",
+  "A",
+  "fourteen",
+  "120",
+  "highway",
+  "ocean",
+  "concrete",
+  "knock",
+  "drown",
+  "95%",
+  "air",
+  "gently",
+  "stop",
+  "1944",
+  "eighteen",
+  "fire",
+  "trees",
+  "knee",
+  "bone",
+  "1972",
+  "farther",
+  "Everest",
+  "record",
+  "rare",
+  "wins",
+  "reason"
+ ],
+ "sources": {
+  "terminal_velocity_120mph_13-14s": [
+   "https://www.guinnessworldrecords.com/world-records/highest-fall-survived-without-parachute",
+   "https://npr.org/sections/health-shots/2018/08/24/641395468/surviving-a-big-fall"
+  ],
+  "highway_65-70mph": [
+   "https://www.iihs.org/research-areas/speed/speed-limit-laws",
+   "https://en.wikipedia.org/wiki/Speed_limits_in_the_United_States"
+  ],
+  "water_incompressible_like_concrete": [
+   "https://www.usgs.gov/water-science-school/science/water-compressibility",
+   "https://askamathematician.com/2012/07/q-why-is-hitting-water-from-a-great-height-like-hitting-concrete",
+   "https://www.scienceabc.com/sports/why-does-water-feel-like-concrete-when-you-belly-flop-into-it.html"
+  ],
+  "water_knocks_out_drown": [
+   "https://npr.org/sections/health-shots/2018/08/24/641395468/surviving-a-big-fall",
+   "https://interestingengineering.com/how-to-survive-a-fall-from-a-great-distance-according-to-science"
+  ],
+  "fresh_snow_90-95pct_air": [
+   "https://nsidc.org/learn/parts-cryosphere/snow/why-snow-matters",
+   "https://www.eoas.ubc.ca/courses/atsc113/snow/met_concepts/07-met_concepts/07b-newly-fallen-snow-density/"
+  ],
+  "deceleration_kills": [
+   "https://interestingengineering.com/how-to-survive-a-fall-from-a-great-distance-according-to-science",
+   "https://npr.org/sections/health-shots/2018/08/24/641395468/surviving-a-big-fall"
+  ],
+  "alkemade_1944_18000ft_pines_snow_no_broken_bones": [
+   "https://en.wikipedia.org/wiki/Nicholas_Alkemade",
+   "https://www.rafmuseum.org.uk/blog/the-indestructible-alkemade/",
+   "https://www.bombercommandmuseumarchives.ca/s,alkemade.html",
+   "https://www.smithsonianmag.com/air-space-magazine/parachuteless-freaks-170764598/"
+  ],
+  "vulovic_1972_33333ft_record_snowy_wooded": [
+   "https://www.guinnessworldrecords.com/world-records/highest-fall-survived-without-parachute",
+   "https://www.guinnessworldrecords.com/news/2022/4/how-vesna-vulovic-survived-the-highest-fall-ever-with-no-parachute-697786",
+   "https://en.wikipedia.org/wiki/Vesna_Vulovi%C4%87"
+  ],
+  "everest_29032ft": [
+   "https://www.nationalgeographic.com/adventure/article/mount-everest-height-revised-8848-meters",
+   "https://www.bbc.com/news/world-asia-55218908"
+  ],
+  "survival_rare": [
+   "https://npr.org/sections/health-shots/2018/08/24/641395468/surviving-a-big-fall",
+   "https://www.smithsonianmag.com/air-space-magazine/parachuteless-freaks-170764598/"
+  ]
+ },
+ "durs": [
+  2.513,
+  4.014,
+  3.899,
+  4.111,
+  4.699,
+  3.2,
+  4.94,
+  3.501,
+  3.022,
+  4.355,
+  3.662,
+  3.424,
+  5.617,
+  5.428,
+  3.077,
+  3.809,
+  5.43,
+  5.3,
+  4.641,
+  6.294,
+  2.064
+ ]
+}
