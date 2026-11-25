@@ -1,0 +1,155 @@
+{
+ "slug": "2026-11-26-the-cables-snapped-on-floor-80",
+ "title": "The cables snapped on floor 80 \ud83d\uded7",
+ "format": "story",
+ "series": "2026-11-26-the-cables-snapped-on-floor-80",
+ "part": 1,
+ "cliffhanger": false,
+ "cast": [
+  "kai",
+  "leo",
+  "mia"
+ ],
+ "root": "/home/claude/b3d/lift",
+ "lines": [
+  "The cables snapped on floor eighty.",
+  "Midnight. Kai, Leo and Mia, riding down alone.",
+  "A bang. Then the floor dropped away.",
+  "@am_echo: \"I'll jump right before we hit!\"",
+  "@af_heart: \"That barely helps, Leo.\"",
+  "From a hundred sixty-five feet, a perfect jump only slows you from seventy-two to sixty-five miles an hour.",
+  "But elevators hide a speed sensor called a governor.",
+  "Too fast, and its spinning weights fly out and lock.",
+  "That trips the safety brakes. Steel jaws grab the rails.",
+  "With a shriek of metal, they stopped.",
+  "@af_heart: \"Elevators hang on several cables. Far more than they need.\"",
+  "Otis proved it in [1854](eighteen fifty-four). He had his own elevator's rope cut. It held.",
+  "@am_echo: \"Has anyone ever fallen all the way?\"",
+  "@af_heart: \"Yes. And she lived.\"",
+  "July [1945](nineteen forty-five). In thick fog, a bomber hit the Empire State Building.",
+  "Elevator operator Betty Lou Oliver, twenty, was hurt on floor eighty.",
+  "Rescuers sent her down in an elevator. Its damaged cables snapped.",
+  "She fell seventy-five stories. Over a thousand feet.",
+  "Squeezed air in the shaft likely slowed her. The coiled cables below cushioned her like a spring.",
+  "She broke her neck, back and pelvis, and lived. Still a Guinness world [record](rekkerd).",
+  "@am_michael: \"Okay. I'm taking the stairs.\"",
+  "Because nobody wants to hear the cables snap on floor eighty."
+ ],
+ "hl": [
+  "cables",
+  "snapped",
+  "eighty",
+  "Midnight",
+  "alone",
+  "bang",
+  "dropped",
+  "jump",
+  "barely",
+  "physicist",
+  "sixty-five",
+  "seventy-two",
+  "highway",
+  "governor",
+  "fast",
+  "lock",
+  "brakes",
+  "rails",
+  "stopped",
+  "okay",
+  "several",
+  "more",
+  "Otis",
+  "cut",
+  "held",
+  "fallen",
+  "lived",
+  "1945",
+  "fog",
+  "B-25",
+  "Empire",
+  "Betty",
+  "twenty",
+  "eightieth",
+  "damaged",
+  "seventy-five",
+  "thousand",
+  "air",
+  "coiled",
+  "spring",
+  "survived",
+  "Guinness",
+  "record",
+  "stairs",
+  "nobody"
+ ],
+ "sources": {
+  "B-25 hit the Empire State Building 78th-80th floors in thick fog, 28 July 1945, 9:40 AM": [
+   "https://en.wikipedia.org/wiki/1945_Empire_State_Building_B-25_crash",
+   "https://www.guinnessworldrecords.com/news/2023/10/How-an-Elevator-attendant-Survived-a-1-000-Ft-Fall-Down-the-Empire-State-Building-759670"
+  ],
+  "Betty Lou Oliver, 20, elevator operator, on the 80th floor, injured": [
+   "https://www.guinnessworldrecords.com/news/2023/10/How-an-Elevator-attendant-Survived-a-1-000-Ft-Fall-Down-the-Empire-State-Building-759670",
+   "https://en.wikipedia.org/wiki/1945_Empire_State_Building_B-25_crash",
+   "https://www.aol.com/lifestyle/20-old-her-last-day-231438756.html"
+  ],
+  "put in another elevator to go down; its damaged cables snapped; fell 75 stories, over 1,000 ft": [
+   "https://en.wikipedia.org/wiki/1945_Empire_State_Building_B-25_crash",
+   "https://www.guinnessworldrecords.com/news/2023/10/How-an-Elevator-attendant-Survived-a-1-000-Ft-Fall-Down-the-Empire-State-Building-759670"
+  ],
+  "likely slowed by air pressure in the shaft + cushioned by coiled cables": [
+   "https://www.guinnessworldrecords.com/news/2023/10/How-an-Elevator-attendant-Survived-a-1-000-Ft-Fall-Down-the-Empire-State-Building-759670",
+   "https://en.wikipedia.org/wiki/1945_Empire_State_Building_B-25_crash",
+   "https://theconversation.com/ive-always-wondered-if-youre-in-a-falling-elevator-can-you-really-save-yourself-by-jumping-99597"
+  ],
+  "broke neck, back and pelvis; survived; Guinness record longest fall survived in a lift": [
+   "https://guinnessworldrecords.com/world-records/73541-longest-fall-survived-in-a-lift-elevator",
+   "https://en.wikipedia.org/wiki/1945_Empire_State_Building_B-25_crash"
+  ],
+  "jumping helps only a little: 165 ft fall 72 -> 65 mph (7 mph jump); impact = fall speed minus jump speed": [
+   "https://wtamu.edu/~cbaird/sq/2012/12/05/if-im-on-an-elevator-that-breaks-loose-and-plummets-down-the-shaft-can-i-avoid-harm-by-jumping-at-the-last-second/",
+   "https://theconversation.com/ive-always-wondered-if-youre-in-a-falling-elevator-can-you-really-save-yourself-by-jumping-99597"
+  ],
+  "governor flyweights fly out on overspeed, governor rope pulls the safeties which clamp the rails": [
+   "https://www.otis.com/tools-resources/high-rise-safety-systems",
+   "https://science.howstuffworks.com/transport/engines-equipment/elevator5.htm"
+  ],
+  "many cables, far more than needed; all snapping highly unlikely; safeties stop car within a few feet": [
+   "https://www.otis.com/tools-resources/high-rise-safety-systems",
+   "https://wtamu.edu/~cbaird/sq/2012/12/05/if-im-on-an-elevator-that-breaks-loose-and-plummets-down-the-shaft-can-i-avoid-harm-by-jumping-at-the-last-second/",
+   "https://science.howstuffworks.com/transport/engines-equipment/elevator.htm"
+  ],
+  "Otis 1854 Crystal Palace NYC demo: rope cut, platform held": [
+   "https://www.scientificamerican.com/blog/anecdotes-from-the-archive/hold-the-elevator-how-otis-s-early-systems-worked/",
+   "https://www.asme.org/topics-resources/content/elisha-graves-otis",
+   "https://www.americanheritage.com/all-safe-gentlemen-all-safe",
+   "https://www.pbs.org/wgbh/theymadeamerica/whomade/otis_hi.html"
+  ],
+  "65 mph is about US highway speed": [
+   "https://www.iihs.org/research-areas/speed/speed-limit-laws"
+  ]
+ },
+ "durs": [
+  2.321,
+  3.343,
+  2.476,
+  2.887,
+  2.179,
+  7.545,
+  3.528,
+  3.484,
+  4.176,
+  2.401,
+  4.356,
+  5.918,
+  3.388,
+  2.048,
+  5.88,
+  5.1,
+  4.788,
+  3.776,
+  6.228,
+  5.102,
+  2.731,
+  3.956
+ ]
+}
