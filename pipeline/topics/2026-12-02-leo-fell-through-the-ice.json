@@ -1,6 +1,6 @@
 {
  "slug": "2026-12-02-leo-fell-through-the-ice",
- "title": "Leo fell through the ice \ud83e\uddca",
+ "title": "Leo fell through the ice 🧊",
  "format": "story",
  "series": "2026-12-02-leo-fell-through-the-ice",
  "part": 1,
@@ -28,7 +28,7 @@
   "@af_heart: \"Under four inches of new, clear ice? Stay off.\"",
   "@am_echo: \"Was anyone ever trapped under the ice?\"",
   "@af_heart: \"Yes. For eighty minutes.\"",
-  "May [1999](nineteen ninety-nine), Norway. Skier Anna [B\u00e5genholm](Bawgun-hollm) fell head-first through a frozen stream.",
+  "May [1999](nineteen ninety-nine), Norway. Skier Anna [Bågenholm](Bawgun-hollm) fell head-first through a frozen stream.",
   "She found an air pocket and stayed conscious about forty minutes. Then her heart stopped.",
   "Rescuers pulled her out after eighty minutes.",
   "Her body was down to [13.7](thirteen point seven) degrees Celsius. Normal is thirty-seven.",
@@ -92,7 +92,65 @@
   "long",
   "way"
  ],
- "sources": {},
+ "sources": {
+  "cold shock: first ~1 minute, get breathing under control (1-10-1 principle)": [
+   "https://winnipeg.ctvnews.ca/manitoba-s-professor-popsicle-is-retiring-after-years-of-helping-save-lives-1.6728529",
+   "https://www.mcgill.ca/oss/article/medical-did-you-know/professor-popsicles-physiological-proof",
+   "https://csbc.ca/1-10-1-principle/"
+  ],
+  "1-10-1: 1 min breathing, 10 min meaningful movement / usable minutes to get out, ~1 hour before unconscious from hypothermia; taught/developed by Gordon Giesbrecht": [
+   "https://www.mcgill.ca/oss/article/medical-did-you-know/professor-popsicles-physiological-proof",
+   "https://winnipeg.ctvnews.ca/manitoba-s-professor-popsicle-is-retiring-after-years-of-helping-save-lives-1.6728529",
+   "https://www.accuweather.com/en/weather-news/survival-experts-explain-how-to-get-yourself-out-safely-if-you-fall-through-thin-ice/336582",
+   "https://csbc.ca/1-10-1-principle/"
+  ],
+  "self-rescue: turn back toward where you came (that ice held you), hands/arms on the ice, kick, slide out on stomach, don't stand, roll away": [
+   "https://gf.nd.gov/ice-safety",
+   "https://www.accuweather.com/en/weather-news/survival-experts-explain-how-to-get-yourself-out-safely-if-you-fall-through-thin-ice/336582"
+  ],
+  "under 4 inches of new clear ice: stay off; 4 in for a person on foot": [
+   "https://www.dnr.state.mn.us/safety/ice/thickness.html",
+   "https://gf.nd.gov/ice-safety",
+   "https://www.accuweather.com/en/weather-news/survival-experts-explain-how-to-get-yourself-out-safely-if-you-fall-through-thin-ice/336582"
+  ],
+  "hockey puck is 1 inch thick, 3 inches across (on screen only)": [
+   "https://www.usahockeyrulebook.com/page/show/1084404-rule-306-puck",
+   "https://en.wikipedia.org/wiki/Hockey_puck"
+  ],
+  "Anna Bagenholm, 29, skiing near Narvik, Norway, 20 May 1999, fell head-first through the ice of a frozen stream": [
+   "https://en.wikipedia.org/wiki/Anna_B%C3%A5genholm",
+   "https://www.cbsnews.com/news/frozen-woman-a-walking-miracle/",
+   "https://www.sciencealert.com/this-woman-survived-the-lowest-body-temperature-ever-recorded"
+  ],
+  "air pocket, conscious ~40 minutes, then circulatory arrest": [
+   "https://en.wikipedia.org/wiki/Anna_B%C3%A5genholm",
+   "https://www.cbsnews.com/news/frozen-woman-a-walking-miracle/"
+  ],
+  "80 minutes in the water before she was pulled out": [
+   "https://en.wikipedia.org/wiki/Anna_B%C3%A5genholm",
+   "https://www.cbsnews.com/news/frozen-woman-a-walking-miracle/",
+   "https://explorersweb.com/great-survival-stories-anna-bagenholm/"
+  ],
+  "body temperature 13.7 C (56.7 F); one of the lowest ever survived in accidental hypothermia (Lancet 2000, Gilbert et al.)": [
+   "https://en.wikipedia.org/wiki/Anna_B%C3%A5genholm",
+   "https://www.sciencealert.com/this-woman-survived-the-lowest-body-temperature-ever-recorded",
+   "https://pubmed.ncbi.nlm.nih.gov/10665559/"
+  ],
+  "100+ doctors and nurses, nine hours; blood warmed in a heart-lung (bypass) machine; Tromso University Hospital": [
+   "https://en.wikipedia.org/wiki/Anna_B%C3%A5genholm",
+   "https://www.cbsnews.com/news/frozen-woman-a-walking-miracle/",
+   "https://www.sciencealert.com/this-woman-survived-the-lowest-body-temperature-ever-recorded"
+  ],
+  "she recovered and became a radiologist at the same hospital": [
+   "https://en.wikipedia.org/wiki/Anna_B%C3%A5genholm",
+   "https://explorersweb.com/great-survival-stories-anna-bagenholm/",
+   "https://www.sciencealert.com/this-woman-survived-the-lowest-body-temperature-ever-recorded"
+  ],
+  "normal body temperature about 37 C (98.6 F); 80 min is almost a full 90-minute soccer match (on screen)": [
+   "https://www.sciencealert.com/this-woman-survived-the-lowest-body-temperature-ever-recorded",
+   "https://en.wikipedia.org/wiki/Association_football"
+  ]
+ },
  "durs": [
   1.903,
   3.406,
