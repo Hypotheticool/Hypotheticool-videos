@@ -1,0 +1,143 @@
+{
+ "slug": "pick-a-spot-to-hide-from-lightning",
+ "title": "Pick a spot to hide from lightning: under a tree, in a lake, lying flat, or in a car",
+ "format": "pick-a-scenario",
+ "root": "/home/claude/b3d/bolt",
+ "lines": [
+  "Three of these spots are lightning traps.",
+  "Pick one: where do you hide when lightning starts?",
+  "Under a tree, in a lake, flat on the ground, or in a car.",
+  "Pick one, two, three or four, and comment. Think fast.",
+  "Number one, the tree. It keeps you dry, and that's the trap.",
+  "Sheltering under trees is the second leading cause of lightning casualties.",
+  "A strike can jump from the trunk into you. That's called a side flash.",
+  "Number two, the lake. A strike's current spreads out through the water, and through you.",
+  "Number three, lying flat. Staying low sounds smart.",
+  "But the biggest killer isn't a direct hit. It's current racing through the ground.",
+  "Lie flat, and you give that current more of your body.",
+  "Number four, the car, with a hard metal roof and the windows up.",
+  "And it's not the rubber tires. They give zero protection.",
+  "The metal shell carries the strike around you and into the ground.",
+  "That bolt heats the air to fifty thousand degrees Fahrenheit, five times hotter than the Sun's surface.",
+  "So the winner is number four. Just never a convertible.",
+  "Park ranger Roy Sullivan was struck seven times, and survived them all.",
+  "About nine in ten people who get struck survive. But remember:"
+ ],
+ "hl": [
+  "three",
+  "traps",
+  "lightning",
+  "tree",
+  "lake",
+  "ground",
+  "car",
+  "comment",
+  "dry",
+  "trap",
+  "second",
+  "casualties",
+  "jump",
+  "side",
+  "flash",
+  "water",
+  "through",
+  "flat",
+  "low",
+  "killer",
+  "direct",
+  "racing",
+  "body",
+  "metal",
+  "roof",
+  "windows",
+  "tires",
+  "zero",
+  "shell",
+  "around",
+  "fifty",
+  "five",
+  "Sun's",
+  "winner",
+  "four",
+  "convertible",
+  "seven",
+  "survived",
+  "nine",
+  "remember",
+  "fast"
+ ],
+ "sources": {
+  "car_hardtop_metal_shell_not_tires": [
+   "https://www.weather.gov/safety/lightning-myths",
+   "https://www.noaa.gov/jetstream/lightning/lightning-safety",
+   "https://www.canada.ca/en/environment-climate-change/services/lightning/learn-more/facts-myths.html"
+  ],
+  "convertibles_not_safe": [
+   "https://www.noaa.gov/jetstream/lightning/lightning-safety",
+   "https://www.cdc.gov/lightning/faq/",
+   "https://www.canada.ca/en/environment-climate-change/services/lightning/learn-more/facts-myths.html"
+  ],
+  "windows_up_hands_in_lap": [
+   "https://www.noaa.gov/jetstream/lightning/lightning-safety",
+   "https://www.canada.ca/en/environment-climate-change/services/lightning/learn-more/facts-myths.html"
+  ],
+  "tree_second_leading_cause_of_casualties": [
+   "https://www.weather.gov/safety/lightning-myths",
+   "https://www.canada.ca/en/environment-climate-change/services/lightning/learn-more/facts-myths.html",
+   "https://www.cdc.gov/lightning/faq/"
+  ],
+  "side_flash_from_tree": [
+   "https://www.weather.gov/safety/lightning-struck",
+   "https://www.canada.ca/en/environment-climate-change/services/lightning/safety/dangers.html"
+  ],
+  "water_avoid_current_spreads": [
+   "https://www.cdc.gov/lightning/faq/",
+   "https://www.noaa.gov/jetstream/lightning/lightning-safety",
+   "https://site.extension.uga.edu/climate/2017/04/most-lightning-deaths-and-injuries-caused-by-ground-current-not-direct-strike"
+  ],
+  "ground_current_most_deaths_injuries_direct_3-5pct": [
+   "https://www.weather.gov/safety/lightning-struck",
+   "https://site.extension.uga.edu/climate/2017/04/most-lightning-deaths-and-injuries-caused-by-ground-current-not-direct-strike",
+   "https://www.canada.ca/en/environment-climate-change/services/lightning/safety/dangers.html"
+  ],
+  "lying_flat_increases_ground_current": [
+   "https://www.weather.gov/safety/lightning-myths",
+   "https://www.noaa.gov/jetstream/lightning/lightning-safety",
+   "https://www.cdc.gov/lightning/faq/"
+  ],
+  "50000F_5x_sun_surface": [
+   "https://www.weather.gov/safety/lightning-temperature",
+   "https://www.nationalgeographic.com/environment/article/lightning",
+   "https://science.nasa.gov/sun/facts/"
+  ],
+  "roy_sullivan_7_strikes_1942-1977_ranger_shenandoah": [
+   "https://www.guinnessworldrecords.com/world-records/most-lightning-strikes-survived",
+   "https://en.wikipedia.org/wiki/Roy_Sullivan",
+   "https://www.mentalfloss.com/article/66863/meet-man-struck-lightning-7-times"
+  ],
+  "about_90pct_survive_10pct_die": [
+   "https://www.cdc.gov/lightning/faq/",
+   "https://www.weather.gov/safety/lightning-struck"
+  ]
+ },
+ "durs": [
+  2.529,
+  3.091,
+  3.798,
+  3.714,
+  3.715,
+  5.095,
+  4.56,
+  5.045,
+  3.765,
+  4.994,
+  3.435,
+  4.347,
+  3.733,
+  4.092,
+  6.779,
+  3.633,
+  4.915,
+  4.525
+ ]
+}
