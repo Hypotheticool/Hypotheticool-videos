@@ -1,0 +1,154 @@
+{
+ "slug": "pick-where-to-be-in-an-earthquake",
+ "title": "Pick where to be when an earthquake hits: a doorway, outside, next to the couch, or under a table",
+ "format": "pick-a-scenario",
+ "root": "/home/claude/b3d/quake",
+ "lines": [
+  "Only one of these is the right move.",
+  "Pick one: an earthquake hits. Where do you go?",
+  "A doorway, outside, next to the couch, or under a table.",
+  "Pick one, two, three or four, and comment. Quick.",
+  "Number one, the doorway. It's the classic move, and it's a myth.",
+  "It began with an old photo: a collapsed adobe house, with only its door frame standing.",
+  "But in modern houses, doorways are no stronger than the rest.",
+  "And they won't stop what hurts most people: falling and flying [objects](obb-jekts).",
+  "Number two, run outside. Every instinct says go.",
+  "But the floor is moving, and trying to run is how people fall.",
+  "And outside, glass, bricks, and pieces of buildings can come raining down.",
+  "Number three, curl up next to the couch. It's called the Triangle of Life.",
+  "It went viral by email, but leading experts say its source is discredited.",
+  "Falling TVs, lamps and bookcases are a far bigger danger than a collapse.",
+  "Number four, under a sturdy table. This is the winner.",
+  "Drop onto your hands and knees, and crawl under it.",
+  "Cover your head and neck, and hold on. If it slides, move with it.",
+  "No table? Get next to an inside wall, and cover your head.",
+  "And if you're in bed, stay there, and cover your head with a pillow.",
+  "Drop, cover, hold on. Millions practice it every October.",
+  "So the next time the ground starts to shake, remember:"
+ ],
+ "hl": [
+  "one",
+  "earthquake",
+  "doorway",
+  "outside",
+  "couch",
+  "table",
+  "comment",
+  "myth",
+  "classic",
+  "adobe",
+  "door",
+  "modern",
+  "stronger",
+  "falling",
+  "flying",
+  "run",
+  "moving",
+  "fall",
+  "glass",
+  "bricks",
+  "Triangle",
+  "Life",
+  "viral",
+  "discredited",
+  "TV",
+  "bookcase",
+  "collapse",
+  "sturdy",
+  "winner",
+  "Drop",
+  "knees",
+  "Cover",
+  "hold",
+  "slides",
+  "wall",
+  "windows",
+  "bed",
+  "pillow",
+  "Millions",
+  "October",
+  "shake",
+  "remember",
+  "Quick",
+  "right",
+  "move",
+  "TVs",
+  "bookcases"
+ ],
+ "sources": {
+  "doorway_myth_modern_houses_no_stronger": [
+   "https://www.cdc.gov/earthquakes/safety/stay-safe-during-an-earthquake.html",
+   "https://www.shakeout.org/dropcoverholdon",
+   "https://news.caloes.ca.gov/earthquake-myths-separating-fact-from-fiction/"
+  ],
+  "doorway_myth_origin_adobe_photo": [
+   "https://www.shakeout.org/dropcoverholdon",
+   "https://www.clackamas.us/shakeout/during",
+   "https://www.livescience.com/33556-earthquake-safety-tips.html"
+  ],
+  "falling_flying_objects_main_injury": [
+   "https://www.cdc.gov/earthquakes/safety/stay-safe-during-an-earthquake.html",
+   "https://www.shakeout.org/dropcoverholdon"
+  ],
+  "dont_run_ground_moving": [
+   "https://www.shakeout.org/dropcoverholdon",
+   "https://www.clackamas.us/shakeout/during",
+   "https://www.usgs.gov/faqs/what-should-i-do-during-earthquake"
+  ],
+  "outside_glass_bricks_facades": [
+   "https://www.shakeout.org/dropcoverholdon",
+   "https://www.cdc.gov/earthquakes/safety/stay-safe-during-an-earthquake.html"
+  ],
+  "triangle_of_life_discredited": [
+   "https://www.shakeout.org/dropcoverholdon",
+   "https://www.clackamas.us/shakeout/during",
+   "https://snopes.com/crime/warnings/triangle.asp"
+  ],
+  "more_likely_hit_by_tv_lamp_bookcase_than_collapse": [
+   "https://www.shakeout.org/dropcoverholdon",
+   "https://www.cdc.gov/earthquakes/safety/stay-safe-during-an-earthquake.html"
+  ],
+  "drop_cover_hold_on_table": [
+   "https://www.shakeout.org/dropcoverholdon",
+   "https://www.cdc.gov/earthquakes/safety/stay-safe-during-an-earthquake.html",
+   "https://www.usgs.gov/faqs/what-should-i-do-during-earthquake"
+  ],
+  "no_table_interior_wall_away_from_windows": [
+   "https://dacc.nmsu.edu/about/shake-out/media/ShakeOut_Recommended_Earthquake_Safety_Actions-EN.pdf",
+   "https://www.cdc.gov/earthquakes/safety/stay-safe-during-an-earthquake.html"
+  ],
+  "in_bed_stay_pillow": [
+   "https://www.cdc.gov/earthquakes/safety/stay-safe-during-an-earthquake.html",
+   "https://dacc.nmsu.edu/about/shake-out/media/ShakeOut_Recommended_Earthquake_Safety_Actions-EN.pdf",
+   "https://www.livescience.com/33556-earthquake-safety-tips.html"
+  ],
+  "millions_practice_every_october_shakeout": [
+   "https://fema.gov/event/2022-great-shakeout",
+   "https://www.usgs.gov/news/featured-story/2019-great-shakeout",
+   "https://www.cbsnews.com/news/california-earthquake-drill-2023-great-shakeout-what-to-know"
+  ]
+ },
+ "durs": [
+  2.441,
+  3.046,
+  3.624,
+  3.279,
+  3.874,
+  6.023,
+  4.024,
+  4.776,
+  3.564,
+  4.243,
+  4.732,
+  4.852,
+  5.268,
+  5.409,
+  3.566,
+  3.304,
+  4.473,
+  4.022,
+  3.764,
+  4.222,
+  3.456
+ ]
+}
