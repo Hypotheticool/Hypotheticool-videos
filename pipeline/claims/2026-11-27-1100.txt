@@ -1,2 +1,4 @@
 format: pick-a-scenario
 topic: Pick a spot to hide from lightning (under a tree = NWS #2 cause of casualties + side flash; lake = current spreads; lying flat = ground current; car wins via the hard metal shell, not the rubber tires; 50,000 F = 5x Sun's surface; Roy Sullivan 7 strikes; ~9 in 10 survive)
+status: made 2026-11-25 ~9:50 PM ET; video videos/2026-11-27-pick-a-spot-to-hide-from-lightning.mp4 (75.8 s)
+draft: Metricool 2026-11-27 11:00 America/New_York (November cap reached), https://app.metricool.com/planner/calendar?blogId=8192121&openWithPostUuid=5473825090859519275
