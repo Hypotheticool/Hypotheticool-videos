@@ -1,0 +1,212 @@
+{
+ "slug": "2026-11-27-the-car-went-into-the-lake",
+ "title": "The car went into the lake 🚗🌊",
+ "format": "story",
+ "series": "2026-11-27-the-car-went-into-the-lake",
+ "part": 1,
+ "cliffhanger": false,
+ "cast": [
+  "kai",
+  "leo",
+  "mia"
+ ],
+ "root": "/home/claude/b3d/sink",
+ "lines": [
+  "The car hit the water.",
+  "December. Black ice. Kai's car slid into a lake.",
+  "@am_echo: \"The door won't open!\"",
+  "Water presses on it with hundreds of pounds of force.",
+  "@am_echo: \"Call nine one one!\"",
+  "@af_heart: \"No phones! We have about one [minute](minnit)!\"",
+  "A car usually floats for only about a [minute](minnit).",
+  "Rescue experts teach three words. Seatbelts. Windows. Out.",
+  "@af_heart: \"Seatbelts off! Now!\"",
+  "Then open a window, fast. Power windows usually work for thirty to sixty seconds.",
+  "@am_michael: \"Mine's dead!\"",
+  "So break the glass. A side window, near a corner.",
+  "Never the windshield. It's laminated, and almost impossible to break.",
+  "@af_heart: \"Kai! The window hammer!\"",
+  "Crack. Side windows are usually tempered glass. They shatter.",
+  "The heavy engine pulls the nose down first, so the last air is in the back.",
+  "Out. Through the window, onto the roof, then swim for shore.",
+  "@am_echo: \"Why didn't we just wait for help?\"",
+  "@af_heart: \"Help can't get there in one [minute](minnit).\"",
+  "About four hundred people die in sinking cars in North America every year.",
+  "For decades, people were told to wait for the car to fill, so the door would open.",
+  "Experts now say that was wrong. By then, there's almost no air left.",
+  "Kids in the car? Unbuckle them and push them out first, oldest to youngest.",
+  "@am_michael: \"Never wait. Not once the car hit the water.\""
+ ],
+ "hl": [
+  "car",
+  "water",
+  "December",
+  "ice",
+  "lake",
+  "door",
+  "open",
+  "hundreds",
+  "pounds",
+  "force",
+  "nine",
+  "phones",
+  "minute",
+  "floats",
+  "windows",
+  "three",
+  "Seatbelts",
+  "Windows",
+  "Out",
+  "off",
+  "fast",
+  "thirty",
+  "sixty",
+  "dead",
+  "break",
+  "glass",
+  "corner",
+  "windshield",
+  "laminated",
+  "impossible",
+  "hammer",
+  "Crack",
+  "tempered",
+  "shatter",
+  "engine",
+  "nose",
+  "air",
+  "back",
+  "roof",
+  "swim",
+  "shore",
+  "wait",
+  "help",
+  "four",
+  "hundred",
+  "die",
+  "ten",
+  "drownings",
+  "decades",
+  "fill",
+  "wrong",
+  "Kids",
+  "first",
+  "oldest",
+  "youngest",
+  "Never"
+ ],
+ "sources": {
+  "characters, the December black-ice crash, the dead power window and the dialogue are fiction; the escape facts are real": [],
+  "door very hard/impossible to open from outside water pressure; hundreds of pounds of force (GMA: up to 500 lb, Giesbrecht; RD: hundreds of pounds; Dutch trials 750-1000 N ~ 170-225 lbf)": [
+   "https://goodmorningamerica.com/living/story/live-gma-escape-car-sinking-water-110460223",
+   "https://www.rd.com/article/car-under-water/",
+   "https://www.kidsandcars.org/document_center/download/vehicle-submersion/studies/Vehicle-Submersion-A-Review-of-the-Problem-Associated-Risks-and-Survival-Information-1.pdf",
+   "https://www.npr.org/2024/03/26/1241003930/car-submerged-underwater-escape"
+  ],
+  "on screen: ~ a grown man leaning on it, or more (avg US adult man ~200 lb, CDC FastStats)": [
+   "https://www.cdc.gov/nchs/fastats/body-measurements.htm",
+   "https://www.kidsandcars.org/document_center/download/vehicle-submersion/studies/Vehicle-Submersion-A-Review-of-the-Problem-Associated-Risks-and-Survival-Information-1.pdf"
+  ],
+  "don't use the phone / call 911 until you are out; it wastes the escape window": [
+   "https://kuow.org/stories/video-you-have-seconds-escape-sinking-car",
+   "https://goodmorningamerica.com/living/story/live-gma-escape-car-sinking-water-110460223",
+   "https://www.kidsandcars.org/document_center/download/vehicle-submersion/studies/Vehicle-Submersion-A-Review-of-the-Problem-Associated-Risks-and-Survival-Information-1.pdf",
+   "https://www.rd.com/article/car-under-water/",
+   "https://www.jems.com/patient-care/a-tried-and-true-approach-to-escaping-from-sinking-vehicles-and-the-guy-behind-the-testing/"
+  ],
+  "about one minute to get out; car usually floats about a minute (15-63 s flotation phase) before water reaches the windows": [
+   "https://www.npr.org/2024/03/26/1241003930/car-submerged-underwater-escape",
+   "https://kuow.org/stories/video-you-have-seconds-escape-sinking-car",
+   "https://goodmorningamerica.com/living/story/live-gma-escape-car-sinking-water-110460223",
+   "https://jalopnik.com/2200166/survey-shows-majority-of-americans-dont-know-how-to-escape-sinking-car/",
+   "https://www.jems.com/patient-care/a-tried-and-true-approach-to-escaping-from-sinking-vehicles-and-the-guy-behind-the-testing/",
+   "https://www.rd.com/article/car-under-water/"
+  ],
+  "Seatbelts, Windows, Out (children first) taught by rescue experts (Giesbrecht / Operation ALIVE, IAED)": [
+   "https://www.npr.org/2024/03/26/1241003930/car-submerged-underwater-escape",
+   "https://www.cbsnews.com/sanfrancisco/news/expert-explains-how-to-escape-from-a-submerged-car-with-children",
+   "https://goodmorningamerica.com/living/story/live-gma-escape-car-sinking-water-110460223",
+   "https://www.jems.com/patient-care/a-tried-and-true-approach-to-escaping-from-sinking-vehicles-and-the-guy-behind-the-testing/",
+   "https://pmc.ncbi.nlm.nih.gov/articles/PMC6545703"
+  ],
+  "open the window right away; power windows usually work ~30-60 s": [
+   "https://www.jems.com/patient-care/a-tried-and-true-approach-to-escaping-from-sinking-vehicles-and-the-guy-behind-the-testing/",
+   "https://www.rd.com/article/car-under-water/",
+   "https://www.cbsnews.com/sanfrancisco/news/expert-explains-how-to-escape-from-a-submerged-car-with-children"
+  ],
+  "if they don't work, break a side window; strike near a corner/edge, not the center": [
+   "https://www.rd.com/article/car-under-water/",
+   "https://pmc.ncbi.nlm.nih.gov/articles/PMC6545703",
+   "https://www.cbsnews.com/sanfrancisco/news/expert-explains-how-to-escape-from-a-submerged-car-with-children"
+  ],
+  "windshield is laminated and nearly impossible to break; side windows usually tempered and shatter (some new cars have laminated side glass)": [
+   "https://www.rd.com/article/car-under-water/",
+   "https://www.kidsandcars.org/document_center/download/vehicle-submersion/studies/Vehicle-Submersion-A-Review-of-the-Problem-Associated-Risks-and-Survival-Information-1.pdf",
+   "https://www.npr.org/2024/03/26/1241003930/car-submerged-underwater-escape",
+   "https://goodmorningamerica.com/living/story/live-gma-escape-car-sinking-water-110460223"
+  ],
+  "window-breaking tool / rescue hammer within reach": [
+   "https://www.kidsandcars.org/document_center/download/vehicle-submersion/studies/Vehicle-Submersion-A-Review-of-the-Problem-Associated-Risks-and-Survival-Information-1.pdf",
+   "https://www.rd.com/article/car-under-water/",
+   "https://www.npr.org/2024/03/26/1241003930/car-submerged-underwater-escape"
+  ],
+  "engine end sinks first (nose down); last air is at the back": [
+   "https://www.kidsandcars.org/document_center/download/vehicle-submersion/studies/Vehicle-Submersion-A-Review-of-the-Problem-Associated-Risks-and-Survival-Information-1.pdf",
+   "https://www.iflscience.com/how-common-safety-myths-about-submerged-cars-may-actually-kill-69780",
+   "https://jalopnik.com/2200166/survey-shows-majority-of-americans-dont-know-how-to-escape-sinking-car/",
+   "https://www.cbsnews.com/sanfrancisco/news/expert-explains-how-to-escape-from-a-submerged-car-with-children"
+  ],
+  "help cannot arrive within the ~1 minute; don't wait for rescuers": [
+   "https://www.rd.com/article/car-under-water/",
+   "https://www.kidsandcars.org/document_center/download/vehicle-submersion/studies/Vehicle-Submersion-A-Review-of-the-Problem-Associated-Risks-and-Survival-Information-1.pdf",
+   "https://www.npr.org/2024/03/26/1241003930/car-submerged-underwater-escape"
+  ],
+  "~400 deaths a year in submerged vehicles in North America; up to ~10% of drownings": [
+   "https://www.npr.org/2024/03/26/1241003930/car-submerged-underwater-escape",
+   "https://www.cbsnews.com/sanfrancisco/news/expert-explains-how-to-escape-from-a-submerged-car-with-children",
+   "https://www.jems.com/patient-care/a-tried-and-true-approach-to-escaping-from-sinking-vehicles-and-the-guy-behind-the-testing/",
+   "https://www.kidsandcars.org/document_center/download/vehicle-submersion/studies/Vehicle-Submersion-A-Review-of-the-Problem-Associated-Risks-and-Survival-Information-1.pdf",
+   "https://goodmorningamerica.com/living/story/live-gma-escape-car-sinking-water-110460223"
+  ],
+  "old advice to wait for the car to fill so the door opens was wrong; by then almost no air": [
+   "https://www.jems.com/patient-care/a-tried-and-true-approach-to-escaping-from-sinking-vehicles-and-the-guy-behind-the-testing/",
+   "https://www.kidsandcars.org/document_center/download/vehicle-submersion/studies/Vehicle-Submersion-A-Review-of-the-Problem-Associated-Risks-and-Survival-Information-1.pdf",
+   "https://www.npr.org/2024/03/26/1241003930/car-submerged-underwater-escape",
+   "https://www.iflscience.com/how-common-safety-myths-about-submerged-cars-may-actually-kill-69780",
+   "https://jalopnik.com/2200166/survey-shows-majority-of-americans-dont-know-how-to-escape-sinking-car/"
+  ],
+  "children unbuckled and out first, oldest to youngest": [
+   "https://www.npr.org/2024/03/26/1241003930/car-submerged-underwater-escape",
+   "https://www.cbsnews.com/sanfrancisco/news/expert-explains-how-to-escape-from-a-submerged-car-with-children",
+   "https://kuow.org/stories/video-you-have-seconds-escape-sinking-car",
+   "https://www.jems.com/patient-care/a-tried-and-true-approach-to-escaping-from-sinking-vehicles-and-the-guy-behind-the-testing/",
+   "https://jalopnik.com/2200166/survey-shows-majority-of-americans-dont-know-how-to-escape-sinking-car/"
+  ]
+ },
+ "durs": [
+  1.701,
+  3.811,
+  2.472,
+  3.65,
+  2.55,
+  2.944,
+  3.361,
+  4.398,
+  2.084,
+  5.918,
+  1.811,
+  3.413,
+  4.832,
+  2.132,
+  3.899,
+  5.022,
+  3.766,
+  2.783,
+  2.497,
+  5.15,
+  5.213,
+  4.606,
+  5.087,
+  3.833
+ ]
+}
