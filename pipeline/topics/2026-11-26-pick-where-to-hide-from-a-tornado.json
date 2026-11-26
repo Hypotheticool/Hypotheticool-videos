@@ -1,0 +1,170 @@
+{
+ "slug": "pick-where-to-hide-from-a-tornado",
+ "title": "Pick where to hide from a tornado: under an overpass, in your car, in a mobile home, or in the basement",
+ "format": "pick-a-scenario",
+ "root": "/home/claude/b3d/tornado",
+ "lines": [
+  "Only one of these is the safe spot.",
+  "Pick one: a tornado is coming. Where do you hide?",
+  "Under an overpass, in your car, in a mobile home, or in the basement.",
+  "Pick one, two, three or four, and comment. Quick.",
+  "Number one, under a highway overpass. It feels like a concrete bunker.",
+  "But the narrow gap can speed the [wind](winnd) up, and fill it with flying debris.",
+  "In Oklahoma in [1999](nineteen ninety-nine), people died sheltering under overpasses.",
+  "Number two, your car. Just drive away, right?",
+  "Experts say never try to outrun a tornado. Cars get tossed and crushed.",
+  "If it's on top of you, get out and lie flat in a ditch, covering your head.",
+  "Number three, a mobile home. Most tornadoes can destroy one, even tied down.",
+  "You're fifteen to twenty times more likely to die in one than in a regular house.",
+  "Number four, the basement. This is the winner.",
+  "Get underground, under something sturdy, away from windows.",
+  "No basement? A small inside room on the lowest floor, like a bathroom or closet.",
+  "Put as many walls as you can between you and the outside.",
+  "Cover your head. Flying debris is the greatest danger.",
+  "In that same storm, radar clocked about three hundred miles per hour.",
+  "That's almost double the [wind](wind) of a [Category 5](Category five) hurricane.",
+  "That's almost double the [wind](winnd) of a [Category 5](Category five) hurricane."
+ ],
+ "hl": [
+  "one",
+  "safe",
+  "tornado",
+  "hide",
+  "overpass",
+  "car",
+  "mobile",
+  "basement",
+  "comment",
+  "Quick",
+  "highway",
+  "concrete",
+  "bunker",
+  "narrow",
+  "wind",
+  "debris",
+  "Oklahoma",
+  "1999",
+  "died",
+  "drive",
+  "outrun",
+  "tossed",
+  "crushed",
+  "ditch",
+  "flat",
+  "head",
+  "destroy",
+  "tied",
+  "fifteen",
+  "twenty",
+  "die",
+  "winner",
+  "underground",
+  "sturdy",
+  "windows",
+  "small",
+  "lowest",
+  "bathroom",
+  "closet",
+  "walls",
+  "outside",
+  "Cover",
+  "greatest",
+  "danger",
+  "radar",
+  "three",
+  "hundred",
+  "double",
+  "Category",
+  "warning",
+  "remember",
+  "clocked",
+  "inside"
+ ],
+ "sources": {
+  "overpass_wind_speedup_and_debris": [
+   "https://www.weather.gov/oun/safety-overpass",
+   "https://weather.gov/media/gld/WXSafety/myths.pdf",
+   "https://foxweather.com/learn/tornado-safety-protect-yourself-why-avoid-overpasses",
+   "https://stormaware.mo.gov/tornado-myths/"
+  ],
+  "oklahoma_1999_overpass_deaths": [
+   "https://www.weather.gov/oun/safety-overpass",
+   "https://spc.noaa.gov/faq/tornado/i35brdg.htm",
+   "https://spc.noaa.gov/faq/tornado/i44brdg.htm"
+  ],
+  "never_outrun_in_car": [
+   "https://weather.gov/media/gld/WXSafety/myths.pdf",
+   "https://www.cdc.gov/tornadoes/safety/stay-safe-during-a-tornado-safety.html",
+   "https://www.livescience.com/28269-tornado-safety-myths.html"
+  ],
+  "cars_tossed_destroyed": [
+   "https://www.livescience.com/28269-tornado-safety-myths.html",
+   "https://origin-east-www-spc.woc.noaa.gov/faq/tornado/safety.html",
+   "https://www.weather.gov/oun/safety-overpass"
+  ],
+  "car_last_resort_ditch_cover_head": [
+   "https://origin-east-www-spc.woc.noaa.gov/faq/tornado/safety.html",
+   "https://stormaware.mo.gov/tornado-myths/",
+   "https://foxweather.com/learn/tornado-safety-protect-yourself-why-avoid-overpasses"
+  ],
+  "mobile_home_destroyed_even_tied_down": [
+   "https://origin-east-www-spc.woc.noaa.gov/faq/tornado/safety.html",
+   "https://www.cdc.gov/tornadoes/safety/stay-safe-during-a-tornado-safety.html"
+  ],
+  "mobile_home_15_to_20x": [
+   "https://www.weather.gov/media/wrn/Mobile-Home-Safety-One-Pager-Final.pdf",
+   "https://www.weather.gov/jan/swpw_mhsafety"
+  ],
+  "basement_under_sturdy_away_from_windows": [
+   "https://origin-east-www-spc.woc.noaa.gov/faq/tornado/safety.html",
+   "https://www.cdc.gov/tornadoes/safety/stay-safe-during-a-tornado-safety.html",
+   "https://www.livescience.com/28269-tornado-safety-myths.html"
+  ],
+  "no_basement_small_interior_room_lowest_floor": [
+   "https://origin-east-www-spc.woc.noaa.gov/faq/tornado/safety.html",
+   "https://www.cdc.gov/tornadoes/safety/stay-safe-during-a-tornado-safety.html",
+   "https://stormaware.mo.gov/tornado-myths/"
+  ],
+  "as_many_walls_as_possible": [
+   "https://foxweather.com/learn/tornado-safety-protect-yourself-why-avoid-overpasses",
+   "https://www.weather.gov/oun/safety-overpass",
+   "https://www.accuweather.com/en/weather-news/6-life-threatening-tornado-myths-debunked/433830"
+  ],
+  "flying_debris_greatest_danger_cover_head": [
+   "https://origin-east-www-spc.woc.noaa.gov/faq/tornado/safety.html",
+   "https://www.weather.gov/oun/safety-overpass",
+   "https://foxweather.com/learn/tornado-safety-protect-yourself-why-avoid-overpasses"
+  ],
+  "about_300_mph_radar_bridge_creek_1999": [
+   "https://www.guinnessworldrecords.com/world-records/73283-fastest-wind-speed-not-surface-speed",
+   "https://www.weather.gov/oun/events-19990503",
+   "https://www.cbsnews.com/news/a-300-mph-monster/"
+  ],
+  "category_5_hurricane_157_mph": [
+   "https://www.nhc.noaa.gov/aboutsshws.php",
+   "https://www.weather.gov/mfl/saffirsimpson"
+  ]
+ },
+ "durs": [
+  2.493,
+  3.342,
+  4.528,
+  3.279,
+  4.895,
+  4.555,
+  5.79,
+  3.149,
+  5.423,
+  4.623,
+  5.71,
+  5.342,
+  2.913,
+  3.85,
+  5.63,
+  3.879,
+  3.764,
+  4.763,
+  4.031,
+  4.031
+ ]
+}
