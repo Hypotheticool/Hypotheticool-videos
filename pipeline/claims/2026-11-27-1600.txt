@@ -1,3 +1,4 @@
 format: story
 topic: The avalanche buried Kai: cast story (Nora, Kai, Leo) on a backcountry slope; 30-45 deg start zones; crown fracture; up to ~80 mph within seconds; 9 in 10 deadly avalanches set off by the victim or their group; side/tree/swim, hand up + air space; debris sets like concrete; <15 min for most; beacon-probe-shovel, rescue teams far slower; ~1 in 3 survive at 35 min; standalone, loops
 status: made 2026-11-27 ~2:50 AM ET; video videos/2026-11-27-the-avalanche-buried-kai.mp4 (86.9 s)
+scheduled: Metricool 2026-11-27 16:00 America/New_York (YouTube + Instagram), https://app.metricool.com/planner/calendar?blogId=8192121&openWithPostUuid=-5720006640485117973
