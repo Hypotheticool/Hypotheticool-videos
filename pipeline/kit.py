@@ -927,3 +927,152 @@ def talk(parts, f0, f1, amp=6):
     h = parts['head']; base = tuple(h.rotation_euler)
     for k, f in enumerate(range(f0, f1, 5)): h.rotation_euler = (base[0] + math.radians(amp * (k % 2)), base[1], base[2] + math.radians(amp * .5 * ((k + 1) % 2))); h.keyframe_insert('rotation_euler', frame=f)
     h.rotation_euler = base; h.keyframe_insert('rotation_euler', frame=f1)
+
+# ---------------------------------------------------------------- humpback whale (procedural, reusable)
+def _loft(name, ts, xs, hs_up, hs_lo, ws, zc, th0, th1, nseg=40, cap0=False, cap1=False):
+    """surface of elliptical cross-sections along X. ring k at x=xs[k]: y = w cos(th), z = zc + (h_up if sin>0 else h_lo) sin(th), th in [th0, th1]"""
+    import bmesh as _bm
+    me = bpy.data.meshes.new(name); bm = _bm.new(); rings = []
+    for k in range(len(ts)):
+        ring = []
+        for j in range(nseg + 1):
+            th = th0 + (th1 - th0) * j / nseg; s = math.sin(th); hz = hs_up[k] if s >= 0 else hs_lo[k]
+            ring.append(bm.verts.new((xs[k], ws[k] * math.cos(th), zc[k] + hz * s)))
+        rings.append(ring)
+    full = abs((th1 - th0) - 2 * math.pi) < 1e-6
+    for k in range(len(rings) - 1):
+        for j in range(nseg if not full else nseg):
+            a, b = rings[k][j], rings[k][j + 1]; c, d = rings[k + 1][j + 1], rings[k + 1][j]
+            if len({a, b, c, d}) == 4: bm.faces.new((a, b, c, d))
+    if full: _bm.ops.remove_doubles(bm, verts=bm.verts, dist=1e-5)
+    bm.to_mesh(me); bm.free(); ob = link(bpy.data.objects.new(name, me))
+    for p in ob.data.polygons: p.use_smooth = True
+    return ob
+
+def mat_whale_skin(name='whale_skin', top=(.025, .03, .036), belly=(.55, .57, .6), belly_z=-1.1, mottle=.5):
+    """humpback skin: near-black back, pale mottled belly/throat, fine wrinkles; uses object-local Z (normalized by the whale height)"""
+    m = bpy.data.materials.new(name); nt, N, L = nodes(m); o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled')
+    bs.inputs['Roughness'].default_value = .5; bs.inputs['Coat Weight'].default_value = .12; bs.inputs['Coat Roughness'].default_value = .3
+    tc = N.new('ShaderNodeTexCoord'); sep = N.new('ShaderNodeSeparateXYZ'); L.new(tc.outputs['Object'], sep.inputs[0])
+    nz = N.new('ShaderNodeTexNoise'); nz.inputs['Scale'].default_value = 2.2; nz.inputs['Detail'].default_value = 6; L.new(tc.outputs['Object'], nz.inputs[0])
+    ad = N.new('ShaderNodeMath'); ad.operation = 'MULTIPLY_ADD'; L.new(nz.outputs['Fac'], ad.inputs[0]); ad.inputs[1].default_value = mottle; L.new(sep.outputs['Z'], ad.inputs[2])
+    mr = N.new('ShaderNodeMapRange'); mr.inputs['From Min'].default_value = belly_z + mottle * .5 + .08; mr.inputs['From Max'].default_value = belly_z + mottle * .5 - .12
+    L.new(ad.outputs[0], mr.inputs[0])
+    mx = N.new('ShaderNodeMixRGB'); L.new(mr.outputs[0], mx.inputs['Fac']); mx.inputs[1].default_value = (*top, 1); mx.inputs[2].default_value = (*belly, 1)
+    L.new(mx.outputs[0], bs.inputs['Base Color'])
+    n2 = N.new('ShaderNodeTexNoise'); n2.inputs['Scale'].default_value = 40; n2.inputs['Detail'].default_value = 10; L.new(tc.outputs['Object'], n2.inputs[0])
+    bp = N.new('ShaderNodeBump'); bp.inputs['Strength'].default_value = .18; L.new(n2.outputs['Fac'], bp.inputs['Height']); L.new(bp.outputs[0], bs.inputs['Normal'])
+    L.new(bs.outputs[0], o.inputs[0]); return m
+
+def mat_pleats(name='whale_pleats', base=(.7, .7, .7), groove=(.12, .1, .1), stripes=26.0):
+    """ventral throat grooves: pale skin with dark longitudinal grooves (run chin to navel), stripes across local Y"""
+    m = bpy.data.materials.new(name); nt, N, L = nodes(m); o = N.new('ShaderNodeOutputMaterial'); bs = N.new('ShaderNodeBsdfPrincipled')
+    bs.inputs['Roughness'].default_value = .4; bs.inputs['Coat Weight'].default_value = .3
+    tc = N.new('ShaderNodeTexCoord'); wv = N.new('ShaderNodeTexWave'); wv.wave_type = 'BANDS'; wv.bands_direction = 'Y'
+    wv.inputs['Scale'].default_value = stripes; wv.inputs['Distortion'].default_value = 1.5; wv.inputs['Detail'].default_value = 2
+    L.new(tc.outputs['Object'], wv.inputs[0])
+    mr = N.new('ShaderNodeMapRange'); mr.inputs['From Min'].default_value = .75; mr.inputs['From Max'].default_value = .95; L.new(wv.outputs['Fac'], mr.inputs[0])
+    nz = N.new('ShaderNodeTexNoise'); nz.inputs['Scale'].default_value = 3; L.new(tc.outputs['Object'], nz.inputs[0])
+    m1 = N.new('ShaderNodeMixRGB'); L.new(nz.outputs['Fac'], m1.inputs['Fac']); m1.inputs[1].default_value = (*base, 1); m1.inputs[2].default_value = (base[0] * .55, base[1] * .55, base[2] * .58, 1)
+    mx = N.new('ShaderNodeMixRGB'); L.new(mr.outputs[0], mx.inputs['Fac']); L.new(m1.outputs[0], mx.inputs[1]); mx.inputs[2].default_value = (*groove, 1)
+    L.new(mx.outputs[0], bs.inputs['Base Color'])
+    bp = N.new('ShaderNodeBump'); bp.inputs['Strength'].default_value = .6; bp.invert = True; L.new(mr.outputs[0], bp.inputs['Height']); L.new(bp.outputs[0], bs.inputs['Normal'])
+    L.new(bs.outputs[0], o.inputs[0]); return m
+
+def humpback(length=14.0, gape_deg=0.0, pouch=0.0, name='humpback', seed=3, skin_top=(.025, .03, .036)):
+    """humpback whale (Megaptera novaeangliae) built to real proportions: body ~L, pectoral fins ~1/3 L with white undersides and
+    scalloped leading edges, knobby tubercles on the rostrum and lower jaw, small dorsal fin on a hump at ~2/3 back, wide flukes,
+    ventral throat grooves. gape_deg opens the lower jaw (lunge feeding, up to ~80 deg); pouch (0-1) balloons the throat with engulfed water.
+    The whale points along +X, centered at the origin. Returns (root, info) with info['mouth'] = mouth center (world)."""
+    import random as _r
+    rnd = _r.Random(seed); Lm = length
+    root = link(bpy.data.objects.new(name, None))
+    skin = mat_whale_skin(f'{name}_skin', top=skin_top); pleat = mat_pleats(f'{name}_pleats')
+    white = mat_principled(f'{name}_white', (.78, .8, .82), .4, coat=.3)
+    inner = mat_principled(f'{name}_mouth', (.32, .1, .1), .55); palate = mat_principled(f'{name}_palate', (.06, .05, .05), .6)
+    baleen = mat_principled(f'{name}_baleen', (.04, .035, .03), .7)
+    # profile keys: t from tail (0) to snout (1): (t, half-height, half-width)
+    K = [(0.0, .01, .006), (.06, .028, .012), (.14, .045, .026), (.24, .072, .055), (.36, .102, .09), (.48, .122, .112), (.6, .13, .118),
+         (.7, .124, .114), (.78, .11, .104), (.86, .088, .088), (.93, .06, .068), (.98, .03, .045), (1.0, .01, .028)]
+    def prof(t):
+        for (t0, h0, w0), (t1, h1, w1) in zip(K, K[1:]):
+            if t <= t1: u = (t - t0) / (t1 - t0); u = u * u * (3 - 2 * u); return h0 + (h1 - h0) * u, w0 + (w1 - w0) * u
+        return K[-1][1], K[-1][2]
+    TH = .72   # jaw hinge (corner of the mouth, just in front of the eye)
+    def xs_(t): return (t - .5) * Lm
+    def zc_(t): return Lm * (-.012 * max(0, (t - .6) / .4) ** 2)
+    def pouchf(t): return 1 + pouch * 1.3 * math.sin(math.pi * min(1, max(0, (t - .42) / (.96 - .42)))) ** .8
+    # rear body (closed ring)
+    tsb = [i / 60 * TH for i in range(61)]
+    hb = [prof(t)[0] * Lm for t in tsb]; wb = [prof(t)[1] * Lm for t in tsb]
+    body = _loft(f'{name}_body', tsb, [xs_(t) for t in tsb], hb, [h * (pouchf(t) if t > .42 else 1) for t, h in zip(tsb, hb)], wb, [zc_(t) for t in tsb], 0, 2 * math.pi, 48)
+    body.data.materials.append(skin); body.parent = root
+    # throat grooves on the rear belly (a slightly larger lower shell)
+    tsp = [t for t in tsb if t >= .44]
+    pl = _loft(f'{name}_pleats_rear', tsp, [xs_(t) for t in tsp], [0] * len(tsp), [prof(t)[0] * Lm * pouchf(t) * 1.006 for t in tsp], [prof(t)[1] * Lm * .93 for t in tsp], [zc_(t) for t in tsp], math.pi * 1.18, math.pi * 1.82, 24)
+    pl.data.materials.append(pleat); pl.parent = root
+    # cap the throat behind the hinge (dark gullet seen through an open mouth)
+    hx = xs_(TH); hz = zc_(TH)
+    # upper jaw (rostrum): top half + flat palate
+    tsu = [TH + i / 30 * (1 - TH) for i in range(31)]
+    hu = [prof(t)[0] * Lm * (.62 + .38 * (1 - (t - TH) / (1 - TH))) for t in tsu]; wu = [prof(t)[1] * Lm for t in tsu]
+    up = _loft(f'{name}_upper', tsu, [xs_(t) for t in tsu], hu, hu, wu, [zc_(t) for t in tsu], 0, math.pi, 32)
+    up.data.materials.append(skin); up.parent = root
+    sol = up.modifiers.new('sol', 'SOLIDIFY'); sol.thickness = Lm * .006; sol.material_offset = 1; up.data.materials.append(palate)
+    # lower jaw: bottom half (bowl), hinged at (hx, hz); grooves on its underside
+    tsl = tsu; hl = [prof(t)[0] * Lm * pouchf(t) for t in tsl]; wl = [prof(t)[1] * Lm * 1.02 for t in tsl]
+    jaw = link(bpy.data.objects.new(f'{name}_jawpivot', None), root); jaw.location = (hx, 0, hz)
+    lo = _loft(f'{name}_lower', tsl, [xs_(t) - hx for t in tsl], hl, hl, wl, [zc_(t) - hz for t in tsl], math.pi, 2 * math.pi, 32)
+    lo.data.materials.append(pleat); lo.parent = jaw
+    sol2 = lo.modifiers.new('sol', 'SOLIDIFY'); sol2.thickness = Lm * .006; sol2.material_offset = 1; lo.data.materials.append(inner)
+    # tongue (soft pink mound inside the lower jaw)
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=32, ring_count=16); tg = bpy.context.object; tg.parent = jaw
+    tg.location = (Lm * .1, 0, -prof(.8)[0] * Lm * pouchf(.8) * .55); tg.scale = (Lm * .1, Lm * .065, Lm * .03); tg.data.materials.append(inner); smooth(tg, 1)
+    jaw.rotation_euler = (0, math.radians(gape_deg), 0)
+    # gullet cap
+    bpy.ops.mesh.primitive_circle_add(vertices=48, fill_type='NGON', radius=1); cp = bpy.context.object; cp.parent = root
+    cp.location = (hx - Lm * .005, 0, hz); cp.rotation_euler = (0, math.radians(90), 0); cp.scale = (prof(TH)[0] * Lm * .98, prof(TH)[1] * Lm * .98, 1)
+    cp.data.materials.append(mat_principled(f'{name}_gullet', (.02, .008, .008), .8))
+    # baleen: dark fringed plates hanging from both sides of the upper jaw
+    for side in (-1, 1):
+        for i in range(34):
+            t = TH + .015 + (1 - TH - .05) * i / 33; ww = prof(t)[1] * Lm * .9; ln = prof(t)[0] * Lm * (.55 if gape_deg > 5 else .3)
+            bpy.ops.mesh.primitive_cube_add(size=1); b = bpy.context.object; b.parent = root
+            b.location = (xs_(t), side * ww, zc_(t) - ln * .5); b.scale = (Lm * .006, Lm * .004, ln); b.rotation_euler = (side * .12, 0, 0)
+            b.data.materials.append(baleen)
+    # tubercles (knobs) on the rostrum and the chin
+    tub = mat_principled(f'{name}_tub', tuple(v * 1.2 for v in skin_top), .55)
+    for i in range(46):
+        t = TH + .04 + (1 - TH - .06) * rnd.random(); h_, w_ = prof(t); th = math.radians(rnd.uniform(25, 155))
+        r = Lm * rnd.uniform(.004, .007); bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=8, radius=r); k = bpy.context.object; k.parent = root
+        hh = h_ * Lm * (.62 + .38 * (1 - (t - TH) / (1 - TH))); k.location = (xs_(t), w_ * Lm * math.cos(th), zc_(t) + hh * math.sin(th)); k.data.materials.append(tub)
+    for i in range(10):   # knobs on the chin tip (move with the jaw)
+        t = .93 + .06 * rnd.random(); th = math.radians(rnd.uniform(220, 320)); h_, w_ = prof(t)
+        bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=8, radius=Lm * .006); k = bpy.context.object; k.parent = jaw
+        k.location = (xs_(t) - hx, w_ * Lm * math.cos(th), zc_(t) - hz + h_ * Lm * pouchf(t) * math.sin(th)); k.data.materials.append(tub)
+    # pectoral fins: ~1/3 of body length, mostly white, bumpy leading edge, swept back and down
+    for side in (-1, 1):
+        piv = link(bpy.data.objects.new(f'{name}_fin{side}', None), root); piv.location = (xs_(.66), side * prof(.66)[1] * Lm * .8, zc_(.66) - prof(.66)[0] * Lm * .45)
+        fl = Lm * .32
+        bpy.ops.mesh.primitive_uv_sphere_add(segments=48, ring_count=24); f = bpy.context.object; f.parent = piv
+        f.scale = (Lm * .035, fl / 2, Lm * .007); f.location = (0, side * fl / 2, 0); f.data.materials.append(white); smooth(f, 1)
+        for j in range(9):   # scalloped bumps along the leading edge
+            yy = fl * (.12 + .8 * j / 8); bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=8, radius=Lm * .0065 * (1 - .4 * j / 8))
+            b = bpy.context.object; b.parent = piv; b.location = (Lm * .033 * math.sqrt(max(0, 1 - ((yy - fl / 2) / (fl / 2)) ** 2)), side * yy, 0); b.data.materials.append(white)
+        piv.rotation_euler = (side * math.radians(-28), math.radians(8), side * math.radians(-38))
+    # dorsal fin on a hump
+    bpy.ops.mesh.primitive_cone_add(vertices=32, radius1=Lm * .03, depth=Lm * .035); d = bpy.context.object; d.parent = root
+    d.location = (xs_(.33), 0, zc_(.33) + prof(.33)[0] * Lm * .95); d.scale = (1.6, .35, 1); d.rotation_euler = (0, math.radians(-35), 0); d.data.materials.append(skin); smooth(d, 1)
+    # flukes: two swept lobes, white-patterned underside (dark top)
+    for side in (-1, 1):
+        bpy.ops.mesh.primitive_uv_sphere_add(segments=40, ring_count=20); fk = bpy.context.object; fk.parent = root
+        fk.scale = (Lm * .045, Lm * .14, Lm * .006); fk.location = (xs_(.01) - Lm * .02, side * Lm * .12, zc_(0)); fk.rotation_euler = (0, 0, side * math.radians(-28))
+        fk.data.materials.append(skin); smooth(fk, 1)
+    # eye
+    for side in (-1, 1):
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=Lm * .006); e = bpy.context.object; e.parent = root
+        e.location = (xs_(TH - .015), side * prof(TH)[1] * Lm * .99, zc_(TH) - prof(TH)[0] * Lm * .15); e.data.materials.append(mat_principled(f'{name}_eye', (.01, .01, .01), .1, coat=1))
+    for o in (body, pl, up, lo): smooth(o, 1)
+    bpy.context.view_layer.update()
+    mouth = root.matrix_world @ Vector((xs_(.88), 0, zc_(.88)))
+    return root, {'mouth': mouth, 'hinge': (hx, hz), 'jaw': jaw}

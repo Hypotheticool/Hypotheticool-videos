@@ -1,0 +1,151 @@
+{
+ "slug": "wyr-whale-or-quicksand",
+ "title": "Would you rather get gulped by a whale, or stuck in quicksand?",
+ "format": "would-you-rather",
+ "root": "/home/claude/b3d/whale",
+ "lines": [
+  "This diver survived a whale's mouth.",
+  "Would you rather get gulped by a whale, or stuck in quicksand?",
+  "Pick one right now, and comment A or B. Think fast.",
+  "Option [A](eh): the whale. A humpback can grow longer than a school bus.",
+  "It feeds by lunging, gulping over five thousand gallons at once.",
+  "Cape Cod, [2021](twenty twenty-one). Diver Michael Packard is forty-five feet down.",
+  "Suddenly, a huge bump. And everything goes dark.",
+  "His first thought: Oh my God, I'm in a whale's mouth.",
+  "But a humpback's throat is only about the size of your fist.",
+  "Stretched, it's about fifteen inches. You won't fit.",
+  "After about thirty seconds, it surfaced and spat him out.",
+  "He was badly bruised, but no broken bones.",
+  "Option B: quicksand. Sand so soaked with water, it acts like a liquid.",
+  "Step on it, and it turns runny. Your legs sink in.",
+  "But quicksand is about twice as dense as your body. So you float.",
+  "You'd sink to about your waist, and no deeper.",
+  "Scientists say yanking a foot out takes the force of lifting a car.",
+  "So the real danger is the tide rolling in while you're stuck.",
+  "To escape, lean back, spread out, and wiggle your legs slowly.",
+  "In [2025](twenty twenty-five), a humpback in Chile gulped a kayaker. Seconds later, he popped up.",
+  "By the science, option [A](eh) wins: the whale. Both times, it let go in under a [minute](minnit).",
+  "A tiny throat is the reason"
+ ],
+ "hl": [
+  "diver",
+  "whale's",
+  "whale",
+  "quicksand",
+  "A",
+  "B",
+  "fast",
+  "humpback",
+  "bus",
+  "five",
+  "thousand",
+  "gallons",
+  "2021",
+  "forty-five",
+  "bump",
+  "dark",
+  "mouth",
+  "fist",
+  "fifteen",
+  "fit",
+  "thirty",
+  "spat",
+  "bruised",
+  "liquid",
+  "runny",
+  "sink",
+  "twice",
+  "float",
+  "waist",
+  "car",
+  "tide",
+  "stuck",
+  "wiggle",
+  "slowly",
+  "2025",
+  "kayaker",
+  "Seconds",
+  "wins",
+  "minute",
+  "tiny",
+  "reason"
+ ],
+ "sources": {
+  "humpback_longer_than_school_bus_49-60ft": [
+   "https://www.fisheries.noaa.gov/species/humpback-whale",
+   "https://www.nationalgeographic.com/animals/mammals/facts/humpback-whale",
+   "https://www.mass.gov/info-details/humpback-whale"
+  ],
+  "lunge_feeding_5000_gal_per_gulp": [
+   "https://www.livescience.com/animals/whales/i-thought-i-was-dead-terrifying-video-of-humpback-whale-gobbling-up-kayaker-explained",
+   "https://www.npr.org/2021/06/12/1005918788/humpback-whale-swallowed-lobster-diver-cape-cod-michael-packard",
+   "https://www.smithsonianmag.com/smart-news/cape-cod-lobster-diver-was-swallowed-whale-and-then-spat-back-out-180977998/"
+  ],
+  "packard_june_11_2021_provincetown_45ft_bump_dark_quote": [
+   "https://www.npr.org/2021/06/12/1005918788/humpback-whale-swallowed-lobster-diver-cape-cod-michael-packard",
+   "https://www.smithsonianmag.com/smart-news/cape-cod-lobster-diver-was-swallowed-whale-and-then-spat-back-out-180977998/",
+   "https://www.nationalgeographic.com/animals/article/most-whales-cant-really-swallow-a-human-heres-why"
+  ],
+  "throat_fist_size_stretch_15in": [
+   "https://www.nationalgeographic.com/animals/article/most-whales-cant-really-swallow-a-human-heres-why",
+   "https://www.npr.org/2025/02/14/nx-s1-5297762/whale-swallows-kayaker-video-explained"
+  ],
+  "30-40s_spat_out_bruised_no_broken_bones": [
+   "https://www.npr.org/2021/06/12/1005918788/humpback-whale-swallowed-lobster-diver-cape-cod-michael-packard",
+   "https://www.smithsonianmag.com/smart-news/cape-cod-lobster-diver-was-swallowed-whale-and-then-spat-back-out-180977998/"
+  ],
+  "quicksand_saturated_sand_liquefies_under_stress": [
+   "https://www.nature.com/news/2005/050926/full/news050926-9.html",
+   "https://en.wikipedia.org/wiki/Quicksand",
+   "https://www.nationalgeographic.com/science/article/quicksand-science-why-it-traps-how-to-escape/"
+  ],
+  "density_2_vs_1_float_waist_deep": [
+   "https://www.nationalgeographic.com/science/article/quicksand-science-why-it-traps-how-to-escape/",
+   "https://www.livescience.com/9373-quicksand-myth-debunked-float-free.html",
+   "https://www.sciencefocus.com/news/simple-trick-to-escape-quicksand"
+  ],
+  "pull_foot_force_of_lifting_a_car": [
+   "https://www.nature.com/news/2005/050926/full/news050926-9.html",
+   "https://www.nationalgeographic.com/science/article/quicksand-science-why-it-traps-how-to-escape/"
+  ],
+  "real_danger_tide": [
+   "https://www.nature.com/news/2005/050926/full/news050926-9.html",
+   "https://www.sciencefocus.com/news/simple-trick-to-escape-quicksand",
+   "https://en.wikipedia.org/wiki/Quicksand"
+  ],
+  "escape_lean_back_wiggle_slowly": [
+   "https://www.livescience.com/9373-quicksand-myth-debunked-float-free.html",
+   "https://www.nationalgeographic.com/science/article/quicksand-science-why-it-traps-how-to-escape/",
+   "https://www.sciencefocus.com/news/simple-trick-to-escape-quicksand"
+  ],
+  "simancas_chile_feb_2025_seconds": [
+   "https://www.npr.org/2025/02/14/nx-s1-5297762/whale-swallows-kayaker-video-explained",
+   "https://www.livescience.com/animals/whales/i-thought-i-was-dead-terrifying-video-of-humpback-whale-gobbling-up-kayaker-explained",
+   "https://www.cbsnews.com/news/whale-swallows-kayaker-video-i-thought-i-was-dead"
+  ]
+ },
+ "durs": [
+  2.4,
+  3.833,
+  3.899,
+  4.507,
+  4.615,
+  5.411,
+  3.469,
+  3.496,
+  3.942,
+  3.272,
+  3.952,
+  3.086,
+  5.12,
+  3.654,
+  4.47,
+  2.996,
+  4.492,
+  4.061,
+  3.978,
+  6.199,
+  5.645,
+  2.353
+ ]
+}
