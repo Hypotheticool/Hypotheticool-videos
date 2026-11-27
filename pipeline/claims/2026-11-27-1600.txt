@@ -1,2 +1,3 @@
 format: story
-topic: The avalanche took Leo: cast story (Nora, Kai, Leo) on a backcountry slope; dry slab 60-80 mph in ~5 s; 90% triggered by the victim or their party; grab a tree / swim / air space / hand up; debris sets like concrete; ~15 min before most suffocate; companions beacon-probe-shovel because organized rescue takes far longer; ~23 US deaths per winter; standalone, loops
+topic: The avalanche buried Kai: cast story (Nora, Kai, Leo) on a backcountry slope; 30-45 deg start zones; crown fracture; up to ~80 mph within seconds; 9 in 10 deadly avalanches set off by the victim or their group; side/tree/swim, hand up + air space; debris sets like concrete; <15 min for most; beacon-probe-shovel, rescue teams far slower; ~1 in 3 survive at 35 min; standalone, loops
+status: made 2026-11-27 ~2:50 AM ET; video videos/2026-11-27-the-avalanche-buried-kai.mp4 (86.9 s)

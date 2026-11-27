@@ -1,0 +1,186 @@
+{
+ "slug": "2026-11-27-the-avalanche-buried-kai",
+ "title": "The avalanche buried Kai \ud83c\udfd4\ufe0f",
+ "format": "story",
+ "series": "2026-11-27-the-avalanche-buried-kai",
+ "part": 1,
+ "cliffhanger": false,
+ "cast": [
+  "kai",
+  "leo",
+  "nora"
+ ],
+ "root": "/home/claude/b3d/aval",
+ "lines": [
+  "The mountain fell on Kai.",
+  "Fresh snow. Deep backcountry. Nora, Leo and Kai.",
+  "@am_echo: \"Guys... is this slope safe?\"",
+  "@am_michael: \"Relax. It's just snow.\"",
+  "Most avalanches start on slopes of thirty to forty-five degrees. Like this one.",
+  "Crack. The whole slab of snow broke loose under Kai's skis.",
+  "Within seconds, a slab avalanche can hit about eighty miles an hour.",
+  "Nine out of ten deadly avalanches are set off by the victim, or their own group.",
+  "@af_nova: \"Kai! Grab a tree! Swim!\"",
+  "Caught? Get to the side, grab a tree, or swim hard to stay up.",
+  "As it slows, push a hand up, and clear a space in front of your mouth.",
+  "Then it stops. And the snow sets up almost like concrete.",
+  "@am_echo: \"I'll go get help!\"",
+  "@af_nova: \"No! We're his only chance!\"",
+  "Most buried people die from lack of air, and most have less than fifteen minutes.",
+  "A rescue team can't get there that fast. So his friends have to.",
+  "Everyone's beacon sends a signal. Nora switches hers to search.",
+  "@af_nova: \"Signal! He's [close](klohss)!\"",
+  "A long probe finds him, about three feet down.",
+  "Then the slowest part. Digging.",
+  "A hand. A face. The space he cleared kept him breathing.",
+  "Dug out within ten minutes or so, most survive. By thirty-five minutes, only about one in three.",
+  "@am_echo: \"Still think it's just snow? Not after...\""
+ ],
+ "hl": [
+  "mountain",
+  "Kai",
+  "snow",
+  "steep",
+  "resort",
+  "safe",
+  "Relax",
+  "thirty",
+  "forty-five",
+  "thirty-eight",
+  "Crack",
+  "slab",
+  "skis",
+  "seconds",
+  "eighty",
+  "miles",
+  "nine",
+  "ten",
+  "victim",
+  "group",
+  "tree",
+  "Swim",
+  "side",
+  "top",
+  "hand",
+  "mouth",
+  "stops",
+  "concrete",
+  "help",
+  "No",
+  "chance",
+  "air",
+  "fifteen",
+  "minutes",
+  "rescue",
+  "fast",
+  "friends",
+  "beacon",
+  "signal",
+  "search",
+  "close",
+  "probe",
+  "three",
+  "feet",
+  "slowest",
+  "Digging",
+  "face",
+  "breathing",
+  "survive",
+  "one"
+ ],
+ "sources": {
+  "characters, the slope, the dialogue, the 38-degree reading, Kai's burial depth and his rescue are fiction; the avalanche facts are real": [],
+  "most avalanches start on slopes of 30-45 degrees": [
+   "https://avalanche.ca/glossary/terms/slope-angle",
+   "https://www.rei.com/learn/expert-advice/avalanche-reducing-risk.html",
+   "https://avalanche.org/avalanche-encyclopedia/terrain/slope-characteristics/slope-angle/ (30-50 for slabs)",
+   "https://en.wikipedia.org/wiki/Avalanche"
+  ],
+  "a slab breaks loose along fractures (crown fracture at the top)": [
+   "https://en.wikipedia.org/wiki/Avalanche",
+   "https://avalanche.ca/glossary/terms/slope-angle",
+   "https://utahavalanchecenter.org/faq"
+  ],
+  "within seconds a slab avalanche can reach ~80 mph (dry slabs 60-80 mph within ~5 s; up to 80 mph; up to 100 mph, as fast as cars on a freeway)": [
+   "https://utahavalanchecenter.org/faq",
+   "https://www.rei.com/learn/expert-advice/avalanche-reducing-risk.html",
+   "https://www.nationalgeographic.com/environment/article/avalanches"
+  ],
+  "9 in 10 avalanche fatalities triggered by the victim or someone in their party": [
+   "https://utahavalanchecenter.org/faq",
+   "https://www.nationalgeographic.com/environment/article/avalanches"
+  ],
+  "if caught: get off the slab / to the side, grab a tree, swim hard": [
+   "https://utahavalanchecenter.org/faq",
+   "https://www.nationalgeographic.com/environment/article/avalanches"
+  ],
+  "as it slows: push a hand up, clear an air space in front of your mouth": [
+   "https://utahavalanchecenter.org/faq",
+   "https://www.nationalgeographic.com/environment/article/avalanches",
+   "https://www.sierraavalanchecenter.org/blog/companion-rescue"
+  ],
+  "debris sets up like concrete, movement nearly impossible": [
+   "https://utahavalanchecenter.org/faq",
+   "https://www.nationalgeographic.com/environment/article/avalanches"
+  ],
+  "don't leave to get help; companions are the victim's best chance": [
+   "https://utahavalanchecenter.org/faq",
+   "https://avalanche.org/avalanche-encyclopedia/human/companion-rescue/",
+   "https://eurac.edu/en/magazine/avalanches-percentage-of-survivors-up-by-ten-percent-since-1994"
+  ],
+  "most buried victims die of asphyxia; most have less than 15 minutes": [
+   "https://avalanche.org/avalanche-encyclopedia/human/companion-rescue/",
+   "https://www.slf.ch/en/avalanches/avalanches-and-avalanche-accidents/long-term-statistics/",
+   "https://pmc.ncbi.nlm.nih.gov/articles/PMC3080528"
+  ],
+  "organized rescue takes far longer (avg 90 min now vs ~10 min with companions)": [
+   "https://eurac.edu/en/magazine/avalanches-percentage-of-survivors-up-by-ten-percent-since-1994",
+   "https://avalanche.org/avalanche-encyclopedia/human/companion-rescue/",
+   "https://utahavalanchecenter.org/faq"
+  ],
+  "beacons transmit by default; rescuers switch to search mode": [
+   "https://www.rei.com/learn/expert-advice/avalanche-transceiver.html",
+   "https://www.sierraavalanchecenter.org/blog/companion-rescue",
+   "https://avalanche.org/avalanche-encyclopedia/human/companion-rescue/"
+  ],
+  "probe pinpoints location and depth; digging/shoveling is the most demanding, time-consuming phase": [
+   "https://avalanche.org/avalanche-encyclopedia/human/companion-rescue/probing/",
+   "https://avalanche.org/avalanche-encyclopedia/human/companion-rescue/strategic-shoveling/",
+   "https://www.sierraavalanchecenter.org/blog/companion-rescue"
+  ],
+  "survival: high (>~90% Swiss, ~77-90% Canada) if dug out within ~10 min; ~1 in 3 (34%) by 35 min; Utah: 93% within 15 min, 20-30% after 45 min": [
+   "https://pmc.ncbi.nlm.nih.gov/articles/PMC3080528",
+   "https://eurac.edu/en/magazine/avalanches-percentage-of-survivors-up-by-ten-percent-since-1994",
+   "https://utahavalanchecenter.org/faq"
+  ],
+  "on-screen comparison: ~80 mph = highway speed": [
+   "https://www.nationalgeographic.com/environment/article/avalanches",
+   "https://utahavalanchecenter.org/faq"
+  ]
+ },
+ "durs": [
+  1.921,
+  3.774,
+  2.82,
+  2.451,
+  5.769,
+  3.9,
+  4.612,
+  5.712,
+  2.568,
+  4.172,
+  4.364,
+  3.951,
+  2.14,
+  2.706,
+  5.168,
+  4.316,
+  4.424,
+  2.37,
+  3.262,
+  2.495,
+  3.768,
+  6.713,
+  3.547
+ ]
+}
