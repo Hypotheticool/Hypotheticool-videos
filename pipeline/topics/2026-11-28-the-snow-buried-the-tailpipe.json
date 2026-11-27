@@ -1,0 +1,183 @@
+{
+ "slug": "2026-11-28-the-snow-buried-the-tailpipe",
+ "title": "The snow buried their tailpipe \u2744\ufe0f\ud83d\ude97",
+ "format": "story",
+ "series": "2026-11-28-the-snow-buried-the-tailpipe",
+ "part": 1,
+ "cliffhanger": false,
+ "cast": [
+  "kai",
+  "leo"
+ ],
+ "root": "/home/claude/b3d/coc",
+ "lines": [
+  "The warm car was the trap.",
+  "A blizzard. Kai and Leo are stuck on the highway, snow piling up.",
+  "@am_echo: \"It's freezing. Keep the heater on all night!\"",
+  "But snow is drifting over the back of the car. Over the tailpipe.",
+  "With nowhere to go, the exhaust builds up inside the car.",
+  "It carries carbon monoxide. No color. No smell.",
+  "In one fire department test, the alarm went off in under ninety seconds.",
+  "@am_echo: \"Why do I have a headache?\"",
+  "Headache. Dizziness. Confusion. Then sleepiness.",
+  "Carbon monoxide grabs your blood over two hundred times more easily than oxygen.",
+  "So your body starves for oxygen, even as you breathe.",
+  "@am_echo: \"I'm just gonna [close](cloze) my eyes.\"",
+  "People who fall asleep can die before they ever feel the symptoms.",
+  "@am_michael: \"Leo! Wake up! Engine off!\"",
+  "Kai shuts off the engine, opens a window, and digs out the tailpipe.",
+  "If you're stranded, stay with your car. Run the engine only about ten minutes an hour.",
+  "Clear the exhaust pipe first. A cracked window helps, but it's not enough alone.",
+  "@am_echo: \"So the heater almost got us?\"",
+  "It's real. In the Blizzard of seventy-eight, about thirty-five hundred cars and trucks got stuck near Boston.",
+  "Some kept their engines running as snow buried their tailpipes, and died of carbon monoxide.",
+  "@am_michael: \"Clear the tailpipe, Leo. Every time. Because sometimes...\""
+ ],
+ "hl": [
+  "warm",
+  "trap",
+  "blizzard",
+  "stuck",
+  "highway",
+  "snow",
+  "freezing",
+  "heater",
+  "night",
+  "tailpipe",
+  "exhaust",
+  "nowhere",
+  "inside",
+  "carbon",
+  "monoxide",
+  "color",
+  "smell",
+  "test",
+  "alarm",
+  "minute",
+  "half",
+  "headache",
+  "Dizziness",
+  "Confusion",
+  "sleepiness",
+  "blood",
+  "two",
+  "hundred",
+  "oxygen",
+  "short",
+  "breathe",
+  "eyes",
+  "asleep",
+  "die",
+  "symptoms",
+  "Wake",
+  "off",
+  "engine",
+  "window",
+  "digs",
+  "National",
+  "Weather",
+  "stay",
+  "ten",
+  "hour",
+  "heat",
+  "Clear",
+  "pipe",
+  "little",
+  "alone",
+  "enough",
+  "clear",
+  "real",
+  "nineteen",
+  "seventy-eight",
+  "thousand",
+  "Boston",
+  "running",
+  "buried",
+  "died",
+  "snowbound",
+  "Every",
+  "ninety",
+  "seconds",
+  "starves",
+  "Service",
+  "helps",
+  "thirty-five",
+  "seventy-eight"
+ ],
+ "sources": {
+  "characters, the highway, the heater line and the dialogue are fiction; the carbon monoxide facts and the 1978 blizzard are real": [],
+  "snow blocking the tailpipe lets exhaust / carbon monoxide build up inside the vehicle, quickly": [
+   "https://www.cdc.gov/natural-disasters/psa-toolkit/clear-snow-from-tailpipes.html",
+   "https://bmcemergmed.biomedcentral.com/articles/10.1186/1471-227X-4-4",
+   "https://abc7ny.com/health/how-fast-do-vehicles-fill-up-with-carbon-monoxide-with-snow-clogged-tailpipes/1176315/",
+   "https://archive.cdc.gov/www_cdc_gov/media/pressrel/carbonm.htm"
+  ],
+  "carbon monoxide is colorless and odorless": [
+   "https://www.cdc.gov/natural-disasters/psa-toolkit/clear-snow-from-tailpipes.html",
+   "https://archive.cdc.gov/www_cdc_gov/media/pressrel/carbonm.htm",
+   "https://www.pbs.org/newshour/health/what-to-know-about-the-risks-of-carbon-monoxide-poisoning-after-college-students-death"
+  ],
+  "Maplewood NJ Fire Department test (2016): alarm at 90 ppm after 1 min 24 s in a snow-blocked running car": [
+   "https://abc7ny.com/health/how-fast-do-vehicles-fill-up-with-carbon-monoxide-with-snow-clogged-tailpipes/1176315/",
+   "https://www.snopes.com/fact-check/carbon-monoxide-snowed-in-car/"
+  ],
+  "symptoms: headache, dizziness, confusion, drowsiness, then unconsciousness": [
+   "https://www.cdc.gov/carbon-monoxide/about/index.html",
+   "https://www.pbs.org/newshour/health/what-to-know-about-the-risks-of-carbon-monoxide-poisoning-after-college-students-death",
+   "https://archive.cdc.gov/www_cdc_gov/media/pressrel/carbonm.htm"
+  ],
+  "CO binds hemoglobin over 200x more strongly than oxygen (ATSDR: over 200 times; UKHSA: 245-fold)": [
+   "https://www.atsdr.cdc.gov/ToxProfiles/tp201-c2.pdf",
+   "https://www.gov.uk/government/publications/carbon-monoxide-properties-incident-management-and-toxicology/carbon-monoxide-toxicological-overview"
+  ],
+  "CO reduces the blood's ability to carry oxygen to the organs": [
+   "https://www.pbs.org/newshour/health/what-to-know-about-the-risks-of-carbon-monoxide-poisoning-after-college-students-death",
+   "https://www.atsdr.cdc.gov/ToxProfiles/tp201-c2.pdf"
+  ],
+  "people who are sleeping can die before they have symptoms; high CO can make you unable to act / unconscious": [
+   "https://www.cdc.gov/carbon-monoxide/about/index.html",
+   "https://abc7ny.com/health/how-fast-do-vehicles-fill-up-with-carbon-monoxide-with-snow-clogged-tailpipes/1176315/"
+  ],
+  "if stranded: stay in the vehicle, run the motor ~10 minutes each hour for heat, clear snow from the exhaust pipe, open a window a little while running": [
+   "https://www.weather.gov/media/twc/WinterSafety-OnePager-2-27-19.pdf",
+   "https://www.mass.gov/info-details/in-case-you-are-stranded-while-driving-in-the-winter",
+   "https://www.maine.gov/mema/hazards/natural-hazards/severe-winter-storms/stranded-with-car"
+  ],
+  "opening a window alone was not enough; the tailpipe must be cleared (lethal CO in 5 min with windows open 1 inch)": [
+   "https://bmcemergmed.biomedcentral.com/articles/10.1186/1471-227X-4-4",
+   "https://www.cdc.gov/mmWR/preview/mmwrhtml/00001214.htm"
+  ],
+  "Blizzard of 1978: ~3,500 vehicles stranded on Route 128 near Boston (NWS: 3,500 cars; PBS/AP: about 3,000 cars and 500 trucks)": [
+   "https://www.weather.gov/media/box/science/Blizzard_of_1978.pdf",
+   "https://www.pbs.org/newshour/health/what-to-know-about-the-risks-of-carbon-monoxide-poisoning-after-college-students-death"
+  ],
+  "1978: people died of CO in snowbound cars after snow blocked their exhaust pipes (MMWR: 5 in eastern MA; NEHS/PBS: 14)": [
+   "https://www.cdc.gov/mmWR/preview/mmwrhtml/00001214.htm",
+   "https://newenglandhistoricalsociety.com/the-blizzard-of-78/",
+   "https://www.pbs.org/newshour/health/what-to-know-about-the-risks-of-carbon-monoxide-poisoning-after-college-students-death"
+  ]
+ },
+ "durs": [
+  1.956,
+  4.319,
+  3.473,
+  4.196,
+  3.995,
+  3.754,
+  4.854,
+  2.43,
+  3.179,
+  5.761,
+  3.953,
+  2.965,
+  4.466,
+  2.732,
+  4.671,
+  5.589,
+  5.291,
+  2.779,
+  6.988,
+  6.294,
+  4.487
+ ]
+}
