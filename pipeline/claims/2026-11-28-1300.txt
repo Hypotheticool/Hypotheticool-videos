@@ -1,2 +1,2 @@
 format: story
-topic: TBD (market research)
+topic: Their Christmas tree went up in seconds: cast story (Kai, Mia, Leo); unwatered tree up since Thanksgiving; lights/wiring in 2 in 5+ tree fires (NFPA); watered tree resists a flame, dry tree fully ablaze <30 s (NIST, WPI); flashover ~63 s (WPI); 1,000+ F; 17 min to escape 30 yrs ago vs ~3 today (UL); smoke kills most; closed door <100 F vs 1,000+ F (UL FSRI); >1/3 of tree fires in January (NFPA); water daily, 3 ft from heat, lights off; loops
