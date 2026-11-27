@@ -1,0 +1,179 @@
+{
+ "slug": "2026-11-28-their-christmas-tree-went-up-in-seconds",
+ "title": "Their Christmas tree went up in seconds 🎄🔥",
+ "format": "story",
+ "series": "2026-11-28-their-christmas-tree-went-up-in-seconds",
+ "part": 1,
+ "cliffhanger": false,
+ "cast": [
+  "kai",
+  "mia",
+  "leo"
+ ],
+ "root": "/home/claude/b3d/xtree",
+ "lines": [
+  "Their Christmas tree went up in seconds.",
+  "It had been up since Thanksgiving. Nobody had watered it in weeks.",
+  "@af_heart: \"Kai, the lights are smoking!\"",
+  "Lights and wiring play a part in more than two in five tree fires.",
+  "A watered tree can shrug off a small flame. A dry one can't.",
+  "In fire lab tests, dry trees were fully ablaze in under thirty seconds.",
+  "@am_michael: \"Leave it! Everybody out, now!\"",
+  "In about a [minute](minnit), the room can flash over. Everything in it bursts into flame.",
+  "At the ceiling, it can top a thousand degrees. About twice as hot as an oven.",
+  "Thirty years ago, families had about seventeen minutes to escape a house fire.",
+  "Today, with modern furniture, it can be closer to three.",
+  "@af_heart: \"Wait. Where's Leo?\"",
+  "Leo was upstairs, asleep, and the smoke was rising fast.",
+  "In house fires, smoke kills more people than the flames do.",
+  "But Leo had done one thing right. He had shut his bedroom door.",
+  "In tests, closed rooms stayed under a hundred degrees. Open ones passed a thousand.",
+  "The smoke alarm woke him. Firefighters got him out his window.",
+  "@am_echo: \"I'm okay! The door saved me!\"",
+  "Here's the twist. More than a third of Christmas tree fires happen in January.",
+  "By then, a lot of trees are bone dry.",
+  "So water it every day, keep it three feet from heat, and turn the lights off at night.",
+  "Skip that, and this is how fast it goes."
+ ],
+ "hl": [
+  "Christmas",
+  "tree",
+  "seconds",
+  "Thanksgiving",
+  "watered",
+  "weeks",
+  "lights",
+  "smoking",
+  "wiring",
+  "two",
+  "five",
+  "watered",
+  "small",
+  "flame",
+  "dry",
+  "lab",
+  "thirty",
+  "ablaze",
+  "Leave",
+  "out",
+  "minute",
+  "flashover",
+  "everything",
+  "once",
+  "ceiling",
+  "thousand",
+  "twice",
+  "oven",
+  "Thirty",
+  "seventeen",
+  "escape",
+  "modern",
+  "three",
+  "Leo",
+  "upstairs",
+  "asleep",
+  "smoke",
+  "kills",
+  "flames",
+  "right",
+  "shut",
+  "door",
+  "closed",
+  "hundred",
+  "Open",
+  "alarm",
+  "firefighters",
+  "window",
+  "okay",
+  "saved",
+  "twist",
+  "third",
+  "January",
+  "bone",
+  "every",
+  "day",
+  "feet",
+  "heat",
+  "off",
+  "night",
+  "fast",
+  "flash",
+  "top",
+  "rising",
+  "ceiling"
+ ],
+ "sources": {
+  "characters, the house, the dialogue and Leo's rescue are fiction; the fire facts are real": [],
+  "lights/electrical distribution or lighting equipment involved in more than two in five home Christmas tree fires (NFPA); NC OSFM: electrical problems nearly half": [
+   "https://www.prweb.com/releases/december-is-leading-month-for-us-home-fires-nfpa-offers-safety-tips-302327000.html",
+   "https://www.ncosfm.gov/injury-prevention/fire-prevention-education/christmas-trees"
+  ],
+  "a well-watered tree resists ignition (flame dies / a single match could not ignite it); dry needles ignite readily": [
+   "https://www.nist.gov/news-events/news/2010/12/fiery-video-shows-moisture-main-ingredient-safe-christmas-tree",
+   "https://www.nist.gov/el/fire-research-division-73300/firegov-fire-service/video-fire-safety-holidays"
+  ],
+  "dry trees fully ablaze in under 30 s in lab tests (NIST: dry Scotch pine fully involved in <9 s; WPI: branches fully engulfed within 25 s)": [
+   "https://www.nist.gov/el/fire-research-division-73300/firegov-fire-service/video-fire-safety-holidays",
+   "https://www.wpi.edu/news/seasonal-safety-wpi-fire-protection-engineering-researchers-show-dangers-dry-and-neglected"
+  ],
+  "flashover in about a minute (WPI: 63 s); NIST: dry trees can cause flashover in residential rooms; flashover = simultaneous ignition of exposed combustibles": [
+   "https://www.wpi.edu/news/seasonal-safety-wpi-fire-protection-engineering-researchers-show-dangers-dry-and-neglected",
+   "https://www.nist.gov/el/fire-research-division-73300/firegov-fire-service/video-fire-safety-holidays"
+  ],
+  "a room can pass 1,000 F (FSRI: open-door rooms 1000+ F; >1,000 F in three minutes or less); home ovens top out around 500-550 F": [
+   "https://fsri.org/programs/close-before-you-doze",
+   "https://fsri.org/news/new-video-series-fire-safety-research-institute-shows-dangers-smoke-speed-home-fire-spread",
+   "https://www.nar.realtor/news/wellness/safety/house-fire-causes-and-prevention"
+  ],
+  "about 17 minutes to escape ~30 years ago vs about 3 (to 4) minutes today, UL research; modern furniture burns faster": [
+   "https://www.news4jax.com/consumer/you-have-less-time-to-get-out-of-a-burning-home",
+   "https://www.today.com/home/newer-homes-furniture-burn-faster-giving-you-less-time-escape-t65826",
+   "https://www.nar.realtor/news/wellness/safety/house-fire-causes-and-prevention"
+  ],
+  "smoke inhalation is the leading cause of death in home fires": [
+   "https://fsri.org/news/new-video-series-fire-safety-research-institute-shows-dangers-smoke-speed-home-fire-spread",
+   "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/"
+  ],
+  "closed-door rooms averaged under 100 F vs 1,000+ F in open-door rooms (UL FSRI Close Before You Doze)": [
+   "https://fsri.org/programs/close-before-you-doze",
+   "https://fsri.org/news/new-video-series-fire-safety-research-institute-shows-dangers-smoke-speed-home-fire-spread"
+  ],
+  "more than one-third (36%) of home Christmas tree fires occur in January (NFPA, 2018-2022)": [
+   "https://fireandsafetyjournalamericas.com/nfpa-urges-timely-disposal-of-christmas-trees-to-reduce-fire-risk/",
+   "https://www.securitysales.com/news/nfpa-christmas-tree-home-fires-january/609188/"
+  ],
+  "dried-out trees are a fire hazard; remove them after the holidays": [
+   "https://www.ncosfm.gov/injury-prevention/fire-prevention-education/christmas-trees",
+   "https://fireandsafetyjournalamericas.com/nfpa-urges-timely-disposal-of-christmas-trees-to-reduce-fire-risk/"
+  ],
+  "water daily, keep at least 3 ft from heat sources, turn off lights when going to bed/leaving": [
+   "https://www.ncosfm.gov/injury-prevention/fire-prevention-education/christmas-trees",
+   "https://www.wpi.edu/news/seasonal-safety-wpi-fire-protection-engineering-researchers-show-dangers-dry-and-neglected",
+   "https://extension.psu.edu/caring-for-your-cut-christmas-tree"
+  ]
+ },
+ "durs": [
+  2.399,
+  4.158,
+  2.541,
+  4.619,
+  4.256,
+  5.009,
+  2.775,
+  5.164,
+  5.244,
+  5.235,
+  3.804,
+  1.951,
+  4.068,
+  4.046,
+  4.088,
+  5.919,
+  4.387,
+  3.052,
+  5.05,
+  2.838,
+  5.33,
+  2.871
+ ]
+}

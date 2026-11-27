@@ -70,6 +70,7 @@ def frame(T):
     lt = T - starts[i]
     for ov in metas[i]['overlays']:
         a = 1.0 if (ov['type'] == 'hook' or ov.get('instant')) else E.eout((lt - ov.get('from', .4)) / .5)   # the hook is on screen from frame 1
+        if 'to' in ov: a *= 1 - E.eout((lt - ov['to']) / .3)      # optional end time: the overlay fades out
         if a <= 0: continue
         x, y = ov.get('pos', [.5, .5])[0] * E.W, min(ov.get('pos', [.5, .5])[1] * E.H, 1640)
         if ov['type'] == 'label':
