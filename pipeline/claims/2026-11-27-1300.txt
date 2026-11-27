@@ -1,3 +1,4 @@
 format: what-if
 topic: What if the space station fell out of the sky? (uncontrolled ISS reentry: 357 ft ~ a football field, 925,335 lb ~ 320 cars, 17,500 mph = NY-LA in ~8.4 min, drag + reboosts, crew leaves in lifeboat capsules, plasma hotter than lava, breakup ~50 mi up, 10-40% of big spacecraft mass survives, path over most people; Skylab 1979 77 t over Western Australia, Esperance $400 littering fine paid 30 yrs later; SpaceX deorbit tug ~2030 to the South Pacific near Point Nemo)
 status: made 2026-11-26 ~11:45 PM ET; video videos/2026-11-27-what-if-the-space-station-fell.mp4 (87.3 s)
+scheduled: Metricool 2026-11-27 13:00 America/New_York (YouTube + Instagram), https://app.metricool.com/planner/calendar?blogId=8192121&openWithPostUuid=-2120114817498987241
