@@ -1,2 +1,2 @@
 format: would-you-rather
-topic: TBD (market research)
+topic: Would you rather go 3 days without sleep or 3 days without water? (24 h awake ~ 0.10% BAC (CDC); microsleeps; hallucinations by day 3 (Waters 2018 review); Randy Gardner 1964, 264 h, slept ~14 h, no lasting changes at follow-up; body ~60% water (USGS); 2 days to a week without water, hours in heat, kidneys fail first; sleep wins)
