@@ -1,0 +1,2 @@
+format: would-you-rather
+topic: TBD (market research)
