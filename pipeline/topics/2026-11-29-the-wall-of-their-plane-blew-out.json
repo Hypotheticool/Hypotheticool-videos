@@ -1,0 +1,163 @@
+{
+ "slug": "2026-11-29-the-wall-of-their-plane-blew-out",
+ "title": "The wall of their plane blew out ✈️",
+ "format": "story",
+ "series": "2026-11-29-the-wall-of-their-plane-blew-out",
+ "part": 1,
+ "cliffhanger": false,
+ "cast": [
+  "kai",
+  "mia",
+  "leo"
+ ],
+ "root": "/home/claude/b3d/jet",
+ "lines": [
+  "The wall of their plane just blew out.",
+  "Sunday after Thanksgiving, the busiest day of the year to fly.",
+  "Kai, Mia and Leo are flying home at thirty-five thousand feet.",
+  "Then, a bang. A panel [tears](tairz) off the side of the plane.",
+  "Air rushes out. Fog fills the cabin, and it turns freezing cold.",
+  "Outside, it's about minus sixty-five degrees. Way colder than your freezer.",
+  "The air's so thin, you'd have thirty seconds to a [minute](minnit) before you can't think straight.",
+  "@am_echo: \"Mia! Let me help you first!\"",
+  "@af_heart: \"No! Your mask first, Leo!\"",
+  "She's right. Help others first, and you could pass out before you finish.",
+  "Pull the mask down to start the oxygen. The bag may not inflate, but it works.",
+  "Those masks hold at least ten [minutes](minnits) of oxygen. That's enough.",
+  "The pilots are already diving to ten thousand feet, where you can breathe.",
+  "@am_michael: \"Stay buckled! Stuff's flying out that hole!\"",
+  "Here's the twist. This really happened.",
+  "January twenty twenty-four. Alaska Airlines Flight twelve eighty-two, just out of Portland.",
+  "At almost fifteen thousand feet, a plug over an unused exit blew off.",
+  "The two seats next to the hole were empty. Nobody died.",
+  "Investigators found the four bolts meant to hold it in place were missing.",
+  "And one phone fell almost three miles, landed under a bush, and still worked.",
+  "So stay buckled, even when the sign is off. Because sometimes,"
+ ],
+ "hl": [
+  "wall",
+  "blew",
+  "Thanksgiving",
+  "busiest",
+  "thirty-five",
+  "thousand",
+  "bang",
+  "panel",
+  "fog",
+  "freezing",
+  "sixty-five",
+  "freezer",
+  "thin",
+  "thirty",
+  "seconds",
+  "minute",
+  "first",
+  "mask",
+  "pass",
+  "oxygen",
+  "inflate",
+  "working",
+  "ten",
+  "enough",
+  "diving",
+  "breathe",
+  "seatbelt",
+  "hole",
+  "twist",
+  "really",
+  "Alaska",
+  "Portland",
+  "fifteen",
+  "plug",
+  "exit",
+  "empty",
+  "Nobody",
+  "four",
+  "bolts",
+  "missing",
+  "phone",
+  "three",
+  "miles",
+  "worked",
+  "sign"
+ ],
+ "sources": {
+  "characters, the flight and the dialogue are fiction; the physics, the safety advice and the Alaska 1282 twist are real": [],
+  "Sunday after Thanksgiving = busiest travel day (TSA); 2025's was TSA's all-time record, ~3.13M screened": [
+   "https://www.timeout.com/usa/news/this-is-the-worst-day-to-travel-for-thanksgiving-weekend-according-to-the-tsa-111826",
+   "https://www.pbs.org/newshour/amp/nation/tsa-screened-more-than-3-million-travelers-at-u-s-airports-sunday-setting-a-record",
+   "https://www.hstoday.us/subject-matter-areas/transportation/sunday-after-thanksgiving-was-the-busiest-travel-day-in-tsa-history/"
+  ],
+  "35,000 ft ~ 24 Empire State Buildings (1,454 ft to the tip)": [
+   "https://www.esbnyc.com/about/facts-figures"
+  ],
+  "about -65 F outside at 35,000 ft (Jalopnik -66 F; standard atmosphere -54 C); freezer 0 F (FDA)": [
+   "https://jalopnik.com/1910073/plane-loses-cabin-pressure-what-happens/",
+   "https://www.fda.gov/food/buy-store-serve-safe-food/are-you-storing-food-safely"
+  ],
+  "rapid decompression: fog/mist, temperature drop, loose items fly; belongings sucked out on 1282": [
+   "https://jalopnik.com/1910073/plane-loses-cabin-pressure-what-happens/",
+   "https://www.ntsb.gov/news/press-releases/pages/NR20250624.aspx"
+  ],
+  "time of useful consciousness at 35,000 ft ~30 s to 1 min; shorter after rapid decompression": [
+   "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-107B_CHG_1.pdf",
+   "https://www.faa.gov/pilots/training/airman_education/topics_of_interest/hypoxia",
+   "https://www.popsci.com/what-happens-to-your-body-when-plane-loses-pressure/",
+   "https://jalopnik.com/1910073/plane-loses-cabin-pressure-what-happens/"
+  ],
+  "your own mask first, or you may pass out while helping": [
+   "https://www.nzherald.co.nz/travel/plane-safety-why-you-should-always-fit-your-own-oxygen-mask-first/6SJPWHNGBMGOCAZXPBZWSKLNM4",
+   "https://www.popsci.com/what-happens-to-your-body-when-plane-loses-pressure/"
+  ],
+  "pull the mask down to start the flow; the bag may not inflate even though oxygen flows": [
+   "https://atsb.gov.au/safety-issues/AO-2008-053-SI-02",
+   "https://www.yahoo.com/lifestyle/happens-oxygen-mask-doesnt-inflate-120001794.html",
+   "https://en.wikipedia.org/wiki/Emergency_oxygen_system"
+  ],
+  "masks carry at least 10 minutes of oxygen; pilots descend to ~10,000 ft, breathable": [
+   "https://jalopnik.com/1910073/plane-loses-cabin-pressure-what-happens/",
+   "https://www.popsci.com/what-happens-to-your-body-when-plane-loses-pressure/"
+  ],
+  "Alaska Airlines 1282, Jan 5 2024, ~6 min after takeoff from Portland; plug departed at 14,830 ft (NTSB; media 16,000); plug covered an unused exit": [
+   "https://www.ntsb.gov/news/press-releases/pages/NR20250624.aspx",
+   "https://www.adn.com/alaska-news/aviation/2025/06/24/systemic-failures-led-to-door-plug-flying-off-boeing-737-max-during-alaska-airlines-flight-ntsb-says/"
+  ],
+  "the two seats closest to the opening were empty; no deaths, minor injuries": [
+   "https://www.adn.com/alaska-news/aviation/2025/06/24/systemic-failures-led-to-door-plug-flying-off-boeing-737-max-during-alaska-airlines-flight-ntsb-says/",
+   "https://www.kptv.com/2025/06/25/ntsb-blames-boeing-portland-flight-door-plug-break-details-chilling-moments-crew/?outputType=amp",
+   "https://www.ntsb.gov/news/press-releases/pages/NR20250624.aspx"
+  ],
+  "the four bolts meant to secure the plug were missing": [
+   "https://www.ntsb.gov/news/press-releases/pages/NR20250624.aspx",
+   "https://www.kptv.com/2025/06/25/ntsb-blames-boeing-portland-flight-door-plug-break-details-chilling-moments-crew/?outputType=amp"
+  ],
+  "an iPhone from the flight was found under a bush by a road, still working, in airplane mode (14,830 ft = 2.8 mi)": [
+   "https://www.cbsnews.com/news/iphone-sucked-out-alaska-airlines-plane-fell-16000-feet-found-still-works",
+   "https://adn.com/nation-world/2024/01/08/heres-how-an-iphone-survived-a-16000-foot-fall-from-a-plane",
+   "https://www.thedrive.com/news/iphone-that-fell-16000-feet-from-alaska-flight-found-still-works"
+  ]
+ },
+ "durs": [
+  2.323,
+  4.247,
+  4.408,
+  3.557,
+  4.47,
+  5.273,
+  5.196,
+  2.638,
+  2.511,
+  4.413,
+  5.264,
+  4.348,
+  4.695,
+  3.512,
+  2.587,
+  6.36,
+  5.101,
+  4.049,
+  4.784,
+  5.091,
+  4.237
+ ]
+}
