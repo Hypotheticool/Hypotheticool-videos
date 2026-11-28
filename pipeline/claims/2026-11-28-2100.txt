@@ -1,3 +1,4 @@
 format: would-you-rather
 topic: Would you rather go 3 days without sleep or 3 days without water? (17 h awake ~0.05% BAC, 24 h ~0.10% (CDC/NIOSH, OSHA); microsleeps; hallucinations by day 3 (Waters 2018); Randy Gardner, San Diego, Dec 1963, 11 days/264 h, slept 14+ h, recovered; Guinness stopped tracking; body ~60% water (USGS); 1+ L sweat/hour = 3 soda cans; blood volume drops, kidneys fail; ~10% weight = ~2 gal = danger; cool room ~a week, extreme heat hours; sleep wins; loops)
 status: made 2026-11-28 ~6:00 AM ET; video videos/2026-11-28-wyr-no-sleep-or-no-water.mp4 (88.0 s)
+scheduled: Metricool 2026-11-28 21:00 America/New_York (YouTube + Instagram), https://app.metricool.com/planner/calendar?blogId=8192121&openWithPostUuid=5299679495984138769
